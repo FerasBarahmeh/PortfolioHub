@@ -25,7 +25,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
 
 
         Route::get('/dashboard', function () {
-            return view('dashboard');
+            return view('admin.dashboard');
         })->middleware(['auth', 'verified'])->name('dashboard');
 
 
