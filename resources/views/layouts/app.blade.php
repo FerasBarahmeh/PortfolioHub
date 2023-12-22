@@ -13,13 +13,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap" rel="stylesheet" />
 
-    {{--  Scripts  --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 
     {{--  Links --}}
     <link rel="stylesheet" href="{{ asset('admin/css/all.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('admin/css/framework.css') }}"/>
     <link rel="stylesheet" href="{{ asset('admin/css/master.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.rtl.min.css') }}"/>
+
+    {{--  Scripts  --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
 
 
 </head>
