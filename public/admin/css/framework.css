@@ -238,6 +238,17 @@
   height: 100px;
 }
 /* End Width + Height */
+/** Start directions */
+.left-5 {
+    left: 5px;
+}
+.left--5 {
+    left: -5px;
+}
+.top-1{
+    top: 1px;
+}
+/** End directions */
 /* Start Components */
 .center-flex {
   display: flex;

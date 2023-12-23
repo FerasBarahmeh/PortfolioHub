@@ -574,11 +574,13 @@ ul {
 .widgets-control .control input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
+    opacity: 0;
 }
 .widgets-control .control label {
   padding-left: 30px;
   cursor: pointer;
   position: relative;
+    left: -18px;
 }
 .widgets-control .control label::before,
 .widgets-control .control label::after {
@@ -618,11 +620,13 @@ ul {
 .backup-control input[type="radio"] {
   -webkit-appearance: none;
   appearance: none;
+    opacity: 0;
 }
 .backup-control .date label {
   padding-left: 30px;
   cursor: pointer;
   position: relative;
+    left: -18px;
 }
 .backup-control .date label::before {
   content: "";

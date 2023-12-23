@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\InfoSupplementaryController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -29,11 +31,29 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
         })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
         Route::middleware('auth')->group(function () {
-            Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-            Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-            Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+            /**
+             * Profile Routes
+             */
+            Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+
+
+
+            /**
+             * Supplementary Information
+             */
+            Route::get('/supplementary-info-profile', [InfoSupplementaryController::class, 'edit'])->name('supplementary.edit');
+            Route::patch('/supplementary-info-profile', [InfoSupplementaryController::class, 'update'])->name('supplementary.update');
+
+
+            /**
+             * Settings
+             */
+            Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+            Route::patch('/settings/update-main-info', [SettingsController::class, 'updateMainInfo'])->name('settings.update.main.info');
+            Route::patch('/settings/update-supplementary-info', [SettingsController::class, 'updateSupplementaryInfo'])->name('settings.update.supplementary.info');
+            Route::delete('/settings/destroy', [SettingsController::class, 'destroy'])->name('settings.destroy');
+
         });
 
         require __DIR__ . '/auth.php';

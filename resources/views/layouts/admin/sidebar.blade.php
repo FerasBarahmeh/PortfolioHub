@@ -12,16 +12,16 @@
 
 
         <li>
-            <a class="{{Route::is('profile.edit') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
-               href="{{ route('profile.edit') }}">
+            <a class="{{Route::is('profile.index') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
+               href="{{ route('profile.index') }}">
                 <i class="fa-regular fa-user fa-fw"></i>
                 <span>Profile</span>
             </a>
         </li>
 
         <li>
-            <a class="{{Route::is('settings') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
-               href="settings.html">
+            <a class="{{Route::is('settings.index') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
+               href="{{ route('settings.index') }}">
                 <i class="fa-solid fa-gear fa-fw"></i>
                 <span>Settings</span>
             </a>

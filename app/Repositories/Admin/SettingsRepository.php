@@ -1,30 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Repositories\Admin;
 
+use App\Http\Requests\Admin\InfoSupplementaryUpdateRequest;
 use App\Http\Requests\Admin\ProfileUpdateRequest;
+use App\Interfaces\Repositories\Admin\DBSettingsInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-class ProfileController extends Controller
+class SettingsRepository implements DBSettingsInterface
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): View
+
+    public function index(): View
     {
-        return view('profile.edit', [
-            'admin' => $request->user(),
+        return view('admin.settings.settings', [
+            'admin' => Auth::user(),
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function updateMainInfo(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
 
@@ -34,12 +31,17 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('settings.index')->with('status', 'update-main-info');
     }
 
-    /**
-     * Delete the user's account.
-     */
+
+    public function updateSupplementaryInfo(InfoSupplementaryUpdateRequest $request): RedirectResponse
+    {
+        $request->user()->supplementaryInfo->fill($request->validated());
+        $request->user()->supplementaryInfo->save();
+        return Redirect::route('settings.index')->with('status', 'supplementary-updated');
+    }
+
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
@@ -57,4 +59,5 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
 }

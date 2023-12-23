@@ -13,17 +13,30 @@
                     <button class="nav-link active text-capitalize text-gray-900" id="main-info-tab" data-bs-toggle="tab" data-bs-target="#main-info-tab-pane" type="button" role="tab" aria-controls="main-info-tab-pane" aria-selected="true">main info</button>
                 </li>
                 <li class="nav-item" role="presentation">
+                    <button class="nav-link text-capitalize text-gray-900" id="supplementary-tab" data-bs-toggle="tab" data-bs-target="#supplementary-tab-pane" type="button" role="tab" aria-controls="supplementary-tab-pane" aria-selected="false">supplementary</button>
+                </li>
+
+                <li class="nav-item" role="presentation">
                     <button class="nav-link text-capitalize text-gray-900" id="password-tab" data-bs-toggle="tab" data-bs-target="#password-tab-pane" type="button" role="tab" aria-controls="password-tab-pane" aria-selected="false">password</button>
                 </li>
+
                 <li class="nav-item" role="presentation">
                     <button class="nav-link text-capitalize text-gray-900" id="delete-account-tab" data-bs-toggle="tab" data-bs-target="#delete-account-tab-pane" type="button" role="tab" aria-controls="delete-account-tab-pane" aria-selected="false">delete account</button>
                 </li>
             </ul>
 
+            {{-- tab contents --}}
             <div  class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg" id="main-info-tab-pane" role="tabpanel" aria-labelledby="main-info-tab" tabindex="0">
+                <div class="tab-pane fade  {{ Route::currentRouteName() == 'profile.edit' ? 'show active' : '' }} p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg" id="main-info-tab-pane" role="tabpanel" aria-labelledby="main-info-tab" tabindex="0">
                     <div class="w-full">
                         @include('profile.partials.update-profile-information-form')
+                    </div>
+                </div>
+
+
+                <div class="tab-pane fade  {{ Route::currentRouteName() == 'supplementary.edit' ? 'show active' : '' }} p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg" id="supplementary-tab-pane" role="tabpanel" aria-labelledby="supplementary-tab" tabindex="0">
+                    <div class="w-full">
+                        @include('profile.partials.update-profile-supplementary-form')
                     </div>
                 </div>
 

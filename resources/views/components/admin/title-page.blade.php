@@ -1,1 +1,1 @@
-<h1 class="p-relative text-2xl">{{ $titlePage }}</h1>
+<h1 class="p-relative text-2xl">{{ $slot }}</h1>

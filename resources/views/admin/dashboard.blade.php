@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="slot" >
         <!-- End Head -->
-        <x-admin.title-page/>
+        <x-admin.title-page> Dashboard </x-admin.title-page>
         <div class="wrapper d-grid gap-20">
             <!-- Start Welcome Widget -->
             <div class="welcome bg-white rad-10 txt-c-mobile block-mobile">
@@ -18,7 +18,7 @@
                     <div>80 <span class="d-block c-grey fs-14 mt-10">Projects</span></div>
                     <div>$8500 <span class="d-block c-grey fs-14 mt-10">Earned</span></div>
                 </div>
-                <a href="{{ route('profile.edit') }}" class="visit d-block fs-14 bg-blue c-white w-fit btn-shape">Profile</a>
+                <a href="{{ route('profile.index') }}" class="visit d-block fs-14 bg-blue c-white w-fit btn-shape">Profile</a>
             </div>
             <!-- End Welcome Widget -->
             <!-- Start Quick Draft Widget -->
