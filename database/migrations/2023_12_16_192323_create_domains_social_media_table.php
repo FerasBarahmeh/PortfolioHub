@@ -11,18 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('links_admins', function (Blueprint $table) {
+        Schema::create('domains_social_media', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('admin_id')
-                ->references('id')
-                ->on('admins')
-                ->cascadeOnDelete();
-
-            $table->string('name_link');
-            $table->string('url');
-            $table->string('icon')->nullable();
-
+            $table->string('domain');
+            $table->string('hex_color')->nullable();
+            $table->string('icon_name');
+            $table->timestamps();
         });
     }
 

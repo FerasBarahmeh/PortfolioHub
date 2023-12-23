@@ -23,22 +23,15 @@
             <div class="social-boxes p-20 bg-white rad-10">
                 <h2 class="mt-0 mb-10">Social Info</h2>
                 <p class="mt-0 mb-20 c-grey fs-15">Social Media Information</p>
-                <div class="d-flex align-center mb-15">
-                    <i class="fa-brands fa-twitter center-flex c-grey"></i>
-                    <input class="w-full" type="text" placeholder="Twitter Username" />
-                </div>
-                <div class="d-flex align-center mb-15">
-                    <i class="fa-brands fa-facebook-f center-flex c-grey"></i>
-                    <input class="w-full" type="text" placeholder="Facebook Username" />
-                </div>
-                <div class="d-flex align-center mb-15">
-                    <i class="fa-brands fa-linkedin center-flex c-grey"></i>
-                    <input class="w-full" type="text" placeholder="Linkedin Username" />
-                </div>
-                <div class="d-flex align-center">
-                    <i class="fa-brands fa-youtube center-flex c-grey"></i>
-                    <input class="w-full" type="text" placeholder="Youtube Username" />
-                </div>
+                @foreach($socialMediaDomains as $socialMediaDomain)
+                    <div class="d-flex align-center mb-15">
+                        <i class="fa-brands fa-{{ $socialMediaDomain->icon_name }} center-flex c-grey"></i>
+                        <label class="w-full">
+                            <input class="w-full" type="text"  placeholder="{{Str::ucfirst($socialMediaDomain->domain) }} Username" />
+                        </label>
+                    </div>
+                @endforeach
+
             </div>
             {{-- End Settings Box --}}
             {{-- Start Settings Box --}}

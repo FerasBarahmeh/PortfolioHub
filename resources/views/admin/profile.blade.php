@@ -121,11 +121,14 @@
             </div>
         </div>
         <!-- End Overview -->
-        <!-- Start Other Data -->
-        <div class="other-data d-flex gap-20">
+
+
+        {{-- Start Other Data --}}
+        <div class="wrapper d-grid gap-20">
             <div class="skills-card p-20 bg-white rad-10 mt-20">
                 <h2 class="mt-0 mb-10">My Skills</h2>
                 <p class="mt-0 mb-20 c-grey fs-15">Complete Skills List</p>
+
                 <ul class="m-0 txt-c-mobile">
                     <li><span>HTML</span><span>Pugjs</span><span>HAML</span></li>
                     <li><span>CSS</span><span>SASS</span><span>Stylus</span></li>
@@ -136,55 +139,21 @@
                     <li><span>Python</span><span>Django</span></li>
                 </ul>
             </div>
-            <div class="activities p-20 bg-white rad-10 mt-20">
-                <h2 class="mt-0 mb-10">Latest Activities</h2>
-                <p class="mt-0 mb-20 c-grey fs-15">Latest Activities Done By The User</p>
-                <div class="activity d-flex align-center txt-c-mobile">
-                    <img src="imgs/activity-01.png" alt="" />
-                    <div class="info">
-                        <span class="d-block mb-10">Store</span>
-                        <span class="c-grey">Bought The Mastering Python Course</span>
+
+            <div class="social-boxes p-20 bg-white rad-10 mt-20">
+                <h2 class="mt-0 mb-10">Social Info</h2>
+                <p class="mt-0 mb-20 c-grey fs-15">Social Media Information</p>
+
+                @foreach($socialMediaDomains as $socialMediaDomain)
+                    <div class="d-flex align-center mb-15">
+                        <i class="fa-brands fa-{{ $socialMediaDomain->icon_name }} center-flex c-grey"></i>
+                        <label class="w-full">
+                            <input class="w-full" type="text"  placeholder="{{Str::ucfirst($socialMediaDomain->domain) }} Username" />
+                        </label>
                     </div>
-                    <div class="date">
-                        <span class="d-block mb-10">18:10</span>
-                        <span class="c-grey">Yesterday</span>
-                    </div>
-                </div>
-                <div class="activity d-flex align-center txt-c-mobile">
-                    <img src="imgs/activity-02.png" alt="" />
-                    <div class="info">
-                        <span class="d-block mb-10">Academy</span>
-                        <span class="c-grey">Got The PHP Certificate</span>
-                    </div>
-                    <div class="date">
-                        <span class="d-block mb-10">16:05</span>
-                        <span class="c-grey">Yesterday</span>
-                    </div>
-                </div>
-                <div class="activity d-flex align-center txt-c-mobile">
-                    <img src="imgs/activity-03.png" alt="" />
-                    <div class="info">
-                        <span class="d-block mb-10">Badges</span>
-                        <span class="c-grey">Unlocked The 10 Skills Badge</span>
-                    </div>
-                    <div class="date">
-                        <span class="d-block mb-10">18:05</span>
-                        <span class="c-grey">Yesterday</span>
-                    </div>
-                </div>
-                <div class="activity d-flex align-center txt-c-mobile">
-                    <img src="imgs/activity-01.png" alt="" />
-                    <div class="info">
-                        <span class="d-block mb-10">Store</span>
-                        <span class="c-grey">Bought The Typescript Course</span>
-                    </div>
-                    <div class="date">
-                        <span class="d-block mb-10">12:05</span>
-                        <span class="c-grey">Yesterday</span>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
-        <!-- End Other Data -->
+        {{-- End Other Data --}}
     </div>
 </x-app-layout>

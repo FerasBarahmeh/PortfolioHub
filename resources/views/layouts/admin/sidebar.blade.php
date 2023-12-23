@@ -26,6 +26,13 @@
                 <span>Settings</span>
             </a>
         </li>
+        <li>
+            <a class="{{Route::is('app.settings.index') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
+               href="{{ route('app.settings.index') }}">
+                <i class="fa-solid fa-sliders fa-fw"></i>
+                <span>App Settings</span>
+            </a>
+        </li>
 
         <li>
             <a class="{{Route::is('projects') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"

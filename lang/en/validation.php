@@ -188,4 +188,9 @@ return [
 
     'attributes' => [],
 
+    /**
+     * Validation For Custom Rule
+     */
+    'not_valid_domain' => 'this domain not used'
+
 ];

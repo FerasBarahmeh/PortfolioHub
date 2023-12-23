@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="slot" >
+    <x-slot name="slot">
         <!-- End Head -->
-        <x-admin.title-page> Dashboard </x-admin.title-page>
+        <x-admin.title-page> Dashboard</x-admin.title-page>
         <div class="wrapper d-grid gap-20">
             <!-- Start Welcome Widget -->
             <div class="welcome bg-white rad-10 txt-c-mobile block-mobile">
@@ -10,9 +10,9 @@
                         <h2 class="m-0">Welcome</h2>
                         <p class="c-grey mt-5">{{ strtok(Auth::user()->name, ' ') }}</p>
                     </div>
-                    <img class="hide-mobile" src="{{ asset('admin/images/welcome.png') }}" alt="" />
+                    <img class="hide-mobile" src="{{ asset('admin/images/welcome.png') }}" alt=""/>
                 </div>
-                <img src="{{ asset('admin/images/avatar.png') }}" alt="" class="avatar" />
+                <img src="{{ asset('admin/images/avatar.png') }}" alt="" class="avatar"/>
                 <div class="body txt-c d-flex p-20 mt-20 mb-20 block-mobile">
                     <div>{{ Auth::user()->name }} <span class="d-block c-grey fs-14 mt-10">Developer</span></div>
                     <div>80 <span class="d-block c-grey fs-14 mt-10">Projects</span></div>
@@ -26,9 +26,13 @@
                 <h2 class="mt-0 mb-10">Quick Draft</h2>
                 <p class="mt-0 mb-20 c-grey fs-15">Write A Draft For Your Ideas</p>
                 <form>
-                    <input class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" type="text" placeholder="Title" />
-                    <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6" placeholder="Your Thought"></textarea>
-                    <input class="save d-block fs-14 bg-blue c-white b-none w-fit btn-shape" type="submit" value="Save" />
+                    <input class="d-block mb-20 w-full p-10  bg-eee rad-6" type="text" placeholder="Title"/>
+                    <textarea class="d-block mb-20 w-full p-10 b-none bg-eee rad-6"
+                              placeholder="Your Thought"></textarea>
+
+                    <div class="flex items-center gap-4 mt-10">
+                        <x-primary-button>{{ __('save') }}</x-primary-button>
+                    </div>
                 </form>
             </div>
             <!-- End Quick Draft Widget -->
@@ -37,7 +41,7 @@
             <div class="latest-news p-20 bg-white rad-10 txt-c-mobile">
                 <h2 class="mt-0 mb-20">Latest News</h2>
                 <div class="news-row d-flex align-center">
-                    <img src="{{ asset('admin/images/news-01.png') }}" alt="" />
+                    <img src="{{ asset('admin/images/news-01.png') }}" alt=""/>
                     <div class="info">
                         <h3>Created SASS Section</h3>
                         <p class="m-0 fs-14 c-grey">New SASS Examples & Tutorials</p>
@@ -45,7 +49,7 @@
                     <div class="btn-shape bg-eee fs-13 label">3 Days Ago</div>
                 </div>
                 <div class="news-row d-flex align-center">
-                    <img src="{{ asset('admin/images/news-02.png') }}" alt="" />
+                    <img src="{{ asset('admin/images/news-02.png') }}" alt=""/>
                     <div class="info">
                         <h3>Changed The Design</h3>
                         <p class="m-0 fs-14 c-grey">A Brand New Website Design</p>
@@ -53,7 +57,7 @@
                     <div class="btn-shape bg-eee fs-13 label">5 Days Ago</div>
                 </div>
                 <div class="news-row d-flex align-center">
-                    <img src="{{ asset('admin/images/news-03.png') }}" alt="" />
+                    <img src="{{ asset('admin/images/news-03.png') }}" alt=""/>
                     <div class="info">
                         <h3>Team Increased</h3>
                         <p class="m-0 fs-14 c-grey">3 Developers Joined The Team</p>
@@ -61,7 +65,7 @@
                     <div class="btn-shape bg-eee fs-13 label">7 Days Ago</div>
                 </div>
                 <div class="news-row d-flex align-center">
-                    <img src="{{ asset('admin/images/news-04.png') }}" alt="" />
+                    <img src="{{ asset('admin/images/news-04.png') }}" alt=""/>
                     <div class="info">
                         <h3>Added Payment Gateway</h3>
                         <p class="m-0 fs-14 c-grey">Many New Payment Gateways Added</p>
@@ -152,28 +156,28 @@
                     <li class="d-flex align-center mt-15">
                         <span class="key bg-blue mr-15 d-block rad-half"></span>
                         <div class="pl-15 blue">
-                            <p class="fs-14 fw-bold mt-0 mb-5">Check My Tasks List</p>
+                            <p class="fs-14 fw-bold mt-0 mb-2">Check My Tasks List</p>
                             <span class="fs-13 c-grey">28/09/2022 - 12:00am</span>
                         </div>
                     </li>
                     <li class="d-flex align-center mt-15">
                         <span class="key bg-green mr-15 d-block rad-half"></span>
                         <div class="pl-15 green">
-                            <p class="fs-14 fw-bold mt-0 mb-5">Check My Projects</p>
+                            <p class="fs-14 fw-bold mt-0 mb-2">Check My Projects</p>
                             <span class="fs-13 c-grey">26/10/2022 - 12:00am</span>
                         </div>
                     </li>
                     <li class="d-flex align-center mt-15">
                         <span class="key bg-orange mr-15 d-block rad-half"></span>
                         <div class="pl-15 orange">
-                            <p class="fs-14 fw-bold mt-0 mb-5">Call All My Clients</p>
+                            <p class="fs-14 fw-bold mt-0 mb-2">Call All My Clients</p>
                             <span class="fs-13 c-grey">05/11/2022 - 12:00am</span>
                         </div>
                     </li>
                     <li class="d-flex align-center mt-15">
                         <span class="key bg-red mr-15 d-block rad-half"></span>
                         <div class="pl-15 red">
-                            <p class="fs-14 fw-bold mt-0 mb-5">Finish The Development Workshop</p>
+                            <p class="fs-14 fw-bold mt-0 mb-2">Finish The Development Workshop</p>
                             <span class="fs-13 c-grey">20/12/2022 - 12:00am</span>
                         </div>
                     </li>
@@ -184,7 +188,7 @@
             <div class="latest-post p-20 bg-white rad-10 p-relative">
                 <h2 class="mt-0 mb-25">Latest Post</h2>
                 <div class="top d-flex align-center">
-                    <img class="avatar mr-15" src="{{ asset('admin/images/avatar.png') }}" alt="" />
+                    <img class="avatar mr-15" src="{{ asset('admin/images/avatar.png') }}" alt=""/>
                     <div class="info">
                         <span class="d-block mb-5 fw-bold">
                             {{ strtok(Auth::user()->name, ' ') }}
@@ -193,7 +197,8 @@
                     </div>
                 </div>
                 <div class="post-content txt-c-mobile pt-20 pb-20 mt-20 mb-20">
-                    You can fool all of the people some of the time, and some of the people all of the time, but you can't
+                    You can fool all of the people some of the time, and some of the people all of the time, but you
+                    can't
                     fool all of the people all of the time.
                 </div>
                 <div class="post-stats between-flex c-grey">
@@ -208,6 +213,17 @@
                 </div>
             </div>
             <!-- End Latest Post Widget -->
+
+            <!-- Start Social Media Stats Widget -->
+            <div class="social-media p-20 bg-white rad-10 p-relative">
+                <h2 class="mt-0 mb-25">Social Media Domains</h2>
+
+                <div class="flex gap-10 flex-wrap">
+                    @each('admin.dashboard.domains', $domains, 'domain')
+                </div>
+            </div>
+            <!-- Start End Media Stats Widget -->
+
             <!-- Start Social Media Stats Widget -->
             <div class="social-media p-20 bg-white rad-10 p-relative">
                 <h2 class="mt-0 mb-25">Social Media Stats</h2>

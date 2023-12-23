@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProfileUpdateRequest;
+use App\Http\Requests\Admin\SocialMediaAccountRequest;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use App\Repositories\Admin\ProfileRepository;
 use Illuminate\Http\RedirectResponse;
@@ -23,5 +24,10 @@ class ProfileController extends Controller
     public function index(): View
     {
         return $this->profileRepository->index();
+    }
+
+    public function addSocialMediaAccount(SocialMediaAccountRequest $request)
+    {
+        return $this->profileRepository->addSocialMediaAccount($request);
     }
 }

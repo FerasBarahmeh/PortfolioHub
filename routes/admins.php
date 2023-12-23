@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AppSettingsController;
 use App\Http\Controllers\Admin\InfoSupplementaryController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -27,7 +28,9 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
 
 
         Route::get('/dashboard', function () {
-            return view('admin.dashboard');
+            return view('admin.dashboard', [
+                'domains' => \App\Models\DomainsSocialMedia::all(),
+            ]);
         })->middleware(['auth', 'verified'])->name('dashboard');
 
 
@@ -36,7 +39,6 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
              * Profile Routes
              */
             Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-
 
 
             /**
@@ -53,6 +55,13 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             Route::patch('/settings/update-main-info', [SettingsController::class, 'updateMainInfo'])->name('settings.update.main.info');
             Route::patch('/settings/update-supplementary-info', [SettingsController::class, 'updateSupplementaryInfo'])->name('settings.update.supplementary.info');
             Route::delete('/settings/destroy', [SettingsController::class, 'destroy'])->name('settings.destroy');
+
+            /**
+             * app settings
+             */
+            Route::get('/app-settings', [AppSettingsController::class, 'index'])->name('app.settings.index');
+            Route::post('/app-settings/add-domain-social-media', [AppSettingsController::class, 'addDomainSocialMedia'])->name('app.settings.add-domain');
+
 
         });
 
