@@ -24,7 +24,11 @@ class AppSettingsRepository implements DBAppSettingsInterface
 
     public function addDomainSocialMedia(DomainSocialMediaRequest $request): RedirectResponse
     {
-        DomainsSocialMedia::create($request->validated());
-        return Redirect::route('app.settings.index')->with('status', 'successfully');
+        $domain = DomainsSocialMedia::create($request->validated());
+
+        if ($domain->isDirty())
+            return Redirect::route('app.settings.index')->with('failed', 'failed');
+
+        return Redirect::route('app.settings.index')->with('success', 'successfully');
     }
 }

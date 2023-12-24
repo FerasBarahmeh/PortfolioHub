@@ -4,8 +4,10 @@ use App\Http\Controllers\Admin\AppSettingsController;
 use App\Http\Controllers\Admin\InfoSupplementaryController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingsController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Models\DomainsSocialMedia;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +31,8 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
 
         Route::get('/dashboard', function () {
             return view('admin.dashboard', [
-                'domains' => \App\Models\DomainsSocialMedia::all(),
+                'domains' => DomainsSocialMedia::all(),
+                'accounts' => Auth::user()->accounts,
             ]);
         })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -38,7 +41,14 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             /**
              * Profile Routes
              */
-            Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+            Route::prefix('/profile')->group(function () {
+                Route::get('', [ProfileController::class, 'index'])
+                    ->name('profile.index');
+
+                Route::put('/change-social-account', [ProfileController::class, 'changeSocialAccount'])
+                    ->name('profile.change.social.account');
+
+            });
 
 
             /**
@@ -51,16 +61,22 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             /**
              * Settings
              */
-            Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
-            Route::patch('/settings/update-main-info', [SettingsController::class, 'updateMainInfo'])->name('settings.update.main.info');
-            Route::patch('/settings/update-supplementary-info', [SettingsController::class, 'updateSupplementaryInfo'])->name('settings.update.supplementary.info');
-            Route::delete('/settings/destroy', [SettingsController::class, 'destroy'])->name('settings.destroy');
+            Route::prefix('/settings')->group(function () {
+                Route::get('', [SettingsController::class, 'index'])->name('settings.index');
+                Route::patch('/update-main-info', [SettingsController::class, 'updateMainInfo'])->name('settings.update.main.info');
+                Route::patch('/update-supplementary-info', [SettingsController::class, 'updateSupplementaryInfo'])->name('settings.update.supplementary.info');
+                Route::delete('/destroy', [SettingsController::class, 'destroy'])->name('settings.destroy');
+            });
+
 
             /**
              * app settings
              */
-            Route::get('/app-settings', [AppSettingsController::class, 'index'])->name('app.settings.index');
-            Route::post('/app-settings/add-domain-social-media', [AppSettingsController::class, 'addDomainSocialMedia'])->name('app.settings.add-domain');
+            Route::prefix('/app-settings')->group(function () {
+                Route::get('', [AppSettingsController::class, 'index'])->name('app.settings.index');
+                Route::post('/add-domain-social-media', [AppSettingsController::class, 'addDomainSocialMedia'])->name('app.settings.add-domain');
+
+            });
 
 
         });

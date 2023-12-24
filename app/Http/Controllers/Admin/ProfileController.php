@@ -3,14 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ProfileUpdateRequest;
-use App\Http\Requests\Admin\SocialMediaAccountRequest;
+
+use App\Http\Requests\Admin\SocialAccountRequest;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
-use App\Repositories\Admin\ProfileRepository;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -26,8 +21,8 @@ class ProfileController extends Controller
         return $this->profileRepository->index();
     }
 
-    public function addSocialMediaAccount(SocialMediaAccountRequest $request)
+    public function changeSocialAccount(SocialAccountRequest $request)
     {
-        return $this->profileRepository->addSocialMediaAccount($request);
+        return $this->profileRepository->changeSocialAccount($request);
     }
 }

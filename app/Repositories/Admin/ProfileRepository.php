@@ -2,12 +2,11 @@
 
 namespace App\Repositories\Admin;
 
-use App\Http\Requests\Admin\ProfileUpdateRequest;
-use App\Http\Requests\Admin\SocialMediaAccountRequest;
+use App\Http\Requests\Admin\SocialAccountRequest;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use App\Models\DomainsSocialMedia;
+use App\Models\SocialMediaAccount;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -22,12 +21,26 @@ class ProfileRepository implements DBProfileInterface
     {
         return view('admin.profile', [
             'admin' => Auth::user(),
-            'socialMediaDomains' => DomainsSocialMedia::all(),
+            'accounts' => SocialMediaAccount::where('admin_id', '=', Auth::id())->get(),
+            'domains' => DomainsSocialMedia::all(),
         ]);
     }
 
-    public function addSocialMediaAccount(SocialMediaAccountRequest $request)
+    public function changeSocialAccount(SocialAccountRequest $request): RedirectResponse
     {
-        // TODO: Implement addSocialMediaAccount() method.
+        $domain = $request->validated()['domain_id'];
+
+        $account = SocialMediaAccount::firstOrNew([
+            'domain_id' => $domain,
+        ]);
+
+        $account->fill(array_merge($request->validated(), ['admin_id' => Auth::id()]));
+
+
+        if (! $account->save())
+            return Redirect::route('profile.index')->with('fail', 'add_account');
+
+        return Redirect::route('profile.index')->with('success', 'add_account');
+
     }
 }

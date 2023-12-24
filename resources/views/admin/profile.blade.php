@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
 
-    <div class="profile-page m-20">
+    <div class="settings-page profile-page m-20">
         <!-- Start Overview -->
         <div class="overview bg-white rad-10 d-flex align-center">
             <div class="avatar-box txt-c p-20">
@@ -140,19 +140,8 @@
                 </ul>
             </div>
 
-            <div class="social-boxes p-20 bg-white rad-10 mt-20">
-                <h2 class="mt-0 mb-10">Social Info</h2>
-                <p class="mt-0 mb-20 c-grey fs-15">Social Media Information</p>
-
-                @foreach($socialMediaDomains as $socialMediaDomain)
-                    <div class="d-flex align-center mb-15">
-                        <i class="fa-brands fa-{{ $socialMediaDomain->icon_name }} center-flex c-grey"></i>
-                        <label class="w-full">
-                            <input class="w-full" type="text"  placeholder="{{Str::ucfirst($socialMediaDomain->domain) }} Username" />
-                        </label>
-                    </div>
-                @endforeach
-            </div>
+            {{-- Social info box --}}
+            @include('admin.profile.social-info-forms')
         </div>
         {{-- End Other Data --}}
     </div>

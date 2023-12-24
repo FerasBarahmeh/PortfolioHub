@@ -17,23 +17,6 @@
             @include('admin.settings.forms.supplementary-info-form')
 
             {{-- End Settings Box --}}
-
-
-            {{-- Start Settings Box --}}
-            <div class="social-boxes p-20 bg-white rad-10">
-                <h2 class="mt-0 mb-10">Social Info</h2>
-                <p class="mt-0 mb-20 c-grey fs-15">Social Media Information</p>
-                @foreach($socialMediaDomains as $socialMediaDomain)
-                    <div class="d-flex align-center mb-15">
-                        <i class="fa-brands fa-{{ $socialMediaDomain->icon_name }} center-flex c-grey"></i>
-                        <label class="w-full">
-                            <input class="w-full" type="text"  placeholder="{{Str::ucfirst($socialMediaDomain->domain) }} Username" />
-                        </label>
-                    </div>
-                @endforeach
-
-            </div>
-            {{-- End Settings Box --}}
             {{-- Start Settings Box --}}
             <div class="widgets-control p-20 bg-white rad-10">
                 <h2 class="mt-0 mb-10">Widgets Control</h2>

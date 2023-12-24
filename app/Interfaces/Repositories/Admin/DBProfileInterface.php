@@ -2,10 +2,7 @@
 
 namespace App\Interfaces\Repositories\Admin;
 
-use App\Http\Requests\Admin\ProfileUpdateRequest;
-use App\Http\Requests\Admin\SocialMediaAccountRequest;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\SocialAccountRequest;
 use Illuminate\View\View;
 
 interface DBProfileInterface
@@ -18,5 +15,5 @@ interface DBProfileInterface
     /**
      * Add Social Media Account
      */
-    public function addSocialMediaAccount(SocialMediaAccountRequest $request);
+    public function changeSocialAccount(SocialAccountRequest $request);
 }

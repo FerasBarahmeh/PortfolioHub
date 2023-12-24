@@ -234,6 +234,9 @@
 .h-full {
   height: 100%;
 }
+.h-fit {
+    height: fit-content;
+}
 .h-100 {
   height: 100px;
 }
