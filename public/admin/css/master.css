@@ -1028,8 +1028,57 @@ ul {
         margin-top: 15px;
     }
 }
-
-/* End Profile Page */
+.profile-page .option-box-buttons {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: end;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+.profile-page .option-box-buttons button {
+    font-size: 15px;
+    border-right: 1px solid var(--bs-border-color);
+    padding-right: 6px;
+    transition: opacity .2s ease-in-out;
+}
+.profile-page .option-box-buttons button:hover {
+    opacity: .7;
+}
+.profile-page .service {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.profile-page .service:nth-child(odd) {
+    background-color: var(--bs-dark-bg-subtle);
+}
+.profile-page .service:nth-child(even) {
+    background-color: var(--bs-gray-300);
+}
+.profile-page .service figure {
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile-page .service .content {
+    width: 100%;
+    padding-left: 10px;
+    border-left: 1px solid var(--bs-border-color-translucent);
+}
+.profile-page .service .content .name {
+    margin-bottom: 0.5rem!important;
+    color: var(--grey-color);
+}
+.profile-page .service .content .description {
+    font-weight: 300!important;
+    font-size: 15px;
+}
+    /* End Profile Page */
 /* Start Projects Page */
 .projects-page {
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));

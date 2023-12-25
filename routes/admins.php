@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Models\DomainsSocialMedia;
 
@@ -23,6 +24,14 @@ use App\Models\DomainsSocialMedia;
 Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])
     ->prefix(LaravelLocalization::setLocale())
     ->group(function () {
+
+        /**
+         * Livewire
+         */
+
+        Livewire::setUpdateRoute(function ($handle) {
+            return Route::post('/livewire/update', $handle);
+        });
 
         Route::get('/', function () {
             return view('welcome');
@@ -48,8 +57,9 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
                 Route::put('/change-social-account', [ProfileController::class, 'changeSocialAccount'])
                     ->name('profile.change.social.account');
 
+                Route::put('/change-service', [ProfileController::class, 'changeService'])
+                    ->name('profile.change.service');
             });
-
 
             /**
              * Supplementary Information

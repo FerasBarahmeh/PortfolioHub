@@ -142,6 +142,10 @@
 
             {{-- Social info box --}}
             @include('admin.profile.social-info-forms')
+
+            {{--  providers --}}
+            @include('admin.profile.providers')
+
         </div>
         {{-- End Other Data --}}
     </div>

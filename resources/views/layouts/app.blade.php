@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.rtl.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('admin/css/master.css') }}"/>
+    @livewireStyles
 
     {{--  Scripts  --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -40,4 +41,6 @@
 
     </body>
 
+
+@livewireScripts
 </html>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class InfoSupplementaryAdmin extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'admin_id',
         'job_title',

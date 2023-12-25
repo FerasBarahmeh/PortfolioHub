@@ -70,3 +70,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - Mcamara/localization
 - astrotomic/laravel-translatable
 - Laravel breeze
+- Livewire

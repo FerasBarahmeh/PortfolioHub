@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services_admins', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('name_service');
-            $table->string('description');
-            $table->string('string')->nullable();
+            $table->string('url');
+            $table->integer('imageable_id');
+            $table->string('imageable_type')
+                ->comment('column will contain the class name of the parent model');
+            $table->timestamps();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services_admins');
+        Schema::dropIfExists('images');
     }
 };

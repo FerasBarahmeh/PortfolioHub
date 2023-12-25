@@ -2,18 +2,23 @@
 
 namespace App\Repositories\Admin;
 
+use App\Enums\Disks;
+use App\Http\Requests\Admin\ServiceRequest;
 use App\Http\Requests\Admin\SocialAccountRequest;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use App\Models\DomainsSocialMedia;
+use App\Models\Service;
 use App\Models\SocialMediaAccount;
+use App\Traits\Upload;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class ProfileRepository implements DBProfileInterface
 {
-
+    use Upload;
     /**
      * @inheritDoc
      */
@@ -23,6 +28,7 @@ class ProfileRepository implements DBProfileInterface
             'admin' => Auth::user(),
             'accounts' => SocialMediaAccount::where('admin_id', '=', Auth::id())->get(),
             'domains' => DomainsSocialMedia::all(),
+            'services' => Service::where('admin_id', '=', Auth::id())->get(),
         ]);
     }
 
@@ -42,5 +48,21 @@ class ProfileRepository implements DBProfileInterface
 
         return Redirect::route('profile.index')->with('success', 'add_account');
 
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    public function changeService(ServiceRequest $request): RedirectResponse
+    {
+        $service = Service::create(array_merge(['admin_id' => Auth::id()], $request->validated()));
+
+        $file = $service && self::sort($request, 'image_service', 'admins', Disks::Public->value, $service->id, Service::class);
+
+        if ($file) {
+            return Redirect::route('profile.index')->with('success-add-service', __('success add service'));
+        }
+
+        return Redirect::route('profile.index')->with('fail-add-service', __('fail add service'));
     }
 }
