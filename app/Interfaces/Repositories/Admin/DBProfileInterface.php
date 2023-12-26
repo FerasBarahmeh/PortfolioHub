@@ -3,6 +3,8 @@
 namespace App\Interfaces\Repositories\Admin;
 
 use App\Http\Requests\Admin\DeleteServiceRequest;
+use App\Http\Requests\Admin\AddSkillRequest;
+use App\Http\Requests\Admin\DeleteSkillRequest;
 use App\Http\Requests\Admin\SocialAccountRequest;
 use Illuminate\View\View;
 
@@ -22,4 +24,14 @@ interface DBProfileInterface
      * for delete request
      */
     public function deleteService(DeleteServiceRequest $request);
+
+    /**
+     * Add skill
+     */
+    public function addSkill(AddSkillRequest $request);
+
+    /**
+     * Remove skill
+     */
+    public function deleteSkill(DeleteSkillRequest $request);
 }

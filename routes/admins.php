@@ -61,6 +61,13 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
                     ->name('profile.change.service');
                 Route::delete('delete-service', [ProfileController::class, 'deleteService'])
                     ->name('profile.delete.service');
+
+                Route::post('/add-skill', [ProfileController::class, 'addSkill'])
+                    ->name('profile.add.skill');
+
+                Route::delete('/delete-skill', [ProfileController::class, 'deleteSkill'])
+                    ->name('profile.delete.skill');
+
             });
 
             /**

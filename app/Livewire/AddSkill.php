@@ -8,12 +8,12 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class AddService extends Component
+class AddSkill extends Component
 {
-    use AbstractLivewire;
+   use AbstractLivewire;
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
     {
-        return view('livewire.add-service');
+        return view('livewire.add-skill');
     }
 }

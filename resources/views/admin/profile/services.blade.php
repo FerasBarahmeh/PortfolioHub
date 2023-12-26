@@ -5,7 +5,7 @@
 
 
     @php
-        $alertType = session('fail-service') ? 'danger' : (session('success-service') ? 'success' : '');
+        $alertType = session('fail-service') ? ['danger', session('fail-service')] : (session('success-service') ? ['success', session('success-service')] : '');
     @endphp
 
     @if ($alertType)
@@ -14,8 +14,8 @@
             x-show="show"
             x-transition
             x-init="setTimeout(() => show = false, 2000)"
-            class="text-sm text-gray-600 dark:text-gray-400 text-capitalize alert alert-{{ $alertType }}"
-        >{{ __('successfully update.') }}</p>
+            class="text-sm text-gray-600 dark:text-gray-400 text-capitalize alert alert-{{ $alertType[0] }}"
+        >{{ $alertType[1] }}</p>
     @endif
 
 

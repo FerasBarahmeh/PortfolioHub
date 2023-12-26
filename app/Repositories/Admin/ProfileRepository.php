@@ -4,12 +4,15 @@ namespace App\Repositories\Admin;
 
 use App\Enums\Disks;
 use App\Http\Requests\Admin\DeleteServiceRequest;
+use App\Http\Requests\Admin\DeleteSkillRequest;
 use App\Http\Requests\Admin\ServiceRequest;
+use App\Http\Requests\Admin\AddSkillRequest;
 use App\Http\Requests\Admin\SocialAccountRequest;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use App\Models\DomainsSocialMedia;
 use App\Models\Image;
 use App\Models\Service;
+use App\Models\Skill;
 use App\Models\SocialMediaAccount;
 use App\Traits\Upload;
 use Illuminate\Http\RedirectResponse;
@@ -32,6 +35,7 @@ class ProfileRepository implements DBProfileInterface
             'accounts' => SocialMediaAccount::where('admin_id', '=', Auth::id())->get(),
             'domains' => DomainsSocialMedia::all(),
             'services' => Service::where('admin_id', '=', Auth::id())->get(),
+            'skills' => Skill::where('admin_id', '=', Auth::id())->get(),
         ]);
     }
 
@@ -69,20 +73,48 @@ class ProfileRepository implements DBProfileInterface
         return Redirect::route('profile.index')->with('fail-service', __('fail add service'));
     }
 
-    public function deleteService(DeleteServiceRequest $request)
+    public function deleteService(DeleteServiceRequest $request): RedirectResponse
     {
         $id = $request->validated()['id'];
 
-
-        $destroyed  = Service::destroy($id);
+        $destroyed = Service::destroy($id);
         if ($destroyed) {
             $rubied = self::rubOut(Disks::Public->value, Image::find($id));
-            if (! $rubied) {
+            if (!$rubied) {
                 $restored = Service::withTrashed()->find($id)->restore();
                 if ($restored)
-                    return Redirect::route('profile.index')->with('success-service', 'success delete service');
+                    return Redirect::route('profile.index')->with('fail-service', 'fail delete service');
             }
         }
-        return Redirect::route('profile.index')->with('fail-service', 'fail delete service');
+        return Redirect::route('profile.index')->with('success-service', 'success delete service');
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    public function addSkill(AddSkillRequest $request): RedirectResponse
+    {
+        $skill = Skill::create(array_merge($request->validated(), ['admin_id' => Auth::id()]));
+        $icon = $skill && self::sort($request, 'icon_skill', 'admins', Disks::Public->value, $skill->id, Skill::class);
+        if ($icon)
+            return Redirect::route('profile.index')->with('success-skill', __('success add skill'));
+        return Redirect::route('profile.index')->with('fail-skill', __('fail add skill'));
+    }
+
+    public function deleteSkill(DeleteSkillRequest $request): RedirectResponse
+    {
+        $id = $request->validated()['id'];
+        $destroyed = Skill::destroy($id);
+
+        if ($destroyed) {
+            $rubied = self::rubOut(Disks::Public->value, Image::find($id));
+            if (!$rubied) {
+                $restored = Skill::withTrashed()->find($id)->restore();
+                if ($restored)
+                    return Redirect::route('profile.index')->with('fail-skill', 'fail delete skill');
+            }
+        }
+
+        return Redirect::route('profile.index')->with('success-skill', 'success delete skill');
     }
 }

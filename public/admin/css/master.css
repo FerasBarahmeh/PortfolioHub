@@ -967,30 +967,50 @@ ul {
     }
 }
 
-.profile-page .skills-card {
-    flex-grow: 1;
+.profile-page .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
 }
 
-.profile-page .skills-card ul li {
-    padding: 15px 0;
+.profile-page .skills .skill {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 150px;
+    background-color: var(--bs-dark-bg-subtle);
+    padding: 10px;
+    border-radius: 4px;
 }
-
-.profile-page .skills-card ul li:not(:last-child) {
-    border-bottom: 1px solid #eee;
+.profile-page .skills .skill figure {
+    height: 150px;
+    width:  150px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
 }
-
-.profile-page .skills-card ul li span {
-    display: inline-flex;
-    padding: 4px 10px;
-    background-color: #eee;
-    border-radius: 6px;
-    font-size: 14px;
+.profile-page .skills .skill .content {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--bs-border-color-translucent);
+    border-radius: 4px;
+    padding: 3px;
+    align-items: center;
 }
-
-.profile-page .skills-card ul li span:not(:last-child) {
-    margin-right: 5px;
+.profile-page .skills .skill .content .name {
+    font-size: 12px;
+    color: var(--bs-border-color);
+    text-transform: capitalize;
 }
-
+.profile-page .skills .skill .content button {
+    opacity: .7;
+}
+.profile-page .skills .skill .content button:hover {
+    opacity: 1;
+}
 .profile-page .activities {
     flex-grow: 2;
 }

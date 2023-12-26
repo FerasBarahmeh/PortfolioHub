@@ -11,7 +11,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('skills_admins', function (Blueprint $table) {
+        Schema::create('skills', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('admin_id')
@@ -21,7 +21,7 @@ return new class extends Migration {
 
             $table->enum('type_skill', [TypeSkill::Soft->value, TypeSkill::Technical->value]);
             $table->string('name_skill');
-            $table->string('icon')->nullable();
+            $table->timestamps();
 
         });
     }
