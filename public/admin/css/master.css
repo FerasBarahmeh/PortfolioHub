@@ -1048,6 +1048,7 @@ ul {
 .profile-page .service {
     display: flex;
     align-items: center;
+    position: relative;
     gap: 10px;
     margin-top: 6px;
     padding: 10px;
@@ -1077,6 +1078,23 @@ ul {
 .profile-page .service .content .description {
     font-weight: 300!important;
     font-size: 15px;
+}
+.profile-page .service .delete-service {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    padding: 0 !important;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    cursor: pointer;
+    opacity: .7;
+    transition: opacity .3s ease-in-out;
+}
+.profile-page .service .delete-service:hover {
+    opacity: 1 !important;
 }
     /* End Profile Page */
 /* Start Projects Page */

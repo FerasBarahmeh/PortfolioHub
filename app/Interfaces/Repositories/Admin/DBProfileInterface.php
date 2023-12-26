@@ -2,6 +2,7 @@
 
 namespace App\Interfaces\Repositories\Admin;
 
+use App\Http\Requests\Admin\DeleteServiceRequest;
 use App\Http\Requests\Admin\SocialAccountRequest;
 use Illuminate\View\View;
 
@@ -16,4 +17,9 @@ interface DBProfileInterface
      * Add Social Media Account
      */
     public function changeSocialAccount(SocialAccountRequest $request);
+
+    /**
+     * for delete request
+     */
+    public function deleteService(DeleteServiceRequest $request);
 }

@@ -10,7 +10,7 @@
         <!-- Start Overview -->
         <div class="overview bg-white rad-10 d-flex align-center">
             <div class="avatar-box txt-c p-20">
-                <img class="rad-half mb-10" src="{{ asset('admin/images/avatar.png') }}" alt="" />
+                <img class="rad-half mb-10" src="{{ asset('admin/images/avatar.png') }}" alt=""/>
                 <h3 class="m-0">{{ $admin->name }}</h3>
                 <p class="c-grey mt-10">Level 20</p>
                 <div class="level rad-6 bg-eee p-relative">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="fs-14">
                         <label class="relative">
-                            <input class="toggle-checkbox position-absolute left-5 top-1" type="checkbox" checked />
+                            <input class="toggle-checkbox position-absolute left-5 top-1" type="checkbox" checked/>
                             <div class="toggle-switch"></div>
                         </label>
                     </div>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="fs-14">
                         <label class="relative">
-                            <input class="toggle-checkbox position-absolute left-5 top-1" type="checkbox" />
+                            <input class="toggle-checkbox position-absolute left-5 top-1" type="checkbox"/>
                             <div class="toggle-switch"></div>
                         </label>
                     </div>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="fs-14">
                         <label class="relative">
-                            <input class="toggle-checkbox position-absolute left-5 top-1" type="checkbox" checked />
+                            <input class="toggle-checkbox position-absolute left-5 top-1" type="checkbox" checked/>
                             <div class="toggle-switch"></div>
                         </label>
                     </div>
@@ -112,7 +112,7 @@
                     </div>
                     <div class="fs-14">
                         <label class="relative">
-                            <input class="toggle-checkbox position-absolute left-5 top-1" type="checkbox" />
+                            <input class="toggle-checkbox position-absolute left-5 top-1" type="checkbox"/>
                             <div class="toggle-switch"></div>
                         </label>
                     </div>
@@ -144,7 +144,7 @@
             @include('admin.profile.social-info-forms')
 
             {{--  providers --}}
-            @include('admin.profile.providers')
+            @include('admin.profile.services')
 
         </div>
         {{-- End Other Data --}}

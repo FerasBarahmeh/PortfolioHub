@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\DeleteServiceRequest;
 use App\Http\Requests\Admin\ServiceRequest;
 use App\Http\Requests\Admin\SocialAccountRequest;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -27,8 +30,16 @@ class ProfileController extends Controller
         return $this->profileRepository->changeSocialAccount($request);
     }
 
-    public function changeService(ServiceRequest $request)
+    /**
+     * @throws ValidationException
+     */
+    public function changeService(ServiceRequest $request): RedirectResponse
     {
         return $this->profileRepository->changeService($request);
+    }
+
+    public function deleteService(DeleteServiceRequest $request)
+    {
+        return $this->profileRepository->deleteService($request);
     }
 }

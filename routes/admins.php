@@ -59,6 +59,8 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
 
                 Route::put('/change-service', [ProfileController::class, 'changeService'])
                     ->name('profile.change.service');
+                Route::delete('delete-service', [ProfileController::class, 'deleteService'])
+                    ->name('profile.delete.service');
             });
 
             /**
