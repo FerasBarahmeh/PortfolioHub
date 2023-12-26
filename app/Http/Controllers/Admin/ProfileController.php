@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AddEducationRequest;
 use App\Http\Requests\Admin\AddExperienceRequest;
+use App\Http\Requests\Admin\DeleteEducationRequest;
 use App\Http\Requests\Admin\DeleteExperienceRequest;
 use App\Http\Requests\Admin\DeleteServiceRequest;
 use App\Http\Requests\Admin\DeleteSkillRequest;
@@ -62,5 +64,15 @@ class ProfileController extends Controller
     public function deleteExperience(DeleteExperienceRequest $request): RedirectResponse
     {
         return $this->profileRepository->deleteExperience($request);
+    }
+
+    public function addEducation(AddEducationRequest $request)
+    {
+        return $this->profileRepository->addEducation($request);
+    }
+
+    public function deleteEducation(DeleteEducationRequest $request)
+    {
+        return $this->profileRepository->deleteEducation($request);
     }
 }

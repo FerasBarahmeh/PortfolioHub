@@ -3,7 +3,9 @@
 namespace App\Repositories\Admin;
 
 use App\Enums\Disks;
+use App\Http\Requests\Admin\AddEducationRequest;
 use App\Http\Requests\Admin\AddExperienceRequest;
+use App\Http\Requests\Admin\DeleteEducationRequest;
 use App\Http\Requests\Admin\DeleteExperienceRequest;
 use App\Http\Requests\Admin\DeleteServiceRequest;
 use App\Http\Requests\Admin\DeleteSkillRequest;
@@ -12,6 +14,7 @@ use App\Http\Requests\Admin\AddSkillRequest;
 use App\Http\Requests\Admin\SocialAccountRequest;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use App\Models\DomainsSocialMedia;
+use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Image;
 use App\Models\Service;
@@ -40,6 +43,7 @@ class ProfileRepository implements DBProfileInterface
             'services' => Service::where('admin_id', '=', Auth::id())->get(),
             'skills' => Skill::where('admin_id', '=', Auth::id())->get(),
             'experiences' => Experience::where('admin_id', '=', Auth::id())->get(),
+            'educations' => Education::where('admin_id', '=', Auth::id())->get(),
         ]);
     }
 
@@ -131,7 +135,7 @@ class ProfileRepository implements DBProfileInterface
         return Redirect::route('profile.index')->with('success-experience', 'success add new experience');
     }
 
-    public function deleteExperience(DeleteExperienceRequest $request)
+    public function deleteExperience(DeleteExperienceRequest $request): RedirectResponse
     {
         $id = $request->validated()['id'];
         $destroyed = Experience::destroy($id);
@@ -139,5 +143,23 @@ class ProfileRepository implements DBProfileInterface
             return Redirect::route('profile.index')->with('success-experience', 'success delete experience');
 
         return Redirect::route('profile.index')->with('fail-experience', 'fail delete experience');
+    }
+
+    public function addEducation(AddEducationRequest $request): RedirectResponse
+    {
+        $education = Education::create(array_merge($request->validated(), ['admin_id' => Auth::id()]));
+        if ($education)
+            return Redirect::route('profile.index')->with('success-education', 'success delete education');
+        return Redirect::route('profile.index')->with('fail-education', 'fail delete education');
+    }
+
+    public function deleteEducation(DeleteEducationRequest $request): RedirectResponse
+    {
+        $id = $request->validated()['id'];
+        $destroyed = Education::destroy($id);
+        if ($destroyed)
+            return Redirect::route('profile.index')->with('success-education', 'success delete education');
+        return Redirect::route('profile.index')->with('fail-education', 'fail delete education');
+
     }
 }

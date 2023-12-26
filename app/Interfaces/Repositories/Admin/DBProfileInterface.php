@@ -2,7 +2,9 @@
 
 namespace App\Interfaces\Repositories\Admin;
 
+use App\Http\Requests\Admin\AddEducationRequest;
 use App\Http\Requests\Admin\AddExperienceRequest;
+use App\Http\Requests\Admin\DeleteEducationRequest;
 use App\Http\Requests\Admin\DeleteExperienceRequest;
 use App\Http\Requests\Admin\DeleteServiceRequest;
 use App\Http\Requests\Admin\AddSkillRequest;
@@ -46,4 +48,13 @@ interface DBProfileInterface
      * delete experience
      */
     public function deleteExperience(DeleteExperienceRequest $request);
+    /**
+     * add education
+     */
+    public function addEducation(AddEducationRequest $request);
+
+    /**
+     * Delete education
+     */
+    public function deleteEducation(DeleteEducationRequest $request);
 }
