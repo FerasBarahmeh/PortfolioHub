@@ -3,6 +3,8 @@
 namespace App\Repositories\Admin;
 
 use App\Enums\Disks;
+use App\Http\Requests\Admin\AddExperienceRequest;
+use App\Http\Requests\Admin\DeleteExperienceRequest;
 use App\Http\Requests\Admin\DeleteServiceRequest;
 use App\Http\Requests\Admin\DeleteSkillRequest;
 use App\Http\Requests\Admin\ServiceRequest;
@@ -10,6 +12,7 @@ use App\Http\Requests\Admin\AddSkillRequest;
 use App\Http\Requests\Admin\SocialAccountRequest;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use App\Models\DomainsSocialMedia;
+use App\Models\Experience;
 use App\Models\Image;
 use App\Models\Service;
 use App\Models\Skill;
@@ -36,6 +39,7 @@ class ProfileRepository implements DBProfileInterface
             'domains' => DomainsSocialMedia::all(),
             'services' => Service::where('admin_id', '=', Auth::id())->get(),
             'skills' => Skill::where('admin_id', '=', Auth::id())->get(),
+            'experiences' => Experience::where('admin_id', '=', Auth::id())->get(),
         ]);
     }
 
@@ -116,5 +120,24 @@ class ProfileRepository implements DBProfileInterface
         }
 
         return Redirect::route('profile.index')->with('success-skill', 'success delete skill');
+    }
+
+    public function addExperience(AddExperienceRequest $request): RedirectResponse
+    {
+        $experience = Experience::create(array_merge($request->validated(), ['admin_id' => Auth::id()]));
+        if (! $experience) {
+            return Redirect::route('profile.index')->with('fail-experience', 'fail add new experience');
+        }
+        return Redirect::route('profile.index')->with('success-experience', 'success add new experience');
+    }
+
+    public function deleteExperience(DeleteExperienceRequest $request)
+    {
+        $id = $request->validated()['id'];
+        $destroyed = Experience::destroy($id);
+        if ($destroyed)
+            return Redirect::route('profile.index')->with('success-experience', 'success delete experience');
+
+        return Redirect::route('profile.index')->with('fail-experience', 'fail delete experience');
     }
 }

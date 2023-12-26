@@ -128,6 +128,8 @@
 
             @include('admin.profile.skills')
 
+            @include('admin.profile.experiences')
+
             {{-- Social info box --}}
             @include('admin.profile.social-info-forms')
 

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('experience_admins', function (Blueprint $table) {
+        Schema::create('experiences', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('admin_id')
@@ -19,12 +19,13 @@ return new class extends Migration
                 ->on('admins')
                 ->cascadeOnDelete();
 
-            $table->string('name');
+            $table->string('career_title');
+            $table->string('name_organisation');
             $table->string('organisation_url');
             $table->date('join_date');
             $table->date('leave_date');
-            $table->string('career_title');
             $table->string('job_description');
+            $table->timestamps();
         });
     }
 
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('experience_admins');
+        Schema::dropIfExists('experiences');
     }
 };

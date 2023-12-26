@@ -1011,6 +1011,41 @@ ul {
 .profile-page .skills .skill .content button:hover {
     opacity: 1;
 }
+.profile-page .experiences {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+.profile-page .experiences .experience {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px 4px 0 0;
+    border-bottom: 1px solid var(--bs-border-color);
+}
+.profile-page .experiences .experience .name {
+    font-size: 15px;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+.profile-page .experiences .experience .name .at {
+    color: var(--bs-dark-text-emphasis);
+}
+.profile-page .experiences .experience .name a {
+
+}
+.profile-page .experiences .experience .info {
+    display: flex;
+    justify-content: end;
+    font-size: 10px;
+    margin-top: 5px;
+}
+.profile-page .experiences .experience .info .dash {
+
+}
 .profile-page .activities {
     flex-grow: 2;
 }

@@ -2,6 +2,8 @@
 
 namespace App\Interfaces\Repositories\Admin;
 
+use App\Http\Requests\Admin\AddExperienceRequest;
+use App\Http\Requests\Admin\DeleteExperienceRequest;
 use App\Http\Requests\Admin\DeleteServiceRequest;
 use App\Http\Requests\Admin\AddSkillRequest;
 use App\Http\Requests\Admin\DeleteSkillRequest;
@@ -34,4 +36,14 @@ interface DBProfileInterface
      * Remove skill
      */
     public function deleteSkill(DeleteSkillRequest $request);
+
+    /**
+     * add experience to admin
+     */
+    public function addExperience(AddExperienceRequest $request);
+
+    /**
+     * delete experience
+     */
+    public function deleteExperience(DeleteExperienceRequest $request);
 }

@@ -68,6 +68,12 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
                 Route::delete('/delete-skill', [ProfileController::class, 'deleteSkill'])
                     ->name('profile.delete.skill');
 
+                Route::post('/add-experience', [ProfileController::class, 'addExperience'])
+                    ->name('profile.add.experience');
+
+                Route::delete('/delete-experience', [ProfileController::class, 'deleteExperience'])
+                    ->name('profile.delete.experience');
+
             });
 
             /**
