@@ -1,6 +1,6 @@
-<div class="skills-card p-20 bg-white rad-10 mt-20">
-    <h2 class="mt-0 mb-10">My Skills</h2>
-    <p class="mt-0 mb-20 c-grey fs-15">Complete Skills List</p>
+<div class="profile-card p-20 bg-white rad-10 mt-20">
+    <h2 class="mt-0 mb-10 text-capitalize">my skills</h2>
+    <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">complete skills list</p>
 
 
     @php
@@ -17,7 +17,7 @@
         >{{ $alertType[1] }}</p>
     @endif
 
-    <livewire:add-skill/>
+    <livewire:add-skill :notHasRecord="$skills->isEmpty()"/>
 
     <ul class="m-0 txt-c-mobile skills">
         @foreach($skills as $skill)

@@ -1,7 +1,7 @@
 
-<div class="p-20 bg-white rad-10 mt-20">
+<div class=" profile-card p-20 bg-white rad-10 mt-20">
     <h2 class="mt-0 mb-10 text-capitalize">services</h2>
-    <p class="mt-0 mb-20 c-grey fs-15">the services you provide </p>
+    <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">the services i can provide </p>
 
 
     @php
@@ -20,7 +20,7 @@
 
 
 
-    <livewire:add-service />
+    <livewire:add-service :notHasRecord="$services->isEmpty()"/>
 
     @if ($services )
         @foreach($services as $service)

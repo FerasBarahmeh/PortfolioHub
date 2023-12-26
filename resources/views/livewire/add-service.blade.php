@@ -1,6 +1,6 @@
 <div class="relative">
 
-    @if($clicked)
+    @if($clicked || $notHasRecord)
         <form method="post" action="{{ route('profile.change.service') }}"
               enctype="multipart/form-data"
               class="w-full  relative ">
@@ -9,7 +9,9 @@
 
             <div class="option-box-buttons">
                 <button type="submit" class="">{{ __('Change') }}</button>
-                <x-close-button class="c-black" wire:click="toggle">{{ __('close') }}</x-close-button>
+                @if(! $notHasRecord)
+                    <x-close-button class="c-black" wire:click="toggle">{{ __('close') }}</x-close-button>
+                @endif
             </div>
 
             <div class="w-full">
@@ -43,7 +45,7 @@
 
     @endif
 
-    @if (! $clicked)
+        @if (! $clicked && ! $notHasRecord)
         <div class="flex w-full justify-end">
             <x-primary-button wire:click="toggle"> add service</x-primary-button>
         </div>

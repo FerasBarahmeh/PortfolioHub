@@ -1,6 +1,6 @@
 <div class="relative transition ease-in-out delay-100">
 
-    @if($clicked)
+    @if($clicked || $notHasRecord)
         <form method="post" action="{{ route('profile.add.skill') }}"
               enctype="multipart/form-data"
               class="w-full mb-3 relative ">
@@ -8,7 +8,9 @@
 
             <div class="option-box-buttons">
                 <button type="submit" class="text-capitalize">{{ __('add') }}</button>
-                <x-close-button class="c-black" wire:click="toggle">{{ __('close') }}</x-close-button>
+                @if(! $notHasRecord)
+                    <x-close-button class="c-black" wire:click="toggle">{{ __('close') }}</x-close-button>
+                @endif
             </div>
 
             <div class="w-full mb-0">
@@ -43,7 +45,7 @@
 
     @endif
 
-    @if (! $clicked)
+        @if (! $clicked && ! $notHasRecord)
         <div class="flex w-full justify-end">
             <x-primary-button wire:click="toggle"> add skill</x-primary-button>
         </div>

@@ -1,6 +1,6 @@
-<div class="skills-card p-20 bg-white rad-10 mt-20">
-    <h2 class="mt-0 mb-10">My experiences</h2>
-    <p class="mt-0 mb-20 c-grey fs-15">experiences</p>
+<div class="profile-card p-20 bg-white rad-10 mt-20">
+    <h2 class="mt-0 mb-10 text-capitalize">My experiences</h2>
+    <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">what the stages experience i finished </p>
 
 
     @php
@@ -17,7 +17,7 @@
         >{{ $alertType[1] }}</p>
     @endif
 
-    <livewire:add-experience/>
+    <livewire:add-experience :notHasRecord="$experiences->isEmpty()"/>
 
     <ul class="txt-c-mobile experiences">
         @foreach($experiences as $experience)

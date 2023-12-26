@@ -966,7 +966,9 @@ ul {
         flex-direction: column;
     }
 }
-
+.profile-page .profile-card {
+    min-height: 705px;
+}
 .profile-page .skills {
     display: flex;
     flex-wrap: wrap;
