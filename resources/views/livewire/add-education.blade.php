@@ -1,6 +1,10 @@
 <div class="relative flex flex-col gap-2">
 
     @if($clicked || $notHasRecord)
+
+        @if (! $errors->isEmpty())
+{{--            @dd($errors)--}}
+        @endif
         <form method="post" action="{{ route('profile.add.education') }}"
               class="w-full  relative ">
             @csrf
@@ -21,7 +25,7 @@
                     name="name"
                     class="w-full p-10 border mt-2"
                 />
-                <x-input-error :messages="$errors->userDeletion->get('name')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('name')" class="mt-2"/>
             </div>
 
 
@@ -33,7 +37,7 @@
                     name="grade"
                     class="w-full p-10 border mt-2"
                 />
-                <x-input-error :messages="$errors->userDeletion->get('grade')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('grade')" class="mt-2"/>
             </div>
 
             <div class="w-full mt-3">
@@ -44,7 +48,7 @@
                     name="organisation_name"
                     class="w-full p-10 border mt-2"
                 />
-                <x-input-error :messages="$errors->userDeletion->get('organisation_name')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('organisation_name')" class="mt-2"/>
             </div>
 
             <div class="w-full mt-3">
@@ -55,7 +59,7 @@
                     name="organisation_url"
                     class="w-full p-10 border mt-2"
                 />
-                <x-input-error :messages="$errors->userDeletion->get('organisation_url')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('organisation_url')" class="mt-2"/>
             </div>
 
 
@@ -68,7 +72,7 @@
                     class="w-full p-10 border mt-2"
                     placeholder="Y-m-d"
                 />
-                <x-input-error :messages="$errors->userDeletion->get('start_date')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('start_date')" class="mt-2"/>
             </div>
 
 
@@ -81,7 +85,7 @@
                     class="w-full p-10 border mt-2"
                     placeholder="Y-m-d"
                 />
-                <x-input-error :messages="$errors->userDeletion->get('finish_date')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('finish_date')" class="mt-2"/>
             </div>
 
         </form>

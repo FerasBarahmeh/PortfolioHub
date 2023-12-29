@@ -36,7 +36,7 @@ class ProfileRepository implements DBProfileInterface
      */
     public function index(): View
     {
-        return view('admin.profile', [
+        return view('admin.profile.profile', [
             'admin' => Auth::user(),
             'accounts' => SocialMediaAccount::where('admin_id', '=', Auth::id())->get(),
             'domains' => DomainsSocialMedia::all(),

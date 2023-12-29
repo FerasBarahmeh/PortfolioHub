@@ -1,12 +1,8 @@
 <x-app-layout>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+    <x-admin.title-page> {{ __('projects') }}</x-admin.title-page>
 
-    <div class="settings-page profile-page m-20">
+    <div class="profile-page m-20">
         <!-- Start Overview -->
         <div class="overview bg-white rad-10 d-flex align-center">
             <div class="avatar-box txt-c p-20">

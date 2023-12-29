@@ -3,12 +3,13 @@
 use App\Http\Controllers\Admin\AppSettingsController;
 use App\Http\Controllers\Admin\InfoSupplementaryController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Models\DomainsSocialMedia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Models\DomainsSocialMedia;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,6 +112,14 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
 
             });
 
+            /**
+             * Projects
+             */
+
+            Route::prefix('/projects')->group(function () {
+                Route::get('', [ProjectsController::class, 'index'])->name('projects.index');
+                Route::post('/store', [ProjectsController::class, 'store'])->name('projects.store');
+            });
 
         });
 

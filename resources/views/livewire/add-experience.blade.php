@@ -20,7 +20,7 @@
                     name="career_title"
                     class="w-full p-10 border mt-2"
                 />
-                <x-input-error :messages="$errors->userDeletion->get('career_title')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('career_title')" class="mt-2"/>
             </div>
 
             <div class="w-full mt-3">
@@ -31,7 +31,7 @@
                     name="name_organisation"
                     class="w-full p-10 border mt-2"
                 />
-                <x-input-error :messages="$errors->userDeletion->get('name_organisation')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('name_organisation')" class="mt-2"/>
             </div>
 
             <div class="w-full mt-3">
@@ -42,7 +42,7 @@
                     name="organisation_url"
                     class="w-full p-10 border mt-2"
                 />
-                <x-input-error :messages="$errors->userDeletion->get('organisation_url')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('organisation_url')" class="mt-2"/>
             </div>
 
 
@@ -55,7 +55,7 @@
                     class="w-full p-10 border mt-2"
                     placeholder="Y-m-d"
                 />
-                <x-input-error :messages="$errors->userDeletion->get('join_date')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('join_date')" class="mt-2"/>
             </div>
 
 
@@ -68,7 +68,7 @@
                     class="w-full p-10 border mt-2"
                     placeholder="Y-m-d"
                 />
-                <x-input-error :messages="$errors->userDeletion->get('leave_date')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('leave_date')" class="mt-2"/>
             </div>
 
             <div class="w-full mt-3">

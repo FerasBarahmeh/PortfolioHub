@@ -6,6 +6,7 @@ namespace App\Traits;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -42,14 +43,12 @@ trait Upload
      * This method creates a unique file name for an uploaded file by using the provided
      * user-provided name and the original file's extension.
      *
-     * @param Request $request The HTTP request object.
-     * @param string $inputName The name of the file input field in the request.
-     *
+     * @param mixed $file the file object you want change name
      * @return string A unique file name combining the sanitized user-provided name and the original file extension.
      */
-    private static function generateFileName(mixed $request, string $inputName): string
+    private static function generateFileName(mixed $file): string
     {
-        return Str::slug(Carbon::now()) . '.' . $request->file($inputName)->getClientOriginalExtension();
+        return Hash::make(Str::slug(Carbon::now()))  . '.' . $file->getClientOriginalExtension();
     }
 
 
@@ -108,19 +107,41 @@ trait Upload
                                 string       $disk,
                                 int|string   $id,
                                 string       $type,
-                                             $img = null,
                                 array|string $validation = null): bool
     {
         $inputName = self::fileInputExists($request, $inputName);
 
-        !$inputName ?? self::validation($request, $inputName, $validation);
+            !$inputName ?? self::validation($request, $inputName, $validation);
 
         if ($inputName) {
-            $nameFile = self::generateFileName($request, $inputName);
+            $nameFile = self::generateFileName($request->file($inputName));
 
             self::inviteAssociatedRecord($nameFolder . DIRECTORY_SEPARATOR . $nameFile, $id, $type);
 
             return $request->file($inputName)->storeAs($nameFolder, $nameFile, $disk);
+        }
+
+        return false;
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    public static function storeMultiFiles(mixed $request, string $inputName, string $nameFolder, string $disk, int|string $id, string $type, array|string $validation=null): bool
+    {
+        $inputName = self::fileInputExists($request, $inputName);
+
+            !$inputName ?? self::validation($request, $inputName, $validation);
+
+        if ($inputName) {
+            $files = $request->file($inputName);
+            $flags = [];
+            foreach ($files as $file) {
+                $nameFile = self::generateFileName($file);
+                self::inviteAssociatedRecord($nameFolder . DIRECTORY_SEPARATOR . $nameFile, $id, $type);
+                $flags[] = $file->storeAs($nameFolder, $nameFile, $disk);
+            }
+            if (count($flags) == count($files)) return true;
         }
 
         return false;

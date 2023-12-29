@@ -1,3 +1,4 @@
+@php use App\Enums\TypeSkill; @endphp
 <div class="relative transition ease-in-out delay-100">
 
     @if($clicked || $notHasRecord)
@@ -16,8 +17,10 @@
             <div class="w-full mb-0">
                 <x-input-label for="type_skill" value="{{ __('type skill') }}" class=" text-capitalize"/>
                 <x-input-select name="type_skill" id="type_skill" class="mt-2">
-                    <x-select-option value="{{ \App\Enums\TypeSkill::Technical->value }}">{{ \App\Enums\TypeSkill::Technical->name }}</x-select-option>
-                    <x-select-option value="{{ \App\Enums\TypeSkill::Soft->value }}">{{ \App\Enums\TypeSkill::Soft->name }}</x-select-option>
+                    <x-select-option
+                        value="{{ TypeSkill::Technical->value }}">{{ TypeSkill::Technical->name }}</x-select-option>
+                    <x-select-option
+                        value="{{ TypeSkill::Soft->value }}">{{ TypeSkill::Soft->name }}</x-select-option>
                 </x-input-select>
             </div>
 
@@ -29,23 +32,21 @@
                     name="name_skill"
                     class="w-full p-10 border mt-2"
                 />
-                <x-input-error :messages="$errors->userDeletion->get('name_skill')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('name_skill')" class="mt-2"/>
             </div>
 
             <div class="w-full mt-2">
                 <x-input-label for="icon_skill" value="{{ __('icon skill') }}" class=" text-capitalize mb-1"/>
                 <x-input-label-file>Chose icon image</x-input-label-file>
-                <x-file-input name="icon_skill" />
-                <x-input-error :messages="$errors->userDeletion->get('icon_skill')" class="mt-2"/>
+                <x-file-input name="icon_skill"/>
+                <x-input-error :messages="$errors->get('icon_skill')" class="mt-2"/>
             </div>
 
         </form>
 
-
-
     @endif
 
-        @if (! $clicked && ! $notHasRecord)
+    @if (! $clicked && ! $notHasRecord)
         <div class="flex w-full justify-end">
             <x-primary-button wire:click="toggle"> add skill</x-primary-button>
         </div>
