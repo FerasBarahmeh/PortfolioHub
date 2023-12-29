@@ -1,16 +1,16 @@
-<div class="relative flex flex-col gap-2">
+<div class="relative flex flex-col gap-2" @style([
+    'max-height:250px',
+    'overflow-y:scroll',
+])>
 
     @if($clicked || $notHasRecord)
 
-        @if (! $errors->isEmpty())
-{{--            @dd($errors)--}}
-        @endif
         <form method="post" action="{{ route('profile.add.education') }}"
               class="w-full  relative ">
             @csrf
 
             <div class="option-box-buttons">
-                <button type="submit" class="text-capitalize">{{ __('add') }}</button>
+                <button type="submit" class="text-capitalize">{{ __('add new eduction') }}</button>
                 @if(! $notHasRecord)
                     <x-close-button class="c-black" wire:click="toggle">{{ __('close') }}</x-close-button>
                 @endif

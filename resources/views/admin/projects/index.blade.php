@@ -6,6 +6,7 @@
 
     <div class="container">
         <x-alerts.alert :success="session('success-add-project')" :fail="session('fail-add-project')"/>
+        <x-alerts.alert :success="session('success-delete-project')" :fail="session('fail-delete-project')"/>
     </div>
     <div class="row w-full">
         <div class="col-12  flex justify-end">
@@ -18,6 +19,17 @@
         </div>
     </div>
 
+    <div class="container">
+        @if (! $errors->isEmpty())
+            @php $timeInit = 2000 @endphp
+            @foreach($errors->messages() as $error)
+                @foreach($error as $message)
+                    @php $timeInit += 1000 @endphp
+                    <x-alerts.alert :fail="$message" :showTime="$timeInit"/>
+                @endforeach
+            @endforeach
+        @endif
+    </div>
 
     {{-- add project --}}
     @include('admin.projects.add-project')
@@ -26,8 +38,4 @@
         @each('admin.projects.projects', $projects, 'project')
     </div>
 
-
-@push('script')
-        <script src="{{ asset('admin/js/upload.multi.file.js') }}"></script>
-@endpush
 </x-app-layout>

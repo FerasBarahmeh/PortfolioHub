@@ -1,4 +1,4 @@
-@props(['disabled' => false])
+@props(['selected' => false])
 
-<option {!! $attributes->merge(['disabled' => $disabled]) !!}>{{ $slot }}</option>
+<option {!! $attributes->merge([]) !!} {{ $selected ? 'selected' : '' }}>{{ $slot }}</option>
 

@@ -19,7 +19,7 @@
 
     <livewire:add-skill :notHasRecord="$skills->isEmpty()"/>
 
-    <ul class="m-0 txt-c-mobile skills">
+    <ul class="m-0 txt-c-mobile skills mt-12">
         @foreach($skills as $skill)
 
             <li class="skill">

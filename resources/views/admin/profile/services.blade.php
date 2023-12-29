@@ -1,30 +1,17 @@
 
-<div class=" profile-card p-20 bg-white rad-10 mt-20">
+<div class=" profile-card p-20 bg-white rad-10 mt-20" id="services">
     <h2 class="mt-0 mb-10 text-capitalize">services</h2>
     <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">the services i can provide </p>
 
 
-    @php
-        $alertType = session('fail-service') ? ['danger', session('fail-service')] : (session('success-service') ? ['success', session('success-service')] : '');
-    @endphp
-
-    @if ($alertType)
-        <p
-            x-data="{ show: true }"
-            x-show="show"
-            x-transition
-            x-init="setTimeout(() => show = false, 2000)"
-            class="text-sm text-gray-600 dark:text-gray-400 text-capitalize alert alert-{{ $alertType[0] }}"
-        >{{ $alertType[1] }}</p>
-    @endif
-
-
+    <x-alerts.alert :success="session('success-add-service')" :fail="session('fail-add-service') "/>
+    <x-alerts.alert :success="session('success-delete-service')" :fail="session('fail-delete-service') "/>
 
     <livewire:add-service :notHasRecord="$services->isEmpty()"/>
 
     @if ($services )
         @foreach($services as $service)
-            <form action="{{ route('profile.delete.service') }}" method="post">
+            <form action="{{ route('profile.delete.service') }}" method="post" class="mt-6">
                 @csrf
                 @method('delete')
                 <input type="hidden" name="id" value="{{ $service->id }}">

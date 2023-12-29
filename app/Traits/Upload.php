@@ -4,7 +4,6 @@ namespace App\Traits;
 
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -48,7 +47,7 @@ trait Upload
      */
     private static function generateFileName(mixed $file): string
     {
-        return Hash::make(Str::slug(Carbon::now()))  . '.' . $file->getClientOriginalExtension();
+        return Hash::make(Str::slug(Carbon::now())) . '.' . $file->getClientOriginalExtension();
     }
 
 
@@ -127,23 +126,24 @@ trait Upload
     /**
      * @throws ValidationException
      */
-    public static function storeMultiFiles(mixed $request, string $inputName, string $nameFolder, string $disk, int|string $id, string $type, array|string $validation=null): bool
+    public static function storeMultiFile(mixed $request, string $inputName, string $nameFolder, string $disk, int|string $id, string $type, array|string $validation = null): bool
     {
         $inputName = self::fileInputExists($request, $inputName);
 
             !$inputName ?? self::validation($request, $inputName, $validation);
 
-        if ($inputName) {
-            $files = $request->file($inputName);
-            $flags = [];
-            foreach ($files as $file) {
-                $nameFile = self::generateFileName($file);
-                self::inviteAssociatedRecord($nameFolder . DIRECTORY_SEPARATOR . $nameFile, $id, $type);
-                $flags[] = $file->storeAs($nameFolder, $nameFile, $disk);
-            }
-            if (count($flags) == count($files)) return true;
+        if (!$inputName) return false;
+
+        $files = $request->file($inputName);
+        $flags = [];
+
+        foreach ($files as $file) {
+            $nameFile = self::generateFileName($file);
+            self::inviteAssociatedRecord($nameFolder . DIRECTORY_SEPARATOR . $nameFile, $id, $type);
+            $flags[] = $file->storeAs($nameFolder, $nameFile, $disk);
         }
 
+        if (count($flags) == count($files)) return true;
         return false;
     }
 

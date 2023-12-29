@@ -1,4 +1,7 @@
-<div class="relative">
+<div class="relative" @style([
+    'max-height:250px',
+    'overflow-y:scroll',
+])>
 
     @if($clicked || $notHasRecord)
         <form method="post" action="{{ route('profile.add.experience') }}"
@@ -6,7 +9,7 @@
             @csrf
 
             <div class="option-box-buttons">
-                <button type="submit" class="text-capitalize">{{ __('add') }}</button>
+                <button type="submit" class="text-capitalize">{{ __('add new exp.') }}</button>
                 @if(! $notHasRecord)
                     <x-close-button class="c-black" wire:click="toggle">{{ __('close') }}</x-close-button>
                 @endif

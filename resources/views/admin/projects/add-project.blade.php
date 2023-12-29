@@ -1,3 +1,4 @@
+
 <x-modal name="add-project">
     <form method="post" action="{{ route('projects.store') }}"  enctype="multipart/form-data"
           class="p-6">
@@ -11,9 +12,10 @@
             <x-input-label for="service_id" value="{{ __('service') }}" class="mb-1"/>
 
             <x-input-select name="service_id">
-                <x-select-option class="text-capitalize">{{ __('choose service') }}</x-select-option>
+
+                <x-select-option class="text-capitalize">{{ __('chose service') }}</x-select-option>
                 @foreach($services as $service)
-                    <x-select-option value="{{ $service->id }}">{{ $service->name_service }}</x-select-option>
+                    <x-select-option value="{{ $service->id }}" :selected="old('service_id') == $service->id">{{ $service->name_service }}</x-select-option>
                 @endforeach
             </x-input-select>
 

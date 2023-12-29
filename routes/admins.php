@@ -115,10 +115,10 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             /**
              * Projects
              */
-
             Route::prefix('/projects')->group(function () {
                 Route::get('', [ProjectsController::class, 'index'])->name('projects.index');
                 Route::post('/store', [ProjectsController::class, 'store'])->name('projects.store');
+                Route::delete('/destroy', [ProjectsController::class, 'destroy'])->name('projects.destroy');
             });
 
         });

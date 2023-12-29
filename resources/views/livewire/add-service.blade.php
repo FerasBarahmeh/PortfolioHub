@@ -1,4 +1,7 @@
-<div class="relative">
+<div class="relative" @style([
+    'max-height:250px',
+    'overflow-y:scroll',
+])>
 
     @if($clicked || $notHasRecord)
         <form method="post" action="{{ route('profile.change.service') }}"
@@ -8,7 +11,7 @@
             @method('put')
 
             <div class="option-box-buttons">
-                <button type="submit" class="">{{ __('add service') }}</button>
+                <button type="submit" class="text-capitalize">{{ __('add new service') }}</button>
                 @if(! $notHasRecord)
                     <x-close-button class="c-black" wire:click="toggle">{{ __('close') }}</x-close-button>
                 @endif

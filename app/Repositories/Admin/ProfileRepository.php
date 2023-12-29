@@ -75,10 +75,10 @@ class ProfileRepository implements DBProfileInterface
         $file = $service && self::sort($request, 'image_service', 'admins', Disks::Public->value, $service->id, Service::class);
 
         if ($file) {
-            return Redirect::route('profile.index')->with('success-service', __('success add service'));
+            return Redirect::route('profile.index#services')->with('success-add-service', __('success add service'));
         }
 
-        return Redirect::route('profile.index')->with('fail-service', __('fail add service'));
+        return Redirect::route('profile.index#services')->with('fail-add-service', __('fail add service'));
     }
 
     public function deleteService(DeleteServiceRequest $request): RedirectResponse
@@ -91,10 +91,10 @@ class ProfileRepository implements DBProfileInterface
             if (!$rubied) {
                 $restored = Service::withTrashed()->find($id)->restore();
                 if ($restored)
-                    return Redirect::route('profile.index')->with('fail-service', 'fail delete service');
+                    return Redirect::route('profile.index#services')->with('fail-delete-service', 'fail delete service');
             }
         }
-        return Redirect::route('profile.index')->with('success-service', 'success delete service');
+        return Redirect::route('profile.index#services')->with('success-delete-service', 'success delete service');
     }
 
     /**

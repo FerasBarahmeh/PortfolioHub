@@ -15,11 +15,18 @@
     </div>
 
     <div class="info between-flex">
-{{--        <div class="prog bg-eee">--}}
-{{--            <span class="bg-red" style="width: 50%"></span>--}}
-{{--        </div>--}}
+        <div class="prog bg-eee">
+            <span class="bg-red" style="width: 50%"></span>
+        </div>
         <div class="fs-14 c-grey">
             {{ $project->service->name_service }}
         </div>
+        <form method="post" action="{{ route('projects.destroy') }}">
+            @csrf @method('delete')
+            <input type="hidden"  name="id"  value="{{ $project->id }}">
+            <button class="fs-14 text-danger" type="submit">
+                <i class="fa fa-trash"></i>
+            </button>
+        </form>
     </div>
 </div>
