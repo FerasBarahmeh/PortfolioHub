@@ -8,7 +8,7 @@
                 <div class="intro p-20 d-flex space-between bg-eee">
                     <div>
                         <h2 class="m-0">Welcome</h2>
-                        <p class="c-grey mt-5">{{ strtok(Auth::user()->name, ' ') }}</p>
+                        <p class="c-grey">{{ strtok(Auth::user()->name, ' ') }}</p>
                     </div>
                     <img class="hide-mobile" src="{{ asset('admin/images/welcome.png') }}" alt=""/>
                 </div>

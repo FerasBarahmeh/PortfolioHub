@@ -36,14 +36,15 @@ class ProfileRepository implements DBProfileInterface
      */
     public function index(): View
     {
+        $admin = Auth::user();
         return view('admin.profile.profile', [
-            'admin' => Auth::user(),
+            'admin' => $admin,
             'accounts' => SocialMediaAccount::where('admin_id', '=', Auth::id())->get(),
             'domains' => DomainsSocialMedia::all(),
-            'services' => Service::where('admin_id', '=', Auth::id())->get(),
+            'services' =>  $admin->services,
             'skills' => Skill::where('admin_id', '=', Auth::id())->get(),
-            'experiences' => Experience::where('admin_id', '=', Auth::id())->get(),
-            'educations' => Education::where('admin_id', '=', Auth::id())->get(),
+            'experiences' => $admin->experiences,
+            'educations' =>$admin->educations,
         ]);
     }
 
@@ -59,9 +60,9 @@ class ProfileRepository implements DBProfileInterface
 
 
         if (!$account->save())
-            return Redirect::route('profile.index')->with('fail', 'add_account');
+            return Redirect::route('profile.index')->with('fail', 'fail add '. $account->domain->domain . ' with username is '.$account->username_account);
 
-        return Redirect::route('profile.index')->with('success', 'add_account');
+        return Redirect::route('profile.index')->with('success', 'add '. $account->domain->domain .' account with username is '.$account->username_account. ' successfully');
 
     }
 
@@ -130,9 +131,9 @@ class ProfileRepository implements DBProfileInterface
     {
         $experience = Experience::create(array_merge($request->validated(), ['admin_id' => Auth::id()]));
         if (! $experience) {
-            return Redirect::route('profile.index')->with('fail-experience', 'fail add new experience');
+            return Redirect::route('profile.index')->with('fail-add-experience', 'fail add new ' . $request->validated()['career_title']);
         }
-        return Redirect::route('profile.index')->with('success-experience', 'success add new experience');
+        return Redirect::route('profile.index')->with('success-add-experience', 'success add experience as a ' . $experience->career_title);
     }
 
     public function deleteExperience(DeleteExperienceRequest $request): RedirectResponse

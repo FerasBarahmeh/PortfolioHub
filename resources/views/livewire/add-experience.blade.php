@@ -20,6 +20,7 @@
 
                 <x-text-input
                     id="career_title"
+                    value="{{ old('career_title', '') }}"
                     name="career_title"
                     class="w-full p-10 border mt-2"
                 />
@@ -32,6 +33,7 @@
                 <x-text-input
                     id="name_organisation"
                     name="name_organisation"
+                    value="{{ old('name_organisation', '') }}"
                     class="w-full p-10 border mt-2"
                 />
                 <x-input-error :messages="$errors->get('name_organisation')" class="mt-2"/>
@@ -43,6 +45,7 @@
                 <x-text-input
                     id="organisation_url"
                     name="organisation_url"
+                    value="{{ old('organisation_url', '') }}"
                     class="w-full p-10 border mt-2"
                 />
                 <x-input-error :messages="$errors->get('organisation_url')" class="mt-2"/>
@@ -50,26 +53,28 @@
 
 
             <div class="w-full mt-3">
-                <x-input-label for="join_date" value="{{ __(' join date') }}" class=" text-capitalize"/>
+                <x-input-label for="join_date" value="{{ __(' join Year') }}" class=" text-capitalize"/>
 
                 <x-text-input
                     id="join_date"
                     name="join_date"
+                    value="{{ old('join_date', '') }}"
                     class="w-full p-10 border mt-2"
-                    placeholder="Y-m-d"
+                    placeholder="Year"
                 />
                 <x-input-error :messages="$errors->get('join_date')" class="mt-2"/>
             </div>
 
 
             <div class="w-ful mt-3">
-                <x-input-label for="leave_date" value="{{ __(' leve date') }}" class=" text-capitalize"/>
+                <x-input-label for="leave_date" value="{{ __(' leve Year') }}" class=" text-capitalize"/>
 
                 <x-text-input
                     id="leave_date"
                     name="leave_date"
+                    value="{{ old('leave_date', '') }}"
                     class="w-full p-10 border mt-2"
-                    placeholder="Y-m-d"
+                    placeholder="Year"
                 />
                 <x-input-error :messages="$errors->get('leave_date')" class="mt-2"/>
             </div>

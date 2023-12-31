@@ -15,15 +15,13 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('admin_id')
-                ->references('id')
-                ->on('admins')
-                ->cascadeOnDelete();
+                ->constrained();
 
             $table->string('career_title');
             $table->string('name_organisation');
             $table->string('organisation_url');
-            $table->date('join_date');
-            $table->date('leave_date');
+            $table->year('join_date');
+            $table->year('leave_date');
             $table->string('job_description');
             $table->timestamps();
         });

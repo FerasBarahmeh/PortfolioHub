@@ -2,20 +2,7 @@
     <h2 class="mt-0 mb-10 text-capitalize">My experiences</h2>
     <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">what the stages experience i finished </p>
 
-
-    @php
-        $alertType = session('fail-experience') ? ['danger', session('fail-experience')] : (session('success-experience') ? ['success',  session('success-experience')] : '');
-    @endphp
-
-    @if ($alertType)
-        <p
-            x-data="{ show: true }"
-            x-show="show"
-            x-transition
-            x-init="setTimeout(() => show = false, 2000)"
-            class="text-sm text-gray-600 dark:text-gray-400 text-capitalize alert alert-{{ $alertType[0] }}"
-        >{{ $alertType[1] }}</p>
-    @endif
+    <x-alerts.alert :success="session('success-add-experience')" :fail="session('fail-add-experience') "/>
 
     <livewire:add-experience :notHasRecord="$experiences->isEmpty()"/>
 
@@ -23,32 +10,32 @@
         @foreach($experiences as $experience)
 
             <li class="experience">
+
+                <div class="period">
+                    <span class="join">{{ $experience->join_date }}</span>
+                    <span class="dash">-</span>
+                    <span class="leave">{{ $experience->leave_date }}</span>
+                </div>
+
                 <form action="{{ route('profile.delete.experience') }}" method="post" class="d-flex justify-between w-full px-1">
                     @csrf @method('delete')
                     <input type="hidden" name="id" value="{{ $experience->id }}">
                     <div class="content">
                         <div class="name">
                             <span class="name">{{ Str::limit($experience->career_title )  }}</span>
-                            <span class="at">At</span>
+                            <span class="at caret-black text-capitalize">At</span>
                             <a href="{{ $experience->organisation_url }}">{{ $experience->name_organisation }}</a>
                         </div>
 
 
-                        <div class="description">
+                        <div class="description fs-15 c-grey">
                             {{ Str::limit($experience->job_description, 30) }}
                         </div>
                     </div>
 
-                    <div class="options d-flex flex-col justify-between gap-2 align-content-end">
-                        <div class="info">
-                            <span class="join">{{ $experience->join_date }}</span>
-                            <span class="dash">--</span>
-                            <span class="leave">{{ $experience->leave_date }}</span>
-                        </div>
-                        <button class="text-danger">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </div>
+                    <button class="text-danger">
+                        <i class="fa fa-trash"></i>
+                    </button>
                 </form>
             </li>
         @endforeach

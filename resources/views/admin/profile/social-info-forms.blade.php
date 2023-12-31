@@ -3,21 +3,7 @@
     <h2 class="mt-0 mb-10 text-capitalize">social Info</h2>
     <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">social media information</p>
 
-
-    @php
-        $alertType = session('fail') ? 'danger' : (session('success') ? 'success' : '');
-    @endphp
-
-    @if ($alertType)
-        <p
-            x-data="{ show: true }"
-            x-show="show"
-            x-transition
-            x-init="setTimeout(() => show = false, 2000)"
-            class="text-sm text-gray-600 dark:text-gray-400 text-capitalize alert alert-{{ $alertType }}"
-        >{{ __('successfully update.') }}</p>
-    @endif
-
+    <x-alerts.alert :success="session('success')" :fail="session('fail')" :showTime="4000"/>
 
 
     @foreach($domains as $key => $domain)
@@ -27,8 +13,7 @@
             @method('put')
 
             <div class="d-flex align-center flex-1">
-
-                <i class="fa-brands fa-{{ $domain->icon_name }} center-flex c-grey  text-bg-{{ $accounts[$key]->active ? 'success' : 'danger' }}"></i>
+                <i class="fa-brands fa-{{ $domain->icon_name }} center-flex c-white w-16 h-full " style="background-color: {{ $domain->hex_color }}"></i>
                 <x-input-label for="username_account"  />
                 <x-text-input id="username_account" name="username_account" type="text" class="w-full" :value="old('username_account', $accounts[$key]->username_account ?? '')" required autofocus placeholder="{{  $domain->domain }}" autocomplete="username_account" />
 

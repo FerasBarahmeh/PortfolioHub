@@ -3,6 +3,7 @@
     <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">complete skills list</p>
 
 
+
     @php
         $alertType = session('fail-skill') ? ['danger', session('fail-skill')] : (session('success-skill') ? ['success',  session('success-skill')] : '');
     @endphp

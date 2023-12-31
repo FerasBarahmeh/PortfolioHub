@@ -22,8 +22,8 @@ return new class extends Migration {
             $table->string('grade');
             $table->string('organisation_name', 100);
             $table->string('organisation_url');
-            $table->date('start_date');
-            $table->date('finish_date');
+            $table->year('start_date');
+            $table->year('finish_date');
             $table->timestamps();
         });
     }

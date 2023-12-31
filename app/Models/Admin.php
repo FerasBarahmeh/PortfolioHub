@@ -55,4 +55,19 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(SocialMediaAccount::class);
     }
+
+    public function services(): HasMany
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    public function educations(): HasMany
+    {
+        return $this->hasMany(Education::class);
+    }
+
+    public function experiences(): HasMany
+    {
+        return $this->hasMany(Experience::class);
+    }
 }

@@ -25,14 +25,18 @@
         <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">add domain for social media application</p>
         <div class="mb-15">
             <x-input-label for="domain" :value="__('domain')"/>
-            <x-text-input id="domain" name="domain" type="text" class="mt-1 block w-full" required autofocus
+            <x-text-input id="domain" name="domain" type="text"
+                          value="{{old('domain', '')}}"
+                          class="mt-1 block w-full" required autofocus
                           autocomplete="domain"/>
             <x-input-error class="mt-2" :messages="$errors->get('domain')" />
         </div>
 
         <div class="mb-15">
             <x-input-label for="icon_name" :value="__('Icon name')"/>
-            <x-text-input id="icon_name" name="icon_name" type="text" class="mt-1 block w-full" required
+            <x-text-input id="icon_name"
+                          value="{{ old('icon_name') }}"
+                          name="icon_name" type="text" class="mt-1 block w-full" required
                           autocomplete="icon_name"/>
             <x-input-error class="mt-2" :messages="$errors->get('icon_name')" />
         </div>
@@ -40,6 +44,7 @@
             <div class="mb-15">
                 <x-input-label for="hex_color" :value="__('hex color')"/>
                 <x-text-input id="hex_color" name="hex_color" type="text" class="mt-1 block w-full"
+                              value="{{ old('hex_color', '#') }}"
                               placeholder="#"
                               value='#'
                               autocomplete="hex_color"/>

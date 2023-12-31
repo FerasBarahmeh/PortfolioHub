@@ -2,26 +2,19 @@
     <h2 class="mt-0 mb-10 text-capitalize">my educations</h2>
     <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">what stages education i finished</p>
 
-
-    @php
-        $alertType = session('fail-education') ? ['danger', session('fail-education')] : (session('success-education') ? ['success',  session('success-education')] : '');
-    @endphp
-
-    @if ($alertType)
-        <p
-            x-data="{ show: true }"
-            x-show="show"
-            x-transition
-            x-init="setTimeout(() => show = false, 2000)"
-            class="text-sm text-gray-600 dark:text-gray-400 text-capitalize alert alert-{{ $alertType[0] }}"
-        >{{ $alertType[1] }}</p>
-    @endif
+    <x-alerts.alert :success="session('success-education')" :fail="session('fail-education')"/>
 
     <livewire:add-education :notHasRecord="$educations->isEmpty()"/>
 
     <ul class="txt-c-mobile mt-6">
         @foreach($educations as $education)
-            <li class="education">
+            <li class="education-card">
+                <div class="period">
+                    <span class="join">{{ $education->start_date }}</span>
+                    <span class="dash">-</span>
+                    <span class="leave">{{ $education->finish_date }}</span>
+                </div>
+
                 <form action="{{ route('profile.delete.education') }}" method="post"
                       class="d-flex justify-between w-full px-1">
                     @csrf @method('delete')
@@ -36,16 +29,10 @@
 
                     </div>
 
-                    <div class="options d-flex flex-col justify-between gap-2 align-content-end">
-                        <div class="info">
-                            <span class="join">{{ $education->start_date }}</span>
-                            <span class="dash">--</span>
-                            <span class="leave">{{ $education->finish_date }}</span>
-                        </div>
-                        <button class="text-danger">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </div>
+                    <button class="text-danger">
+                        <i class="fa fa-trash"></i>
+                    </button>
+
                 </form>
             </li>
         @endforeach

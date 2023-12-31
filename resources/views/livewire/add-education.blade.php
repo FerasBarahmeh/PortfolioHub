@@ -23,6 +23,7 @@
                 <x-text-input
                     id="name"
                     name="name"
+                    value="{{ old('name', '') }}"
                     class="w-full p-10 border mt-2"
                 />
                 <x-input-error :messages="$errors->get('name')" class="mt-2"/>
@@ -35,17 +36,19 @@
                 <x-text-input
                     id="grade"
                     name="grade"
+                    value="{{ old('grade', '') }}"
                     class="w-full p-10 border mt-2"
                 />
                 <x-input-error :messages="$errors->get('grade')" class="mt-2"/>
             </div>
 
             <div class="w-full mt-3">
-                <x-input-label for="organisation_name" value="{{ __('organisation_name') }}" class=" text-capitalize"/>
+                <x-input-label for="organisation_name" value="{{ __('organisation name') }}" class=" text-capitalize"/>
 
                 <x-text-input
                     id="organisation_name"
                     name="organisation_name"
+                    value="{{ old('organisation_name', '') }}"
                     class="w-full p-10 border mt-2"
                 />
                 <x-input-error :messages="$errors->get('organisation_name')" class="mt-2"/>
@@ -57,6 +60,7 @@
                 <x-text-input
                     id="organisation_url"
                     name="organisation_url"
+                    value="{{ old('organisation_url', '') }}"
                     class="w-full p-10 border mt-2"
                 />
                 <x-input-error :messages="$errors->get('organisation_url')" class="mt-2"/>
@@ -69,8 +73,9 @@
                 <x-text-input
                     id="start_date"
                     name="start_date"
+                    value="{{ old('start_date', '') }}"
                     class="w-full p-10 border mt-2"
-                    placeholder="Y-m-d"
+                    placeholder="Year"
                 />
                 <x-input-error :messages="$errors->get('start_date')" class="mt-2"/>
             </div>
@@ -82,8 +87,9 @@
                 <x-text-input
                     id="finish_date"
                     name="finish_date"
+                    value="{{ old('finish_date', '') }}"
                     class="w-full p-10 border mt-2"
-                    placeholder="Y-m-d"
+                    placeholder="Year"
                 />
                 <x-input-error :messages="$errors->get('finish_date')" class="mt-2"/>
             </div>

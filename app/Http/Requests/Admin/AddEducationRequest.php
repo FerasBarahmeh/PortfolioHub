@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Rules\ValidDateRule;
+use App\Rules\ValidYear;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -28,8 +29,8 @@ class AddEducationRequest extends FormRequest
             'grade' => ['required', 'string', 'max:10'],
             'organisation_url' => ['required', 'url', 'max:255'],
             'organisation_name' => ['required', 'string', 'max:100'],
-            'start_date' => ['required', 'date', new ValidDateRule()],
-            'finish_date' => ['required', 'date', new ValidDateRule()],
+            'start_date' => ['required', new ValidYear],
+            'finish_date' => ['required', new ValidYear],
         ];
     }
 }

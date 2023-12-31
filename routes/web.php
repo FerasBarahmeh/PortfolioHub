@@ -17,3 +17,4 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 require __DIR__.'/admins.php';
+require __DIR__.'/guest.php';
