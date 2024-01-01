@@ -73,10 +73,12 @@
         {{-- skills --}}
         <div class="mt-6 relative flex justify-evenly">
             @foreach($skills as $skill)
-                <x-input-checkbox :checked="in_array($skill->id, old('skills', []))" id="skill_{{ $skill->id }}" name="skills[]" value="{{ $skill->id }}" />
-                <x-input-label-checkbox  for="skill_{{ $skill->id }}">
-                    {{ $skill->name_skill }}
-                </x-input-label-checkbox>
+                <div class="">
+                    <x-input-checkbox :checked="in_array($skill->id, old('skills', []))" id="skill_{{ $skill->id }}" name="skills[]" value="{{ $skill->id }}" />
+                    <x-input-label-checkbox  for="skill_{{ $skill->id }}">
+                        {{ $skill->name_skill }}
+                    </x-input-label-checkbox>
+                </div>
             @endforeach
             <x-input-error :messages="$errors->get('skills')" class="mt-2"/>
         </div>
