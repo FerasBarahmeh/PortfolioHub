@@ -3,22 +3,8 @@
     <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">complete skills list</p>
 
 
-
-    @php
-        $alertType = session('fail-skill') ? ['danger', session('fail-skill')] : (session('success-skill') ? ['success',  session('success-skill')] : '');
-    @endphp
-
-    @if ($alertType)
-        <p
-            x-data="{ show: true }"
-            x-show="show"
-            x-transition
-            x-init="setTimeout(() => show = false, 2000)"
-            class="text-sm text-gray-600 dark:text-gray-400 text-capitalize alert alert-{{ $alertType[0] }}"
-        >{{ $alertType[1] }}</p>
-    @endif
-
-    <livewire:add-skill :notHasRecord="$skills->isEmpty()"/>
+    <x-alerts.alert :success="session('success-skill')" :fail="session('fail-skill')" />
+    <livewire:add-skill :notHasRecord=" $skills->isEmpty()"/>
 
     <ul class="m-0 txt-c-mobile skills mt-12">
         @foreach($skills as $skill)

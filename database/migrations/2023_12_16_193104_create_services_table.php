@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('name_service');
             $table->string('description', 100);
             $table->foreignId('admin_id')
-                ->references('id')
-                ->on('admins')
+                ->constrained()
                 ->cascadeOnDelete();
             $table->timestamps();
         });

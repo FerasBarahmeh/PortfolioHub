@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('admin_id')
-                ->constrained();
+                ->constrained()
+            ->cascadeOnDelete();
 
             $table->string('career_title');
             $table->string('name_organisation');

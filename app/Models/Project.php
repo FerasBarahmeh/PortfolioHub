@@ -29,6 +29,10 @@ class Project extends Model
     {
         return $this->belongsToMany(Skill::class)->withTimestamps();
     }
+    public function admin(): BelongsTo
+    {
+        return $this->belongsTo(Admin::class);
+    }
 
     public function service(): BelongsTo
     {

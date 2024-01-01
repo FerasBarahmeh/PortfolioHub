@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('service_id')
-                ->references('id')
-                ->on('services')
+                ->constrained()
                 ->cascadeOnDelete();
 
             $table->string('name_project');

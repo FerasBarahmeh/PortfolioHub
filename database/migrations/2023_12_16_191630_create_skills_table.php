@@ -15,8 +15,7 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('admin_id')
-                ->references('id')
-                ->on('admins')
+                ->constrained()
                 ->cascadeOnDelete();
 
             $table->enum('type_skill', [TypeSkill::Soft->value, TypeSkill::Technical->value]);

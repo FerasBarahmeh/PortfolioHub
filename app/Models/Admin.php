@@ -3,11 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\TypeSkill;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 class Admin extends Authenticatable
@@ -69,5 +72,25 @@ class Admin extends Authenticatable
     public function experiences(): HasMany
     {
         return $this->hasMany(Experience::class);
+    }
+    public function softSkills(): HasMany
+    {
+        return $this->hasMany(Skill::class, 'admin_id')
+            ->where('type_skill', '=', TypeSkill::Soft->value);
+    }
+
+    public function technicalSkills(): HasMany
+    {
+        return $this->hasMany(Skill::class, 'admin_id')
+            ->where('type_skill', '=', TypeSkill::Technical->value);
+    }
+    public function skills(): HasMany
+    {
+        return $this->hasMany(Skill::class);
+    }
+
+    public function projects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class)->withTimestamps();
     }
 }

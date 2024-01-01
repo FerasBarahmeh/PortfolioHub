@@ -2,8 +2,8 @@
 
 namespace App\Enums;
 
-enum TypeSkill: int
+enum TypeSkill: string
 {
-    case Soft = 0;
-    case Technical = 1;
+    case Soft = 'soft';
+    case Technical = 'technical';
 }

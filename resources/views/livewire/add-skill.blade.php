@@ -20,11 +20,16 @@
             <div class="w-full mb-0">
                 <x-input-label for="type_skill" value="{{ __('type skill') }}" class=" text-capitalize"/>
                 <x-input-select name="type_skill" id="type_skill" class="mt-2">
+                    <x-select-option  :selected="old('type_skill') == TypeSkill::Technical->value"
+                                            value="{{ TypeSkill::Technical->value }}">
+                        {{ TypeSkill::Technical->name}}
+                    </x-select-option>
+
                     <x-select-option
-                        value="{{ TypeSkill::Technical->value }}">{{ TypeSkill::Technical->name }}</x-select-option>
-                    <x-select-option
+                        :selected="old('type_skill') == TypeSkill::Soft->name"
                         value="{{ TypeSkill::Soft->value }}">{{ TypeSkill::Soft->name }}</x-select-option>
                 </x-input-select>
+                <x-input-error :messages="$errors->get('type_skill')" class="mt-2"/>
             </div>
 
             <div class="w-full mt-2">
@@ -33,6 +38,7 @@
                 <x-text-input
                     id="name_skill"
                     name="name_skill"
+                    value="{{ old('name_skill', '') }}"
                     class="w-full p-10 border mt-2"
                 />
                 <x-input-error :messages="$errors->get('name_skill')" class="mt-2"/>

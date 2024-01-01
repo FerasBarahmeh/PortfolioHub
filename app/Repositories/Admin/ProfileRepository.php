@@ -42,7 +42,7 @@ class ProfileRepository implements DBProfileInterface
             'accounts' => SocialMediaAccount::where('admin_id', '=', Auth::id())->get(),
             'domains' => DomainsSocialMedia::all(),
             'services' =>  $admin->services,
-            'skills' => Skill::where('admin_id', '=', Auth::id())->get(),
+            'skills' => $admin->skills,
             'experiences' => $admin->experiences,
             'educations' =>$admin->educations,
         ]);
