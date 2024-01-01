@@ -13,12 +13,18 @@ class Project extends Model
     use HasFactory;
 
     protected $fillable = [
+        'admin_id',
         'service_id',
         'name_project',
         'github_url',
         'discretion',
         'finish_date',
     ];
+
+    public function admin(): BelongsTo
+    {
+        return $this->belongsTo(Admin::class);
+    }
 
     public function images(): MorphMany
     {
@@ -28,10 +34,6 @@ class Project extends Model
     public function skills(): BelongsToMany
     {
         return $this->belongsToMany(Skill::class)->withTimestamps();
-    }
-    public function admin(): BelongsTo
-    {
-        return $this->belongsTo(Admin::class);
     }
 
     public function service(): BelongsTo

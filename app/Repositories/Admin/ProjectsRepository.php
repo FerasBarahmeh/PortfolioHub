@@ -6,6 +6,7 @@ use App\Enums\Disks;
 use App\Http\Requests\Admin\DeleteProjectRequest;
 use App\Http\Requests\Admin\StoreProjectRequest;
 use App\Interfaces\Repositories\Admin\DBProjectsInterface;
+use App\Models\Admin;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Skill;
@@ -26,10 +27,11 @@ class ProjectsRepository implements DBProjectsInterface
      */
     public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
+        $admin = Admin::find( '1');
         return view('admin.projects.index', [
-            'services' => Service::where('admin_id', '=', Auth::id())->get(),
-            'skills' => Skill::where('admin_id', '=', Auth::id())->get(),
-            'projects' => Project::all(),
+            'services' => $admin->services,
+            'skills' => $admin->skills,
+            'admin' => $admin,
         ]);
     }
 
@@ -40,7 +42,7 @@ class ProjectsRepository implements DBProjectsInterface
     public function store(StoreProjectRequest $request): RedirectResponse
     {
 
-        $project = Project::create($request->validated());
+        $project = Project::create(array_merge($request->validated(), ['admin_id' => auth()->id()]));
         $skills = Skill::whereIn('id', $request->input('skills'))->get();
         $project->skills()->attach($skills);
 

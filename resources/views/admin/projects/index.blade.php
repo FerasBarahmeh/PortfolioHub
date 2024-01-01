@@ -35,7 +35,7 @@
     @include('admin.projects.add-project')
 
     <div class="projects-page d-grid m-20 gap-20">
-        @each('admin.projects.projects', $projects, 'project')
+        @each('admin.projects.projects', $admin->projects, 'project')
     </div>
 
 </x-app-layout>

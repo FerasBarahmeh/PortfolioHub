@@ -18,6 +18,10 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
 
+            $table->foreignId('admin_id')
+                ->constrained()
+                ->cascadeOnDelete();
+
             $table->string('name_project');
             $table->string('github_url')->nullable();
             $table->string('discretion');

@@ -89,8 +89,8 @@ class Admin extends Authenticatable
         return $this->hasMany(Skill::class);
     }
 
-    public function projects(): BelongsToMany
+    public function projects(): HasMany
     {
-        return $this->belongsToMany(Project::class)->withTimestamps();
+        return $this->hasMany(Project::class);
     }
 }

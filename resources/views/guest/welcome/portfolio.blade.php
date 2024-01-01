@@ -3,35 +3,27 @@
     <header>
         <ul>
             <li class="active">All</li>
-            <li>Web Design</li>
-            <li>Web Application</li>
-            <li>Desktop Application</li>
+            @foreach($admin->services as $service)
+                <li>{{ $service->name_service }}</li>
+            @endforeach
         </ul>
     </header>
 
     <div class="projects">
 
-        <div class="project">
-            <figure>
-                <img src="images/pos.jpg" alt="POS">
-            </figure>
-            <h3 class="project-name">
-                <a href="https://github.com/Feras-Barahmeh/POS">Point Of Sales</a>
-            </h3>
-            <span class="project-category">Web Application</span>
-        </div>
+        @foreach($admin->projects as $project)
 
+            <div class="project">
+                <figure>
+                    <img src="{{ Storage::url($project->images->random()->url) }}" alt="POS">
+                </figure>
+                <h3 class="project-name">
+                    <a href="{{ $project->github_url }}">{{ $project->name_project }}</a>
+                </h3>
+                <span class="project-category">{{ $project->service->name_service }}</span>
+            </div>
 
-
-        <div class="project">
-            <figure>
-                <img src="images/articles.png" alt="POS">
-            </figure>
-            <h3 class="project-name">
-                <a href="https://github.com/Feras-Barahmeh/Articles-Site">Blog</a>
-            </h3>
-            <span class="project-category">Web Application</span>
-        </div>
+        @endforeach
 
 
     </div>
