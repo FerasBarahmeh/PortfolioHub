@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" href="{{ asset('guest/images/my-avatar.png') }}">
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'FerasBarahmeh') }}</title>
 
         {{-- Fonts --}}
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -14,14 +14,16 @@
         {{-- css --}}
         <link rel="stylesheet" href="{{ asset('guest/css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('guest/css/all.min.css') }}">
+        @stack('style')
 
         {{-- Scripts --}}
         <script src="{{ asset('guest/js/main.js') }}" defer></script>
         <script src="{{ assert('guest/js/all.min.js') }}" defer></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        <script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
     </head>
-    <body>
-            {{ $slot }}
+
+    <body >
+    {{ $slot }}
     </body>
 </html>
