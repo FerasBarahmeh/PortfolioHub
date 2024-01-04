@@ -1,10 +1,8 @@
 <x-guest-layout>
+    @push('style')
+        <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}"/>
+    @endpush
     <!-- Session Status -->
-@push('style')
-                <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}"/>
-                <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.rtl.min.css') }}"/>
-@endpush
-
    <div class="container position-absolute rounded " @style(['width:500px; top: 50%;left: 50%;  transform: translate(-50%, -50%); background-color: var(--bs-border-color); padding: 10px; '])>
        <x-auth-session-status class="mb-4" :status="session('status')" />
 

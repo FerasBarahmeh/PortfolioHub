@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('admin_translations', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            /**
+             * translations settings
+             */
+            $table->string('locale')->index();
+            $table->unique(['admin_id','locale']);
+            $table->foreignId('admin_id')
+                ->constrained()
+                ->cascadeOnDelete();
+
         });
     }
 

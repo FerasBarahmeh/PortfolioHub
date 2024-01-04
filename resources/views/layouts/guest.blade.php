@@ -13,6 +13,7 @@
 
         {{-- css --}}
         @include('layouts.guest.css-links')
+        @stack('style')
 
         {{-- Scripts --}}
         <script src="{{ asset('guest/js/main.js') }}" defer></script>

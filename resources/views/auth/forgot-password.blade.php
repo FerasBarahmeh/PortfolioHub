@@ -1,5 +1,11 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+    @push('style')
+        <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}"/>
+    @endpush
+    <div
+        class="container position-absolute rounded " @style(['width:500px; top: 50%;left: 50%;  transform: translate(-50%, -50%); background-color: var(--bs-border-color); padding: 10px; '])>
+
+        <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>
 
@@ -22,4 +28,5 @@
             </x-primary-button>
         </div>
     </form>
+    </div>
 </x-guest-layout>

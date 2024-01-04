@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ asset('guest/css/all.min.css') }}">
-@stack('style')
+
 
 @if(App::getLocale() == 'ar')
     <link rel="stylesheet" href="{{ asset('guest/css/ar/main.css') }}">
