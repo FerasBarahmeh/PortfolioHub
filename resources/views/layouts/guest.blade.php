@@ -12,9 +12,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         {{-- css --}}
-        <link rel="stylesheet" href="{{ asset('guest/css/main.css') }}">
-        <link rel="stylesheet" href="{{ asset('guest/css/all.min.css') }}">
-        @stack('style')
+        @include('layouts.guest.css-links')
 
         {{-- Scripts --}}
         <script src="{{ asset('guest/js/main.js') }}" defer></script>
