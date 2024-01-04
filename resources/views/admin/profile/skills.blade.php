@@ -6,7 +6,7 @@
     <x-alerts.alert :success="session('success-skill')" :fail="session('fail-skill')" />
     <livewire:add-skill :notHasRecord=" $skills->isEmpty()"/>
 
-    <ul class="m-0 txt-c-mobile skills mt-12">
+    <ul class="txt-c-mobile skills mt-20">
         @foreach($skills as $skill)
 
             <li class="skill">

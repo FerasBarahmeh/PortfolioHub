@@ -81,7 +81,8 @@
 
             <div class="w-full mt-3">
                 <x-input-label for="job_description" value="{{ __('brief for job type') }}" class="text-capitalize"/>
-                <x-textarea-input name="job_description" placeholder="Write discretion" class="mt-2" rows="6"/>
+                <x-textarea-input name="job_description" placeholder="Write discretion" class="mt-2" rows="6">{{ old('job_description', '') }}</x-textarea-input>
+                <x-input-error :messages="$errors->get('job_description')" class="mt-2"/>
             </div>
 
         </form>

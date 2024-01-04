@@ -2,7 +2,7 @@
     <button class="btn-show-contact" id="show-contact">Show Contact</button>
     <div class="me">
         <figure class="avatar">
-            <img src="{{ asset('admin/images/avatar.png') }}" alt="my picture">
+            <img src="{{ asset('guest/images/my-avatar.png') }}" alt="my picture">
         </figure>
         <div class="personal">
             <h3 class="name">{{ $admin->name }}</h3>
