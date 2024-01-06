@@ -18,9 +18,7 @@ return new class extends Migration {
                 ->on('admins')
                 ->cascadeOnDelete();
 
-            $table->string('name');
-            $table->string('grade');
-            $table->string('organisation_name', 100);
+
             $table->string('organisation_url');
             $table->year('start_date');
             $table->year('finish_date');
