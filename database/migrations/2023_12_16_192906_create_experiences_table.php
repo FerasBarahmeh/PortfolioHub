@@ -18,12 +18,9 @@ return new class extends Migration
                 ->constrained()
             ->cascadeOnDelete();
 
-            $table->string('career_title');
-            $table->string('name_organisation');
             $table->string('organisation_url');
             $table->year('join_date');
             $table->year('leave_date');
-            $table->string('job_description');
             $table->timestamps();
         });
     }
