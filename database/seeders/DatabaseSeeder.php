@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
              * Without factories
              */
             AdminSeeder::class,
-            InfoSupplementaryAdminsSeeder::class,
+            AdminExtensionsSeeder::class,
         ]);
     }
 }

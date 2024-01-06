@@ -35,7 +35,7 @@
                     </div>
                     <div class="fs-14">
                         <span class="c-grey">Country:</span>
-                        <span>{{ $admin->supplementaryInfo->location }}</span>
+                        <span>{{ $admin->extensions->location }}</span>
                     </div>
                     <div class="fs-14">
                         <label class="relative">
@@ -54,11 +54,11 @@
                     </div>
                     <div class="fs-14">
                         <span class="c-grey">Phone:</span>
-                        <span>{{ $admin->supplementaryInfo->phone }}</span>
+                        <span>{{ $admin->extensions->phone }}</span>
                     </div>
                     <div class="fs-14">
                         <span class="c-grey">Date Of Birth:</span>
-                        <span>{{ $admin->supplementaryInfo->BOD }}</span>
+                        <span>{{ $admin->extensions->BOD }}</span>
                     </div>
                     <div class="fs-14">
                         <label class="relative">
@@ -73,7 +73,7 @@
                     <h4 class="c-grey w-full fs-15 m-0">Job Information</h4>
                     <div class="fs-14">
                         <span class="c-grey">Title:</span>
-                        <span>{{ $admin->supplementaryInfo->job_title }}</span>
+                        <span>{{ $admin->extensions->job_title }}</span>
                     </div>
                     <div class="fs-14">
                         <span class="c-grey">Programming Language:</span>

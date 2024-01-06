@@ -56,9 +56,9 @@ class Admin extends Authenticatable
         'name',
     ];
 
-    public function supplementaryInfo(): HasOne
+    public function extensions(): HasOne
     {
-        return $this->hasOne(InfoSupplementaryAdmin::class);
+        return $this->hasOne(AdminExtension::class);
     }
 
     public function accounts(): HasMany

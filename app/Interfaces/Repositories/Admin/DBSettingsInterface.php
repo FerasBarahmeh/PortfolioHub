@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Interfaces\Repositories\Admin;
-use App\Http\Requests\Admin\InfoSupplementaryUpdateRequest;
+use App\Http\Requests\Admin\ExtensionsInfoUpdateRequest;
 use App\Http\Requests\Admin\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ interface DBSettingsInterface
      * Update the user's profile information.
      */
     public function updateMainInfo(ProfileUpdateRequest $request): RedirectResponse;
-    public function updateSupplementaryInfo(InfoSupplementaryUpdateRequest $request): RedirectResponse;
+    public function updateSupplementaryInfo(ExtensionsInfoUpdateRequest $request): RedirectResponse;
 
     /**
      * Remove admin account

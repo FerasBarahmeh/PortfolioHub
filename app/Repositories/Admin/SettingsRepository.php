@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Admin;
 
-use App\Http\Requests\Admin\InfoSupplementaryUpdateRequest;
+use App\Http\Requests\Admin\ExtensionsInfoUpdateRequest;
 use App\Http\Requests\Admin\ProfileUpdateRequest;
 use App\Interfaces\Repositories\Admin\DBSettingsInterface;
 use Illuminate\Http\RedirectResponse;
@@ -31,15 +31,15 @@ class SettingsRepository implements DBSettingsInterface
 
         $request->user()->save();
 
-        return Redirect::route('settings.index')->with('status', 'update-main-info');
+        return Redirect::route('settings.index')->with('update-main-info-success', 'updated successfully');
     }
 
 
-    public function updateSupplementaryInfo(InfoSupplementaryUpdateRequest $request): RedirectResponse
+    public function updateSupplementaryInfo(ExtensionsInfoUpdateRequest $request): RedirectResponse
     {
-        $request->user()->supplementaryInfo->fill($request->validated());
-        $request->user()->supplementaryInfo->save();
-        return Redirect::route('settings.index')->with('status', 'supplementary-updated');
+        $request->user()->extensions->fill($request->validated());
+        $request->user()->extensions->save();
+        return Redirect::route('settings.index')->with('extensions-info-updated', 'supplementary information updated');
     }
 
     public function destroy(Request $request): RedirectResponse

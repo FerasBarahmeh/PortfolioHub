@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('info_supplementary_admins', function (Blueprint $table) {
+        Schema::create('admin_extensions', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('admin_id')
-                ->references('id')
-                ->on('admins')
+                ->constrained()
                 ->cascadeOnDelete();
 
             $table->string('job_title');
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('info_supplementary_admins');
+        Schema::dropIfExists('admin_extensions');
     }
 };

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AppSettingsController;
-use App\Http\Controllers\Admin\InfoSupplementaryController;
+use App\Http\Controllers\Admin\AdminExtensionsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -84,8 +84,8 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             /**
              * Supplementary Information
              */
-            Route::get('/supplementary-info-profile', [InfoSupplementaryController::class, 'edit'])->name('supplementary.edit');
-            Route::patch('/supplementary-info-profile', [InfoSupplementaryController::class, 'update'])->name('supplementary.update');
+            Route::get('/supplementary-info-profile', [AdminExtensionsController::class, 'edit'])->name('supplementary.edit');
+            Route::patch('/supplementary-info-profile', [AdminExtensionsController::class, 'update'])->name('supplementary.update');
 
 
             /**

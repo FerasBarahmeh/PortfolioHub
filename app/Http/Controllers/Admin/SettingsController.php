@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\InfoSupplementaryUpdateRequest;
+use App\Http\Requests\Admin\ExtensionsInfoUpdateRequest;
 use App\Http\Requests\Admin\ProfileUpdateRequest;
 use App\Interfaces\Repositories\Admin\DBSettingsInterface;
 use Illuminate\Http\RedirectResponse;
@@ -29,7 +29,7 @@ class SettingsController extends Controller
         return  $this->settings->updateMainInfo($request);
     }
 
-    public function updateSupplementaryInfo(InfoSupplementaryUpdateRequest $request): RedirectResponse
+    public function updateSupplementaryInfo(ExtensionsInfoUpdateRequest $request): RedirectResponse
     {
         return  $this->settings->updateSupplementaryInfo($request);
     }

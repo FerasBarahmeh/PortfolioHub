@@ -8,14 +8,14 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class InfoSupplementaryAdminsSeeder extends Seeder
+class AdminExtensionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('info_supplementary_admins')->insert([
+        DB::table('admin_extensions')->insert([
             'admin_id' => Admin::first()->id,
             'job_title' => 'software engineer',
             'phone' => '0785102996',

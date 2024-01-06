@@ -2,15 +2,7 @@
     @csrf
     @method('patch')
     <div class="p-20 bg-white rad-10 h-full">
-        @if (session('status') === 'update-main-info')
-        <p
-            x-data="{ show: true }"
-            x-show="show"
-            x-transition
-            x-init="setTimeout(() => show = false, 2000)"
-            class="text-sm text-gray-600 dark:text-gray-400 text-capitalize alert alert-success"
-        >{{ __('successfully update.') }}</p>
-        @endif
+        <x-alerts.alert :success="session('update-main-info-success')"/>
 
         <h2 class="mt-0 mb-10 text-capitalize">main info</h2>
         <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">update your account's profile information and email address.</p>

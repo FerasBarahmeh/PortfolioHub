@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class InfoSupplementaryAdmin extends Model
+class AdminExtension extends Model
 {
     use HasFactory;
 
@@ -20,7 +21,7 @@ class InfoSupplementaryAdmin extends Model
 
     public $timestamps = false;
 
-    public function admin(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function admin(): BelongsTo
     {
         return $this->belongsTo(Admin::class);
     }

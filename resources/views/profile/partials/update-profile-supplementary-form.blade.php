@@ -1,15 +1,6 @@
 <section>
 
-    @if (session('status') === 'supplementary')
-        <p
-            x-data="{ show: true }"
-            x-show="show"
-            x-transition
-            x-init="setTimeout(() => show = false, 2000)"
-            class="text-sm text-gray-600 dark:text-gray-400 text-capitalize alert alert-success"
-        >{{ __('successfully update.') }}</p>
-
-    @endif
+    <x-alerts.alert :success="session('extensions-info-updated')"/>
 
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100 text-capitalize">
