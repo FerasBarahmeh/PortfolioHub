@@ -14,12 +14,10 @@ return new class extends Migration
         Schema::create('project_skill', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')
-                ->references('id')
-                ->on('projects')
+                ->constrained()
                 ->cascadeOnDelete();
             $table->foreignId('skill_id')
-                ->references('id')
-                ->on('skills');
+                ->constrained();
             $table->timestamps();
         });
     }

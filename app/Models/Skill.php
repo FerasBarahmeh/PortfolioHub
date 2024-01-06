@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,11 +11,15 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Skill extends Model
 {
-    use HasFactory;
+    use HasFactory, Translatable;
 
     protected $fillable = [
         'admin_id',
         'type_skill',
+        'name_skill',
+    ];
+
+    public array $translatedAttributes = [
         'name_skill',
     ];
 

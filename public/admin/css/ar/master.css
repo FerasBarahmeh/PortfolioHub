@@ -1198,7 +1198,7 @@ ul {
 
 .projects-page .project .date {
     position: absolute;
-    right: 10px;
+    left: 10px;
     top: 10px;
 }
 
