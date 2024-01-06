@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AdminExtension extends Model
 {
-    use HasFactory;
+    use HasFactory, Translatable;
 
     protected $fillable = [
         'admin_id',
@@ -17,6 +18,16 @@ class AdminExtension extends Model
         'BOD',
         'location',
         'about',
+    ];
+    /**
+     * The column he translated
+     *
+     * @var array|string[]
+     */
+    public array $translatedAttributes = [
+        'location',
+        'about',
+        'job_title',
     ];
 
     public $timestamps = false;

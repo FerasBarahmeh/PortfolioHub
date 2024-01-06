@@ -11,15 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admin_extensions', function (Blueprint $table) {
+        Schema::create('admin_extension_translations', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('admin_id')
+            $table->string('job_title');
+            $table->string('location', 30);
+            $table->text('about');
+
+            $table->string('locale')->index();
+            $table->unique(['admin_extension_id','locale']);
+
+            $table->foreignId('admin_extension_id')
                 ->constrained()
                 ->cascadeOnDelete();
-
-            $table->string('phone', 10);
-            $table->date('BOD');
 
         });
     }
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin_extensions');
+        Schema::dropIfExists('admin_extension_translations');
     }
 };
