@@ -13,11 +13,8 @@ class AdminExtension extends Model
 
     protected $fillable = [
         'admin_id',
-        'job_title',
         'phone',
         'BOD',
-        'location',
-        'about',
     ];
     /**
      * The column he translated

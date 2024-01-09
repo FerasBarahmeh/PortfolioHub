@@ -13,10 +13,7 @@ class Education extends Model
 
     protected $fillable = [
         'admin_id',
-        'name',
-        'grade',
         'organisation_url',
-        'organisation_name',
         'start_date',
         'finish_date',
     ];

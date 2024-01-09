@@ -10,16 +10,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Experience extends Model
 {
     use HasFactory, Translatable;
-    use HasFactory, Translatable;
 
     protected $fillable = [
         'admin_id',
-        'name_organisation',
         'organisation_url',
         'join_date',
         'leave_date',
-        'career_title',
-        'job_description',
     ];
 
     public array $translatedAttributes = [

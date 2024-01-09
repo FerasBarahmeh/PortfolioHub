@@ -16,7 +16,6 @@ class Skill extends Model
     protected $fillable = [
         'admin_id',
         'type_skill',
-        'name_skill',
     ];
 
     public array $translatedAttributes = [

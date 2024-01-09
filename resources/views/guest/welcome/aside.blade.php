@@ -1,4 +1,5 @@
 <aside>
+
     <button class="btn-show-contact" id="show-contact">Show Contact</button>
     <div class="me">
         <figure class="avatar">
@@ -6,7 +7,7 @@
         </figure>
         <div class="personal">
             <h3 class="name">{{ $admin->name }}</h3>
-            <span class="jod-name">{{ $admin->supplementaryInfo->job_title }}</span>
+            <span class="jod-name">{{ $admin->extensions->job_title }}</span>
         </div>
     </div>
 
@@ -24,7 +25,7 @@
                 <div class="icon"><i class="fa fa-phone"></i></div>
                 <div class="info">
                     <h4 class="title">Phone</h4>
-                    <div class="content">{{ $admin->supplementaryInfo->phone }}</div>
+                    <div class="content">{{ $admin->extensions->phone }}</div>
                 </div>
             </li>
 
@@ -33,7 +34,7 @@
                 <div class="icon"><fa class="fa fa-calendar"></fa></div>
                 <div class="info">
                     <h4 class="title">Birthday</h4>
-                    <div class="content">{{ $admin->supplementaryInfo->BOD }}</div>
+                    <div class="content">{{ $admin->extensions->BOD }}</div>
                 </div>
             </li>
 
@@ -42,7 +43,7 @@
                 <div class="icon"><i class="fa fa-location"></i></div>
                 <div class="info">
                     <h4 class="title">Location</h4>
-                    <div class="content">{{ $admin->supplementaryInfo->location }}</div>
+                    <div class="content">{{ $admin->extensions->location }}</div>
                 </div>
             </li>
         </ul>

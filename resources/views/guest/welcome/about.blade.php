@@ -1,7 +1,7 @@
 <section class="about active" sub-section page="about">
     <h1 class="title-section">About</h1>
     <div class="content">
-        <p class="description">{{ $admin->supplementaryInfo->about  }}</p>
+        <p class="description">{{ $admin->extensions->about  }}</p>
 
         <h2 class="sub-title">what service I can provide</h2>
 
