@@ -17,12 +17,15 @@ class AdminExtensionsSeeder extends Seeder
     {
         DB::table('admin_extensions')->insert([
             'admin_id' => Admin::first()->id,
-//            'job_title' => 'software engineer',
             'phone' => '0785102996',
             'BOD' => Carbon::createFromFormat('Y-m-d', '2002-11-6'),
-//            'location' => 'zarqa-Jordan',
-//            'about' => "Aspiring software engineer with a passion for turning code into innovative solutions. Proficient in programming languages such as Python, and PHP, with a solid foundation in algorithms and data structures. Eager to contribute to dynamic projects, collaborate with talented teams, and continuously learn in the ever-evolving field of software engineering. Open to new opportunities and excited to bring my problem-solving skills to create efficient and scalable software. Let's connect and explore the possibilities of working together in the world of software development!"
-
+        ]);
+        DB::table('admin_extension_translations')->insert([
+            'admin_extension_id' => Admin::first()->id,
+            'locale' => 'en',
+            'job_title' => 'software engineer',
+            'location' => 'zarqa-Jordan',
+            'about' => "Aspiring software engineer with a passion for turning code into innovative solutions. Proficient in programming languages such as Python, and PHP, with a solid foundation in algorithms and data structures. Eager to contribute to dynamic projects, collaborate with talented teams, and continuously learn in the ever-evolving field of software engineering. Open to new opportunities and excited to bring my problem-solving skills to create efficient and scalable software. Let's connect and explore the possibilities of working together in the world of software development!"
         ]);
     }
 }
