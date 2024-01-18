@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Interfaces\Repositories\Admin\DBAppSettingsInterface;
+use App\Interfaces\Repositories\Admin\DBDraftsInterface;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use App\Interfaces\Repositories\Admin\DBProjectsInterface;
 use App\Interfaces\Repositories\Admin\DBSettingsInterface;
 use App\Interfaces\Repositories\Guest\DBWelcomeInterface;
 use App\Repositories\Admin\AppSettingsRepository;
+use App\Repositories\Admin\DraftsRepository;
 use App\Repositories\Admin\ProfileRepository;
 use App\Repositories\Admin\ProjectsRepository;
 use App\Repositories\Admin\SettingsRepository;
@@ -26,6 +28,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(DBAppSettingsInterface::class, AppSettingsRepository::class);
         $this->app->bind(DBProjectsInterface::class, ProjectsRepository::class);
         $this->app->bind(DBWelcomeInterface::class, WelcomeRepository::class);
+        $this->app->bind(DBDraftsInterface::class, DraftsRepository::class);
     }
 
     /**

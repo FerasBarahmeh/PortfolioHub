@@ -95,6 +95,11 @@ class Admin extends Authenticatable
         return $this->hasMany(Skill::class);
     }
 
+    public function drafts(): HasMany
+    {
+        return $this->hasMany(Draft::class);
+    }
+
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class);

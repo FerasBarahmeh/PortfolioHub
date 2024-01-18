@@ -249,7 +249,7 @@ ul {
 }
 
 .welcome .visit:hover {
-    background-color: var(--blue-alt-color);
+    opacity: .8;
 }
 
 @media (max-width: 767px) {
@@ -699,9 +699,11 @@ ul {
     text-transform: capitalize;
     transition: opacity .2s ease-in-out;
 }
+
 .settings-page .social-boxes button[type='submit']:hover {
     opacity: .5;
 }
+
 .settings-page .social-boxes > div:focus-within i {
     color: black;
 }
@@ -966,6 +968,7 @@ ul {
         flex-direction: column;
     }
 }
+
 .profile-page .skills {
     display: flex;
     flex-wrap: wrap;
@@ -983,13 +986,15 @@ ul {
     padding: 10px;
     border-radius: 4px;
 }
+
 .profile-page .skills .skill figure {
     height: 150px;
-    width:  150px;
+    width: 150px;
     padding: 10px;
     display: flex;
     align-items: center;
 }
+
 .profile-page .skills .skill .content {
     width: 100%;
     display: flex;
@@ -999,23 +1004,28 @@ ul {
     padding: 3px;
     align-items: center;
 }
+
 .profile-page .skills .skill .content .name {
     font-size: 12px;
     color: var(--bs-border-color);
     text-transform: capitalize;
 }
+
 .profile-page .skills .skill .content button {
     opacity: .7;
 }
+
 .profile-page .skills .skill .content button:hover {
     opacity: 1;
 }
+
 .profile-page .experiences {
     display: flex;
     gap: 5px;
     flex-wrap: wrap;
     margin-top: 10px;
 }
+
 .profile-page .experiences .experience {
     display: flex;
     align-items: center;
@@ -1026,6 +1036,7 @@ ul {
     border-radius: 4px 4px 0 0;
     border-bottom: 1px solid var(--bs-border-color);
 }
+
 .profile-page .experiences .experience .period {
     position: absolute;
     right: 0;
@@ -1033,33 +1044,41 @@ ul {
     font-size: 14px;
     color: var(--bs-dark-border-subtle);
 }
+
 .profile-page .experiences .experience .name {
     font-size: 15px;
     text-transform: capitalize;
     margin-bottom: 10px;
 }
+
 .profile-page .experiences .experience .name .at {
     color: var(--bs-dark-text-emphasis);
 }
+
 .profile-page .experiences .experience .name a {
 
 }
+
 .profile-page .experiences .experience .info {
     display: flex;
     justify-content: end;
     font-size: 10px;
     margin-top: 5px;
 }
+
 .profile-page .experiences .experience .info .dash {
 
 }
+
 .profile-page .education-card {
     border-bottom: 1px solid var(--bs-border-color);
     padding-bottom: 15px;
 }
+
 .profile-page .education-card:last-child {
     border-bottom: none;
 }
+
 .profile-page .education-card .period {
     display: flex;
     justify-content: end;
@@ -1067,6 +1086,7 @@ ul {
     font-size: 13px;
     color: var(--bs-dark-border-subtle);
 }
+
 .profile-page .activities {
     flex-grow: 2;
 }
@@ -1104,6 +1124,7 @@ ul {
         margin-top: 15px;
     }
 }
+
 .profile-page .option-box-buttons {
     display: flex;
     width: 100%;
@@ -1112,15 +1133,18 @@ ul {
     gap: 5px;
     margin-bottom: 5px;
 }
+
 .profile-page .option-box-buttons button {
     font-size: 15px;
     border-right: 1px solid var(--bs-border-color);
     padding-right: 6px;
     transition: opacity .2s ease-in-out;
 }
+
 .profile-page .option-box-buttons button:hover {
     opacity: .7;
 }
+
 .profile-page .service {
     display: flex;
     align-items: center;
@@ -1130,31 +1154,38 @@ ul {
     padding: 10px;
     border-radius: 5px;
 }
+
 .profile-page .service:nth-child(odd) {
     background-color: var(--bs-dark-bg-subtle);
 }
+
 .profile-page .service:nth-child(even) {
     background-color: var(--bs-gray-300);
 }
+
 .profile-page .service figure {
     width: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .profile-page .service .content {
     width: 100%;
     padding-left: 10px;
     border-left: 1px solid var(--bs-border-color-translucent);
 }
+
 .profile-page .service .content .name {
-    margin-bottom: 0.5rem!important;
+    margin-bottom: 0.5rem !important;
     color: var(--grey-color);
 }
+
 .profile-page .service .content .description {
-    font-weight: 300!important;
+    font-weight: 300 !important;
     font-size: 15px;
 }
+
 .profile-page .service .delete-service {
     height: 100%;
     position: absolute;
@@ -1169,10 +1200,12 @@ ul {
     opacity: .7;
     transition: opacity .3s ease-in-out;
 }
+
 .profile-page .service .delete-service:hover {
     opacity: 1 !important;
 }
-    /* End Profile Page */
+
+/* End Profile Page */
 /* Start Projects Page */
 .projects-page {
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
@@ -1552,6 +1585,42 @@ ul {
 }
 
 /* End Plans Page */
+
+/* Start Drafts */
+.draft {
+    transition: opacity .3s ease-in-out;
+}
+
+.draft.done-line {
+    opacity: .4;
+}
+.draft.done-line:hover {
+    opacity: 1;
+}
+.draft.done-line::before,
+.draft.done-line::after {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 50%;
+    font-size: 20px;
+    color: var(--bs-dark-text-emphasis);
+    z-index: 100;
+}
+.draft.done-line::before {
+    content: '';
+    width: 100%;
+    height: 4px;
+    background: var(--bs-success-border-subtle);
+
+}
+.draft.done-line::after {
+    content: attr(isDone);
+
+}
+/* End Drafts */
+
+
 /* Start Animation */
 @keyframes change-color {
     from {

@@ -25,7 +25,7 @@ class AdminExtensionsSeeder extends Seeder
             'locale' => 'en',
             'job_title' => 'software engineer',
             'location' => 'zarqa-Jordan',
-            'about' => "Aspiring software engineer with a passion for turning code into innovative solutions. Proficient in programming languages such as Python, and PHP, with a solid foundation in algorithms and data structures. Eager to contribute to dynamic projects, collaborate with talented teams, and continuously learn in the ever-evolving field of software engineering. Open to new opportunities and excited to bring my problem-solving skills to create efficient and scalable software. Let's connect and explore the possibilities of working together in the world of software development!"
+            'about' => "A results-driven backend developer with hand-on experience excelling in PHP, SQL, Laravel. Innovatively design and implement robust backend solutions."
         ]);
     }
 }

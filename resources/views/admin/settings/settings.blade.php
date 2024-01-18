@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    @section('title', 'Settings')
 
     <x-slot name="slot" >
 

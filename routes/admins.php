@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\AppSettingsController;
 use App\Http\Controllers\Admin\AdminExtensionsController;
+use App\Http\Controllers\Admin\AppSettingsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\Admin\DraftsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             return view('admin.dashboard', [
                 'domains' => DomainsSocialMedia::all(),
                 'accounts' => Auth::user()->accounts,
+                'admin' => Auth::user(),
             ]);
         })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -116,6 +118,11 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
                 Route::post('/store', [ProjectsController::class, 'store'])->name('projects.store');
                 Route::delete('/destroy', [ProjectsController::class, 'destroy'])->name('projects.destroy');
             });
+
+            /**
+             * Drafts
+             */
+            Route::resource('drafts', DraftsController::class);
 
         });
 

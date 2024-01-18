@@ -42,12 +42,11 @@
             </a>
         </li>
         <li>
-            <a class="{{Route::is('courses') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
-               href="courses.html">
-                <i class="fa-solid fa-graduation-cap fa-fw"></i>
-                <span>Courses</span>
+            <a class="{{Route::is('drafts.*') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
+               href="{{ route('drafts.index') }}">
+                <i class="fa-solid fa-note-sticky fa-fw"></i>
+                <span>Drafts</span>
             </a>
         </li>
-
     </ul>
 </div>

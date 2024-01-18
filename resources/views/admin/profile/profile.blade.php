@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    @section('title', 'Profile')
     <x-admin.title-page> {{ __('projects') }}</x-admin.title-page>
 
     <div class="profile-page m-20">

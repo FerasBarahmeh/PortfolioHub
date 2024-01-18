@@ -1,3 +1,4 @@
+@section('title', 'Projects')
 <div class="project bg-white p-20 rad-6 p-relative">
     <span class="date fs-13 c-grey">{{ $project->finish_date }}</span>
     <h4 class="m-0">{{ $project->name_project }}</h4>
@@ -30,3 +31,4 @@
         </form>
     </div>
 </div>
+
