@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enums\TypeSkill;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -98,6 +99,16 @@ class Admin extends Authenticatable
     public function drafts(): HasMany
     {
         return $this->hasMany(Draft::class);
+    }
+
+    public function getCountCompleteDraftsAttribute(): Attribute
+    {
+        return Attribute::make(
+            get: (fn() => $this->hasMany(Draft::class, 'id')
+                ->where('is_done', '=', false)
+                ->count())
+        );
+
     }
 
     public function projects(): HasMany

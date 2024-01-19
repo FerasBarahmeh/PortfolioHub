@@ -3,6 +3,15 @@
     <ul>
         <li>
 
+            <a class="{{Route::is('') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
+               href="{{ route('welcome.index') }}">
+                <i class="fa fa-home fa-fw"></i>
+                <span>Home</span>
+            </a>
+        </li>
+
+        <li>
+
             <a class="{{Route::is('dashboard') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
                href="{{ route('dashboard') }}">
                 <i class="fa-regular fa-chart-bar fa-fw"></i>
@@ -42,10 +51,15 @@
             </a>
         </li>
         <li>
-            <a class="{{Route::is('drafts.*') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
+            <a class="{{Route::is('drafts.*') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10 flex justify-between"
                href="{{ route('drafts.index') }}">
-                <i class="fa-solid fa-note-sticky fa-fw"></i>
-                <span>Drafts</span>
+                <div>
+                    <i class="fa-solid fa-note-sticky fa-fw"></i>
+                    <span>Drafts</span>
+                </div>
+                @if( $admin->getCountCompleteDraftsAttribute > 0)
+                    <span class="c-white bg-danger rounded flex justify-center align-center" style="width: 20px; height: 20px">{{  $admin->getCountCompleteDraftsAttribute }}</span>
+                @endif
             </a>
         </li>
     </ul>
