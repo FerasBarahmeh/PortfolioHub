@@ -29,6 +29,9 @@
                         <li>
                             <a href="contact.html">Contact</a>
                         </li>
+                        <li>
+                            <a href="{{ route('login') }}">login as admin</a>
+                        </li>
                     </ul>
                 </div>
             </div>

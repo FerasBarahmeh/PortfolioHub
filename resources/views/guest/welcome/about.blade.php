@@ -6,7 +6,7 @@
         <div class="row row-padded-bottom">
             <div class="col-md-5 animate-box p-relative">
                 <span></span>
-                <img class="img-responsive about-img" src="{{ asset('guest/images/feras-opacity.png') }}" alt="html5 bootstrap template by colorlib.com">
+                <img class="img-responsive about-img" src="{{ asset('guest/images/about.png') }}" alt="html5 bootstrap template by colorlib.com">
             </div>
             <div class="col-md-6 col-md-push-1 animate-box">
                 <div class="about-desc">

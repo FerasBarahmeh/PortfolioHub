@@ -12,7 +12,7 @@ class WelcomeRepository implements DBWelcomeInterface
 {
     public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
-        return view('welcome', [
+        return view('guest.welcome.welcome', [
             'admin' => Admin::first(),
         ]);
     }

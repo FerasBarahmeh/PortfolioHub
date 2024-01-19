@@ -1,1 +1,1 @@
-<h1 class="p-relative text-2xl">{{ $slot }}</h1>
+<h1 class="p-relative" style="font-size: 35px; font-family: serif;">{{ $slot }}</h1>
