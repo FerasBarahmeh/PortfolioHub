@@ -10,6 +10,7 @@ use Livewire\Component;
 
 class StatusDraft extends Component
 {
+    // TODO: realtime change checked tag
     public bool $isDone;
     public string $id;
 

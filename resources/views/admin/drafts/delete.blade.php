@@ -1,6 +1,6 @@
 @props(['draft'])
 
-<x-modal name="delete-draft">
+<x-modal name="delete-draft_{{$draft->id}}">
     <div class="quick-draft p-20 bg-white rad-10">
         <h2 class="mt-0 mb-10 text-capitalize">confirm message</h2>
         <p class="mt-0 mb-20 c-grey fs-15">Are you sure to delete {{ $draft->title }} draft</p>
