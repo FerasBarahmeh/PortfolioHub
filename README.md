@@ -24,8 +24,15 @@ in a visually appealing and user-friendly manner.
 - astrotomic/laravel-translatable
 - Laravel breeze
 - Livewire
+- CKEDITOR
 
-# Snippet
+# Snippet Images
+![Dashboard](public/githup-images/09.png)
+![Dashboard](public/githup-images/10.png)
+![Dashboard](public/githup-images/11.png)
+![Dashboard](public/githup-images/12.png)
+![Dashboard](public/githup-images/13.png)
+![Dashboard](public/githup-images/14.png)
 ![Dashboard](public/githup-images/01.png)
 ![Dashboard](public/githup-images/02.png)
 ![Dashboard](public/githup-images/03.png)
@@ -34,6 +41,4 @@ in a visually appealing and user-friendly manner.
 ![Dashboard](public/githup-images/06.png)
 ![Dashboard](public/githup-images/07.png)
 ![Dashboard](public/githup-images/08.png)
-![Dashboard](public/githup-images/09.png)
-![Dashboard](public/githup-images/10.png)
-![Dashboard](public/githup-images/11.png)
+

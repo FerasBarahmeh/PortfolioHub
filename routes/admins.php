@@ -2,15 +2,17 @@
 
 use App\Http\Controllers\Admin\AdminExtensionsController;
 use App\Http\Controllers\Admin\AppSettingsController;
+use App\Http\Controllers\Admin\DraftsController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\CKEditorController;
 use App\Models\DomainsSocialMedia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\Admin\DraftsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,7 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
     ->prefix(LaravelLocalization::setLocale())
     ->group(function () {
 
+        Route::post('/upload-ckeditor', [CKEditorController::class, 'store'])->name('upload.ckeditor');
         /**
          * Livewire
          */
@@ -123,6 +126,11 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
              * Drafts
              */
             Route::resource('drafts', DraftsController::class);
+
+            /**
+             * Posts
+             */
+            Route::resource('posts', PostController::class);
 
         });
 

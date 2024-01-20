@@ -50,6 +50,17 @@
                 <span>Projects</span>
             </a>
         </li>
+
+
+        <li>
+            <a class="{{Route::is('posts.*') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
+               href="{{ route('posts.index') }}">
+                <i class="fa-solid fa-newspaper fa-fw"></i>
+                <span>Posts</span>
+            </a>
+        </li>
+
+
         <li>
             <a class="{{Route::is('drafts.*') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10 flex justify-between"
                href="{{ route('drafts.index') }}">

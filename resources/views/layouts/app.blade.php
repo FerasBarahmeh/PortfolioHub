@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap" rel="stylesheet" />
 
     <link rel="icon" href="{{ asset('guest/images/favicon.ico') }}">
+    @stack('css')
 
     {{--  Links --}}
     @include('layouts.admin.css-links')
@@ -36,8 +37,10 @@
             </div>
         </div>
 
+        @stack('js')
+        @livewireScripts
     </body>
 
 
-@livewireScripts
+
 </html>
