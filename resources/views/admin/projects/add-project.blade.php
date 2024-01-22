@@ -13,7 +13,7 @@
 
             <x-input-select name="service_id">
 
-                <x-select-option class="text-capitalize">{{ __('chose service') }}</x-select-option>
+                <x-select-option class="text-capitalize">{{ __('Chose Service') }}</x-select-option>
                 @foreach($services as $service)
                     <x-select-option value="{{ $service->id }}" :selected="old('service_id') == $service->id">{{ $service->name_service }}</x-select-option>
                 @endforeach

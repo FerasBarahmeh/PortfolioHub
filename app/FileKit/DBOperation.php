@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Traits;
+namespace App\FileKit;
 
 use App\Models\Image;
 
-trait ImageOperation
+trait DBOperation
 {
-    public static function inviteAssociatedRecord($url, $imageableID, $imageableType): void
+    public function sortRecord($url, $imageableID, $imageableType, $disk): void
     {
         /*** @var object $img  by default contain object Image Model */
 
@@ -14,10 +14,11 @@ trait ImageOperation
         $img->url = $url;
         $img->imageable_id = $imageableID;
         $img->imageable_type = $imageableType;
+        $img->disk = $disk;
         $img->save();
     }
 
-    public static function kickOutAssociatedRecord($id): int
+    public  function kickOutRecord($id): int
     {
         return Image::destroy($id);
     }

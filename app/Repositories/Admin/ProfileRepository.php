@@ -2,15 +2,14 @@
 
 namespace App\Repositories\Admin;
 
-use App\Enums\Disks;
 use App\Http\Requests\Admin\AddEducationRequest;
 use App\Http\Requests\Admin\AddExperienceRequest;
+use App\Http\Requests\Admin\AddSkillRequest;
 use App\Http\Requests\Admin\DeleteEducationRequest;
 use App\Http\Requests\Admin\DeleteExperienceRequest;
 use App\Http\Requests\Admin\DeleteServiceRequest;
 use App\Http\Requests\Admin\DeleteSkillRequest;
 use App\Http\Requests\Admin\ServiceRequest;
-use App\Http\Requests\Admin\AddSkillRequest;
 use App\Http\Requests\Admin\SocialAccountRequest;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use App\Models\DomainsSocialMedia;
@@ -20,16 +19,16 @@ use App\Models\Image;
 use App\Models\Service;
 use App\Models\Skill;
 use App\Models\SocialMediaAccount;
-use App\Traits\Upload;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use App\FileKit\Upload;
 
 class ProfileRepository implements DBProfileInterface
 {
-    use Upload;
+
 
     /**
      * @inheritDoc
@@ -41,10 +40,10 @@ class ProfileRepository implements DBProfileInterface
             'admin' => $admin,
             'accounts' => SocialMediaAccount::where('admin_id', '=', Auth::id())->get(),
             'domains' => DomainsSocialMedia::all(),
-            'services' =>  $admin->services,
+            'services' => $admin->services,
             'skills' => $admin->skills,
             'experiences' => $admin->experiences,
-            'educations' =>$admin->educations,
+            'educations' => $admin->educations,
         ]);
     }
 
@@ -60,9 +59,9 @@ class ProfileRepository implements DBProfileInterface
 
 
         if (!$account->save())
-            return Redirect::route('profile.index')->with('fail', 'fail add '. $account->domain->domain . ' with username is '.$account->username_account);
+            return Redirect::route('profile.index')->with('fail', 'fail add ' . $account->domain->domain . ' with username is ' . $account->username_account);
 
-        return Redirect::route('profile.index')->with('success', 'add '. $account->domain->domain .' account with username is '.$account->username_account. ' successfully');
+        return Redirect::route('profile.index')->with('success', 'add ' . $account->domain->domain . ' account with username is ' . $account->username_account . ' successfully');
 
     }
 
@@ -73,7 +72,7 @@ class ProfileRepository implements DBProfileInterface
     {
         $service = Service::create(array_merge(['admin_id' => Auth::id()], $request->validated()));
 
-        $file = $service && self::sort($request, 'image_service', 'admins', Disks::Public->value, $service->id, Service::class);
+        $file = $service && Upload::uploadFile('image_service', Service::class, $service->id);
 
         if ($file) {
             return Redirect::route('profile.index')->with('success-add-service', __('success add service'));
@@ -86,9 +85,11 @@ class ProfileRepository implements DBProfileInterface
     {
         $id = $request->validated()['id'];
 
-        $destroyed = Service::destroy($id);
+        $service = Service::find($id);
+
+        $destroyed = $service->delete();
         if ($destroyed) {
-            $rubied = self::rubOut(Disks::Public->value, Image::find($id));
+            $rubied = Upload::rubOut(Image::find($service->image->id));
             if (!$rubied) {
                 $restored = Service::withTrashed()->find($id)->restore();
                 if ($restored)
@@ -104,7 +105,7 @@ class ProfileRepository implements DBProfileInterface
     public function addSkill(AddSkillRequest $request): RedirectResponse
     {
         $skill = Skill::create(array_merge($request->validated(), ['admin_id' => Auth::id()]));
-        $icon = $skill && self::sort($request, 'icon_skill', 'admins', Disks::Public->value, $skill->id, Skill::class);
+        $icon = $skill && Upload::uploadFile('icon_skill', Skill::class, $skill->id);
         if ($icon)
             return Redirect::route('profile.index')->with('success-skill', __('success add skill'));
         return Redirect::route('profile.index')->with('fail-skill', __('fail add skill'));
@@ -113,10 +114,11 @@ class ProfileRepository implements DBProfileInterface
     public function deleteSkill(DeleteSkillRequest $request): RedirectResponse
     {
         $id = $request->validated()['id'];
-        $destroyed = Skill::destroy($id);
+        $skill = Skill::find($id);
+        $destroyed = $skill->delete();
 
         if ($destroyed) {
-            $rubied = self::rubOut(Disks::Public->value, Image::find($id));
+            $rubied = Upload::rubOut(Image::find($skill->image->id));
             if (!$rubied) {
                 $restored = Skill::withTrashed()->find($id)->restore();
                 if ($restored)
@@ -130,7 +132,7 @@ class ProfileRepository implements DBProfileInterface
     public function addExperience(AddExperienceRequest $request): RedirectResponse
     {
         $experience = Experience::create(array_merge($request->validated(), ['admin_id' => Auth::id()]));
-        if (! $experience) {
+        if (!$experience) {
             return Redirect::route('profile.index')->with('fail-add-experience', 'fail add new ' . $request->validated()['career_title']);
         }
         return Redirect::route('profile.index')->with('success-add-experience', 'success add experience as a ' . $experience->career_title);

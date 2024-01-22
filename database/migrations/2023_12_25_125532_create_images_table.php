@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('imageable_id');
             $table->string('imageable_type')
                 ->comment('column will contain the class name of the parent model');
+            $table->string('disk');
             $table->timestamps();
         });
     }
