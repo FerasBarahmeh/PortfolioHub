@@ -1,5 +1,6 @@
 <x-guest-layout>
     @push('style')
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}"/>
     @endpush
     <!-- Session Status -->
