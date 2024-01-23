@@ -115,4 +115,9 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Project::class);
     }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
 }

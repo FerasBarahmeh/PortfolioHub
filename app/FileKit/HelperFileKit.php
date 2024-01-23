@@ -26,8 +26,17 @@ trait HelperFileKit
         return false;
     }
 
-    protected function getFolderName($namespace): string
+    /**
+     * Method to generate folder name like class name (using namespace)
+     *
+     * @param string $namespace namespace  for the class you what sort
+     * @return string
+     */
+    protected function getFolderName(string $namespace): string
     {
+        if (! class_exists($namespace))
+            return strtolower($namespace);
+
         return strtolower(class_basename(get_class(new $namespace))).'s' ;
     }
 }

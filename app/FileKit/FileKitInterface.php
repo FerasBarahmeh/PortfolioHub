@@ -11,7 +11,7 @@ interface FileKitInterface
      * @param int|string $id primary key in this model
      * @return string|bool
      */
-    public function upload(string $type, int|string $id): bool|string;
+    public function upload(string $type, int|string $id): bool|string|array;
 
     public static function delete(Image $image);
 

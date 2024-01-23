@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('content');
-            $table->longText('brief');
+            $table->string('brief');
 
 
             $table->string('locale')->index();

@@ -4,7 +4,6 @@ namespace App\FileKit;
 
 use App\Enums\Disks;
 use App\Models\Image;
-use App\Traits\ImageOperation;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
@@ -16,7 +15,7 @@ use Illuminate\Validation\ValidationException;
 
 class AbstractFileKit implements FileKitInterface
 {
-    use HelperFileKit, DBOperation, ImageOperation;
+    use HelperFileKit, DBOperation;
 
     protected $request;
     /**
@@ -58,6 +57,13 @@ class AbstractFileKit implements FileKitInterface
      * @var mixed|null
      */
     protected array|null $files = null;
+
+    /**
+     * The File sorted successfully
+     *
+     * @var array
+     */
+    public array $sortedFiles = [];
 
     public function __construct(string $inputName, $disk = null, string|array $validation = null)
     {
@@ -151,30 +157,46 @@ class AbstractFileKit implements FileKitInterface
     /**
      * @throws ValidationException
      */
-    public function upload(string $type, int|string $id): bool|string
+    public function upload(string $type, int|string $id): bool|string|array
     {
         $this->folderKit = $folderKit ?? $this->getFolderName($type);
         $this->inputName = $this->fileInputExists();
-        $sortedFiles = [];
 
         if ($this->inputName) {
             foreach ($this->files as $index => $file) {
                 $nameFile = $this->generateFileName($file);
-                $this->sortRecord($this->folderKit . DIRECTORY_SEPARATOR . $nameFile, $id, $type, $this->disk);
                 if ($file->storeAs($this->folderKit, $nameFile, $this->disk)) {
-                    $sortedFiles[]= $file;
+                    $image = $this->sortRecord($this->folderKit . DIRECTORY_SEPARATOR . $nameFile, $id, $type, $nameFile, $this->disk);
+                    $this->sortedFiles[]= $image;
                 }
             }
-            if (count($sortedFiles) == count($this->files)) return true;
+            if (count($this->sortedFiles) == count($this->files)) return $this->sortedFiles;
         }
         return false;
     }
 
-
+    /**
+     * Delete file by image object
+     *
+     * @param Image $image
+     * @return int
+     */
     public static function delete(Image $image): int
     {
         File::delete(Storage::disk($image->disk)->path($image->url));
-        return self::kickOutAssociatedRecord($image->id);
+        return self::kickOutRecord($image->id);
+    }
+
+    /**
+     * Delete file by name file
+     *
+     * @param string $name
+     * @return int
+     */
+    public static function deleteByName(string $name): int
+    {
+        $image = Image::getByNameAttribute($name);
+        return self::delete($image);
     }
 
 }

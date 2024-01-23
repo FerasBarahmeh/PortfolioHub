@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AddPostRequest;
+use App\Http\Requests\Admin\EditPostRequest;
 use App\Interfaces\Repositories\Admin\DBPostsInterface;
 use Illuminate\Http\Request;
 
@@ -35,9 +37,9 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AddPostRequest $request)
     {
-        //
+        return $this->posts->store($request);
     }
 
     /**
@@ -45,7 +47,7 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return $this->posts->show($id);
     }
 
     /**
@@ -53,15 +55,15 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return $this->posts->edit($id);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EditPostRequest $request, string $id)
     {
-        //
+        return $this->posts->update($request, $id);
     }
 
     /**
@@ -69,6 +71,6 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return $this->posts->destroy($id);
     }
 }

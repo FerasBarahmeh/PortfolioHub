@@ -1,6 +1,6 @@
 
 <x-app-layout>
-    @section('title', 'Drafts')
+    @section('title', 'Posts')
     <x-admin.title-page class="">
         <span class="text-capitalize">{{ __('posts') }}</span>
     </x-admin.title-page>
@@ -13,16 +13,14 @@
     </div>
     <div class="row w-full">
         <div class="col-12  flex justify-end">
-            <a href="{{ route('posts.create') }}" class="btn btn-dark">add post</a>
 
+            <x-primary-a href="{{ route('posts.create') }}" >add post</x-primary-a>
         </div>
 
     </div>
 
-{{--    @include('admin.posts.add')--}}
-
     <div class=" wrapper d-grid gap-10 mt-20">
-{{--        @each('admin.posts.posts', $posts, 'post')--}}
+        @each('admin.posts.posts', $posts, 'post')
     </div>
 
 </x-app-layout>

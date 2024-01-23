@@ -2,6 +2,8 @@
 
 namespace App\Interfaces\Repositories\Admin;
 
+use App\Http\Requests\Admin\AddPostRequest;
+use App\Http\Requests\Admin\EditPostRequest;
 use Illuminate\Http\Request;
 
 interface DBPostsInterface
@@ -18,7 +20,7 @@ interface DBPostsInterface
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request);
+    public function store(AddPostRequest $request);
     /**
      * Display the specified resource.
      */
@@ -30,7 +32,7 @@ interface DBPostsInterface
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id);
+    public function update(EditPostRequest $request, string $id);
     /**
      * Remove the specified resource from storage.
      */

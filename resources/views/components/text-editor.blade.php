@@ -1,4 +1,13 @@
-@props(['height' => 600])
+@props([
+    'name',
+     'namespace'=>'temp',
+    'height' => 600,
+])
+
+@php
+    $model  = strtolower(class_basename(get_class(new $namespace))).'s';
+    $namespace = str_replace('\\', '\\\\', $namespace);
+@endphp
 @push('css')
     <style>
         .ck-editor__editable {
@@ -7,17 +16,15 @@
     </style>
 @endpush
 
-<textarea name="content" id="text-editor" >{{ $slot }}</textarea>
-
+<textarea id="text-editor" name="{{$name}}">{{ $slot }}</textarea>
 
 
 @push('js')
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
-
+    <script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
 
     <script>
         class MyUploadAdapter {
-            constructor( loader ) {
+            constructor(loader) {
                 // The file loader instance to use during the upload. It sounds scary but do not
                 // worry — the loader will be passed into the adapter later on in this guide.
                 this.loader = loader;
@@ -25,15 +32,15 @@
 
             upload() {
                 return this.loader.file
-                    .then( file => new Promise( ( resolve, reject ) => {
+                    .then(file => new Promise((resolve, reject) => {
                         this._initRequest();
-                        this._initListeners( resolve, reject, file );
-                        this._sendRequest( file );
-                    } ) );
+                        this._initListeners(resolve, reject, file);
+                        this._sendRequest(file);
+                    }));
             }
 
             abort() {
-                if ( this.xhr ) {
+                if (this.xhr) {
                     this.xhr.abort();
                 }
             }
@@ -47,22 +54,21 @@
                 // integration to choose the right communication channel. This example uses
                 // a POST request with JSON as a data structure but your configuration
                 // could be different.
-                xhr.open( 'POST', '{{ route('upload.ckeditor') }}', true );
+                xhr.open('POST', '{{ route('ckeditor.upload') }}', true);
                 xhr.setRequestHeader('x-csrf-token', '{{ csrf_token() }}');
                 xhr.responseType = 'json';
             }
 
 
-
             // Initializes XMLHttpRequest listeners.
-            _initListeners( resolve, reject, file ) {
+            _initListeners(resolve, reject, file) {
                 const xhr = this.xhr;
                 const loader = this.loader;
-                const genericErrorText = `Couldn't upload file: ${ file.name }.`;
+                const genericErrorText = `Couldn't upload file: ${file.name}.`;
 
-                xhr.addEventListener( 'error', () => reject( genericErrorText ) );
-                xhr.addEventListener( 'abort', () => reject() );
-                xhr.addEventListener( 'load', () => {
+                xhr.addEventListener('error', () => reject(genericErrorText));
+                xhr.addEventListener('abort', () => reject());
+                xhr.addEventListener('load', () => {
                     const response = xhr.response;
 
                     // This example assumes the XHR server's "response" object will come with
@@ -71,39 +77,41 @@
                     //
                     // Your integration may handle upload errors in a different way so make sure
                     // it is done properly. The reject() function must be called when the upload fails.
-                    if ( !response || response.error ) {
-                        return reject( response && response.error ? response.error.message : genericErrorText );
+                    if (!response || response.error) {
+                        return reject(response && response.error ? response.error.message : genericErrorText);
                     }
 
                     // If the upload is successful, resolve the upload promise with an object containing
                     // at least the "default" URL, pointing to the image on the server.
                     // This URL will be used to display the image in the content. Learn more in the
                     // UploadAdapter#upload documentation.
-                    resolve( {
+                    console.log(response.url);
+                    resolve({
                         default: response.url
-                    } );
-                } );
+                    });
+                });
 
                 // Upload progress when it is supported. The file loader has the #uploadTotal and #uploaded
                 // properties which are used e.g. to display the upload progress bar in the editor
                 // user interface.
-                if ( xhr.upload ) {
-                    xhr.upload.addEventListener( 'progress', evt => {
-                        if ( evt.lengthComputable ) {
+                if (xhr.upload) {
+                    xhr.upload.addEventListener('progress', evt => {
+                        if (evt.lengthComputable) {
                             loader.uploadTotal = evt.total;
                             loader.uploaded = evt.loaded;
                         }
-                    } );
+                    });
                 }
             }
 
 
             // Prepares the data and sends the request.
-            _sendRequest( file ) {
+            _sendRequest(file) {
                 // Prepare the form data.
                 const data = new FormData();
 
-                data.append( 'upload', file );
+                data.append('upload', file);
+                data.append('namespace', "{{ $namespace }}");
 
                 // Important note: This is the right place to implement security mechanisms
                 // like authentication and CSRF protection. For instance, you can use
@@ -111,25 +119,82 @@
                 // the CSRF token generated earlier by your application.
 
                 // Send the request.
-                this.xhr.send( data );
+                this.xhr.send(data);
             }
         }
 
 
-        function CustomUploadAdapterPlugin( editor ) {
-            editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
+        function CustomUploadAdapterPlugin(editor) {
+            editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
                 // Configure the URL to the upload script in your backend here!
-                return new MyUploadAdapter( loader );
+                return new MyUploadAdapter(loader);
             };
         }
 
+
+        function extractImagePaths(content) {
+            // Implement logic to extract image paths or identifiers from the content
+            // You may use regular expressions or other methods based on your content structure
+            // Example: Using a regular expression to extract src attribute values
+            let matches = content.match(/<img [^>]*src=["'](.*?)["']/g);
+            return matches ? matches.map(match => match.match(/src=["'](.*?)["']/)[1]) : [];
+        }
+
+
+        function findRemovedImages(initialContent, newContent) {
+            // Extract image paths or unique identifiers from the content
+            let initialPaths = extractImagePaths(initialContent);
+            let newPaths = extractImagePaths(newContent);
+
+            // Identify removed images by comparing initial and new paths
+            let removedPaths = initialPaths.filter(path => !newPaths.includes(path));
+
+            return removedPaths;
+        }
+
+        function deleteImageOnServer(imagePath) {
+            let filename = imagePath.split('/').pop();
+            console.log(filename)
+            let data = {
+                path: imagePath,
+                filename: filename,
+            };
+
+            fetch('{{route('ckeditor.delete')  }}', {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN':  '{{ csrf_token() }}',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error deleting image:', error));
+        }
+
         ClassicEditor
-            .create( document.querySelector( '#text-editor' ),{
-                extraPlugins: [ CustomUploadAdapterPlugin ],
+            .create(document.querySelector('#text-editor'), {
+                extraPlugins: [CustomUploadAdapterPlugin],
                 height: 300,
             })
-            .catch( error => {
-                console.error( error );
-            } );
+            .then(editor => {
+                let initialContent = editor.getData();
+
+                editor.model.document.on('change:data', () => {
+                    let newContent = editor.getData();
+
+                    let removedImages = findRemovedImages(initialContent, newContent);
+
+                    removedImages.forEach(imagePath => {
+                        deleteImageOnServer(imagePath);
+                    });
+
+                    initialContent = newContent;
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 @endpush

@@ -29,7 +29,8 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
     ->prefix(LaravelLocalization::setLocale())
     ->group(function () {
 
-        Route::post('/upload-ckeditor', [CKEditorController::class, 'store'])->name('upload.ckeditor');
+        Route::post('/upload-ckeditor', [CKEditorController::class, 'store'])->name('ckeditor.upload');
+        Route::delete('/delete-image', [CKEditorController::class, 'delete'])->name('ckeditor.delete');
         /**
          * Livewire
          */

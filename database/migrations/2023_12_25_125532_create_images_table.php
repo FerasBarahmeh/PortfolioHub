@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('url');
+            $table->string('nameFile');
             $table->integer('imageable_id');
             $table->string('imageable_type')
                 ->comment('column will contain the class name of the parent model');
