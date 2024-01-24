@@ -14,7 +14,7 @@
         </div>
 
         <form method="post" action="{{ route('posts.update', $post->id)}}" enctype="multipart/form-data">
-            @csrf @method('patch')
+            @csrf @method('put')
 
             <div class="mb-15">
                 <x-text-input name="title" value="{{ old('title', $post->title) }}" class="w-full mb-20" placeholder="Title Post " autofocus/>

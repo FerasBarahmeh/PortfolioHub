@@ -13,7 +13,7 @@
             @include('guest.welcome.portfolio', ['admin' => $admin])
             @include('guest.welcome.blog', ['admin' => $admin])
 
-            @include('guest.welcome.testimonies', ['admin' => $admin])
+{{--            @include('guest.welcome.testimonies', ['admin' => $admin])--}}
 
             {{--                @include('guest.welcome.resume', ['admin' => $admin])--}}
 

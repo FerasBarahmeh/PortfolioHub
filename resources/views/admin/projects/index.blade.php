@@ -20,15 +20,7 @@
     </div>
 
     <div class="container">
-        @if (! $errors->isEmpty())
-            @php $timeInit = 2000 @endphp
-            @foreach($errors->messages() as $error)
-                @foreach($error as $message)
-                    @php $timeInit += 1000 @endphp
-                    <x-alerts.alert :fail="$message" :showTime="$timeInit"/>
-                @endforeach
-            @endforeach
-        @endif
+      <x-alerts.errors />
     </div>
 
     {{-- add project --}}

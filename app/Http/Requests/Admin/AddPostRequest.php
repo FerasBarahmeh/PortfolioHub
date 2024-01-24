@@ -28,6 +28,7 @@ class AddPostRequest extends FormRequest
             'title' => ['required', Rule::unique(PostTranslation::class)],
             'content' => ['required'],
             'brief' => ['required', 'string', 'max:255'],
+            'layout_img' => ['required', 'file', 'image', 'mimes:png,jpg,jpeg'],
         ];
     }
 }

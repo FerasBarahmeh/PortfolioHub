@@ -15,6 +15,8 @@ class CKEditorController extends Controller
      */
     public function store(Request $request): JsonResponse|string
     {
+        $pk = $request->input('pk');
+
         if ($request->hasFile('upload')) {
             $fileName = Upload::uploadFile('upload', $request->input('namespace'), 0);
             $imag = $fileName->getImage();

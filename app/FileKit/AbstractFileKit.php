@@ -99,13 +99,16 @@ class AbstractFileKit implements FileKitInterface
      * Generate a unique file name based on the user-provided name and file extension.
      *
      * @param mixed|null $file if you want specific file else take a file from request
+     * @param bool $hash if name file hashed
      *
      * @return string A unique file name combining the sanitized user-provided name and the original file extension.
      */
-    public function generateFileName(mixed $file = null): string
+    public function generateFileName(mixed $file = null, bool $hash=false): string
     {
         $file = $file ??  $this->request->file($this->inputName);
-        return Hash::make(Str::slug(Carbon::now())) . '.' . $file->getClientOriginalExtension();
+        if ($hash)
+            return Hash::make(Str::slug(Carbon::now())) . '.' . $file->getClientOriginalExtension();
+        return Str::slug(Carbon::now()) . '-' .time() . '.' . $file->getClientOriginalExtension();
     }
 
 

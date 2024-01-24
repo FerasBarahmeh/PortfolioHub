@@ -19,27 +19,15 @@
                 </div>
                 <div class="col-md-4 col-pb-sm">
                     <h2>Latest Blog</h2>
-                    <div class="f-entry">
-                        <a href="#" class="featured-img" style="background-image: url(images/img-1.jpg);"></a>
-                        <div class="desc">
-                            <span>February 15, 2018</span>
-                            <h3><a href="#">Art Gallery in Japan</a></h3>
+                    @foreach($admin->posts as $post )
+                        <div class="f-entry">
+                            <a href="#" class="featured-img" style="background-image: url({{ $post->image->url }});"></a>
+                            <div class="desc">
+                                <span>{{ \Illuminate\Support\Carbon::parse($post->created_at)->format('Y M d') }}</span>
+                                <h3><a href="#">{{ $post->title }}</a></h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="f-entry">
-                        <a href="#" class="featured-img" style="background-image: url(images/img-2.jpg);"></a>
-                        <div class="desc">
-                            <span>February 9, 2018</span>
-                            <h3><a href="#">A Japanese Constellation</a></h3>
-                        </div>
-                    </div>
-                    <div class="f-entry">
-                        <a href="#" class="featured-img" style="background-image: url(images/img-3.jpg);"></a>
-                        <div class="desc">
-                            <span>February 15, 2018</span>
-                            <h3><a href="#">Road Trip</a></h3>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="col-md-4 col-pb-sm">
                     <h2>Newsletter</h2>

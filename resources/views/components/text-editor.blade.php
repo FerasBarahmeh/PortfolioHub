@@ -1,7 +1,8 @@
 @props([
     'name',
      'namespace'=>'temp',
-    'height' => 600,
+     'pk',
+    'height' => 450,
 ])
 
 @php
@@ -112,6 +113,7 @@
 
                 data.append('upload', file);
                 data.append('namespace', "{{ $namespace }}");
+                data.append('pk', '{{ $pk }}');
 
                 // Important note: This is the right place to implement security mechanisms
                 // like authentication and CSRF protection. For instance, you can use
