@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminExtensionsController;
 use App\Http\Controllers\Admin\AppSettingsController;
 use App\Http\Controllers\Admin\DraftsController;
+use App\Http\Controllers\Admin\FieldController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectsController;
@@ -132,6 +133,24 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
              * Posts
              */
             Route::resource('posts', PostController::class);
+
+            /**
+             * Flied
+             */
+            Route::prefix('fields')->group(function () {
+                Route::get('', [FieldController::class, 'index'])
+                    ->name('fields.index');
+
+                Route::post('store', [FieldController::class, 'store'])
+                    ->name('fields.store');
+
+                Route::put('update{id}', [FieldController::class, 'update'])
+                    ->name('fields.update');
+
+                Route::delete('delete{id}', [FieldController::class, 'destroy'])
+                    ->name('fields.delete');
+            });
+
 
         });
 

@@ -73,5 +73,14 @@
                 @endif
             </a>
         </li>
+
+        <li>
+            <a class="{{Route::is('fields.*') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
+               href="{{ route('fields.index') }}">
+                <i class="fa-solid fa-tags fa-fw"></i>
+                <span>Fields</span>
+            </a>
+        </li>
+
     </ul>
 </div>
