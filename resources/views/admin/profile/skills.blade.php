@@ -3,30 +3,31 @@
     <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">complete skills list</p>
 
 
-    <x-alerts.alert :success="session('success-skill')" :fail="session('fail-skill')" />
-    <livewire:add-skill :notHasRecord=" $skills->isEmpty()"/>
+    <x-alerts.alert :success="session('success-edit-skill')" :fail="session('fail-edit-skill') "/>
+    <x-alerts.alert :success="session('success-delete-skill')" :fail="session('fail-delete-skill') "/>
+    <x-alerts.alert :success="session('success-add-skill')" :fail="session('fail-add-skill') "/>
 
-    <ul class="txt-c-mobile skills mt-20">
-        @foreach($skills as $skill)
+    <div class="flex align-items-end justify-content-end mb-10">
+        <x-primary-button
+            x-click
+            class="text-capitalize  "
+            x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'add-skill')"
+        >
+            <i class="fa fa-plus fs-15"></i>
+        </x-primary-button>
 
-            <li class="skill">
-                <form action="{{ route('profile.delete.skill') }}" method="post">
-                    @csrf @method('delete')
-                    <input type="hidden" name="id" value="{{ $skill->id }}">
-
-                    <figure>
-                        <img src="{{ Storage::url($skill->image->url) }}" alt="icon skill">
-                    </figure>
-                    <div class="content">
-                        <span class="name">{{ Str::limit($skill->name_skill , '15')  }}</span>
-                        <button type="submit">
-                            <i class="fa fa-trash text-danger"></i>
-                        </button>
-                    </div>
-                </form>
-            </li>
-        @endforeach
+        @include('admin.profile.add-skill')
+    </div>
 
 
-    </ul>
+
+        @if ($skills->isNotEmpty())
+        <div class="flex flex-wrap mt-20 gap-10">
+            @each('admin.profile.skill', $skills, 'skill')
+        </div>
+        @else
+            <span class="flex justify-content-center align-items-center relative">No skills added yet</span>
+        @endif
+
 </div>

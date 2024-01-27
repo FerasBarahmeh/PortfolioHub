@@ -31,14 +31,6 @@ class ProfileController extends Controller
         return $this->profileRepository->index();
     }
 
-    public function addSkill(AddSkillRequest $request): RedirectResponse
-    {
-        return $this->profileRepository->addSkill($request);
-    }
-    public function deleteSkill(DeleteSkillRequest $request): RedirectResponse
-    {
-        return $this->profileRepository->deleteSkill($request);
-    }
     public function addExperience(AddExperienceRequest $request): RedirectResponse
     {
         return $this->profileRepository->addExperience($request);

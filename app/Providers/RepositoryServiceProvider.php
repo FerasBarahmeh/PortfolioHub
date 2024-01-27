@@ -10,6 +10,7 @@ use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use App\Interfaces\Repositories\Admin\DBProjectsInterface;
 use App\Interfaces\Repositories\Admin\DBServicesInterface;
 use App\Interfaces\Repositories\Admin\DBSettingsInterface;
+use App\Interfaces\Repositories\Admin\DBSkillsInterface;
 use App\Interfaces\Repositories\Admin\DBSocialAccountInterface;
 use App\Interfaces\Repositories\Admin\ServicesRepository;
 use App\Interfaces\Repositories\Guest\DBWelcomeInterface;
@@ -20,6 +21,7 @@ use App\Repositories\Admin\PostRepository;
 use App\Repositories\Admin\ProfileRepository;
 use App\Repositories\Admin\ProjectsRepository;
 use App\Repositories\Admin\SettingsRepository;
+use App\Repositories\Admin\SkillsRepository;
 use App\Repositories\Admin\SocialAccountRepository;
 use App\Repositories\Guest\WelcomeRepository;
 use Illuminate\Support\ServiceProvider;
@@ -41,6 +43,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(DBFieldInterface::class, FieldRepository::class);
         $this->app->bind(DBSocialAccountInterface::class, SocialAccountRepository::class);
         $this->app->bind(DBServicesInterface::class, ServicesRepository::class);
+        $this->app->bind(DBSkillsInterface::class, SkillsRepository::class);
     }
 
     /**

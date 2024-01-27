@@ -47,36 +47,6 @@ class ProfileRepository implements DBProfileInterface
         ]);
     }
 
-    /**
-     * @throws ValidationException
-     */
-    public function addSkill(AddSkillRequest $request): RedirectResponse
-    {
-        $skill = Skill::create(array_merge($request->validated(), ['admin_id' => Auth::id()]));
-        $icon = $skill && Upload::uploadFile('icon_skill', Skill::class, $skill->id);
-        if ($icon)
-            return Redirect::route('profile.index')->with('success-skill', __('success add skill'));
-        return Redirect::route('profile.index')->with('fail-skill', __('fail add skill'));
-    }
-
-    public function deleteSkill(DeleteSkillRequest $request): RedirectResponse
-    {
-        $id = $request->validated()['id'];
-        $skill = Skill::find($id);
-        $destroyed = $skill->delete();
-
-        if ($destroyed) {
-            $rubied = Upload::rubOut(Image::find($skill->image->id));
-            if (!$rubied) {
-                $restored = Skill::withTrashed()->find($id)->restore();
-                if ($restored)
-                    return Redirect::route('profile.index')->with('fail-skill', 'fail delete skill');
-            }
-        }
-
-        return Redirect::route('profile.index')->with('success-skill', 'success delete skill');
-    }
-
     public function addExperience(AddExperienceRequest $request): RedirectResponse
     {
         $experience = Experience::create(array_merge($request->validated(), ['admin_id' => Auth::id()]));

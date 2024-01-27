@@ -20,16 +20,6 @@ interface DBProfileInterface
     public function index(): View;
 
     /**
-     * Add skill
-     */
-    public function addSkill(AddSkillRequest $request);
-
-    /**
-     * Remove skill
-     */
-    public function deleteSkill(DeleteSkillRequest $request);
-
-    /**
      * add experience to admin
      */
     public function addExperience(AddExperienceRequest $request);

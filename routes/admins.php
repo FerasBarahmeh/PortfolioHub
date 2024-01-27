@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\SkillsController;
 use App\Http\Controllers\Admin\SocialAccountController;
 use App\Http\Controllers\CKEditorController;
 use App\Models\DomainsSocialMedia;
@@ -60,17 +61,6 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
                 Route::get('', [ProfileController::class, 'index'])
                     ->name('profile.index');
 
-                Route::put('/change-service', [ProfileController::class, 'changeService'])
-                    ->name('profile.change.service');
-                Route::delete('delete-service', [ProfileController::class, 'deleteService'])
-                    ->name('profile.delete.service');
-
-                Route::post('/add-skill', [ProfileController::class, 'addSkill'])
-                    ->name('profile.add.skill');
-
-                Route::delete('/delete-skill', [ProfileController::class, 'deleteSkill'])
-                    ->name('profile.delete.skill');
-
                 Route::post('/add-experience', [ProfileController::class, 'addExperience'])
                     ->name('profile.add.experience');
 
@@ -114,6 +104,19 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             });
 
 
+            /**
+             * Skills
+             */
+            Route::prefix('skills')->group(function () {
+                Route::post('/store', [SkillsController::class, 'store'])
+                    ->name('skill.store');
+
+                Route::put('/update/{id}', [SkillsController::class, 'update'])
+                    ->name('skill.update');
+
+                Route::delete('/destroy', [SkillsController::class, 'destroy'])
+                    ->name('skill.destroy');
+            });
 
             /**
              * Settings
