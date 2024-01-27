@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Interfaces\Repositories\Admin\DBAppSettingsInterface;
 use App\Interfaces\Repositories\Admin\DBDraftsInterface;
+use App\Interfaces\Repositories\Admin\DBEducationsInterface;
 use App\Interfaces\Repositories\Admin\DBExperiencesInterface;
 use App\Interfaces\Repositories\Admin\DBFieldInterface;
 use App\Interfaces\Repositories\Admin\DBPostsInterface;
@@ -17,6 +18,7 @@ use App\Interfaces\Repositories\Admin\ServicesRepository;
 use App\Interfaces\Repositories\Guest\DBWelcomeInterface;
 use App\Repositories\Admin\AppSettingsRepository;
 use App\Repositories\Admin\DraftsRepository;
+use App\Repositories\Admin\EducationsRepository;
 use App\Repositories\Admin\ExperiencesRepository;
 use App\Repositories\Admin\FieldRepository;
 use App\Repositories\Admin\PostRepository;
@@ -47,6 +49,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(DBServicesInterface::class, ServicesRepository::class);
         $this->app->bind(DBSkillsInterface::class, SkillsRepository::class);
         $this->app->bind(DBExperiencesInterface::class, ExperiencesRepository::class);
+        $this->app->bind(DBEducationsInterface::class, EducationsRepository::class);
     }
 
     /**

@@ -1,40 +1,43 @@
-<div class="profile-card p-20 bg-white rad-10 mt-20">
-    <h2 class="mt-0 mb-10 text-capitalize">my educations</h2>
-    <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">what stages education i finished</p>
+<li class="education-card">
+    <div class="period">
+        <span class="join">{{ $education->start_date }}</span>
+        <span class="dash">-</span>
+        <span class="leave">{{ $education->finish_date }}</span>
+    </div>
 
-    <x-alerts.alert :success="session('success-education')" :fail="session('fail-education')"/>
+    <div class="d-flex justify-between w-full px-1">
+        <div class="content">
+            <div class="name">
+                <span class="name">{{ Str::limit($education->name )  }}</span>
+                <span class="at">At</span>
+                <a href="{{ $education->organisation_url }}">{{ $education->organisation_name }}</a>
+            </div>
+        </div>
 
-    <livewire:add-education :notHasRecord="$educations->isEmpty()"/>
+        <div class="options flex gap-1 p-10">
+            <x-primary-button
+                x-click
+                class="text-capitalize bg-transparent "
+                @style(['border: none !important;  padding: 0px !important; '])
+                x-data=""
+                x-on:click.prevent="$dispatch('open-modal', 'edit_education_{{ $education->id }}')"
+            >
+                <i class="fa fa-edit text-success fs-15"></i>
+            </x-primary-button>
 
-    <ul class="txt-c-mobile mt-6">
-        @foreach($educations as $education)
-            <li class="education-card">
-                <div class="period">
-                    <span class="join">{{ $education->start_date }}</span>
-                    <span class="dash">-</span>
-                    <span class="leave">{{ $education->finish_date }}</span>
-                </div>
+            <x-danger-button
+                x-click
+                class="text-capitalize bg-transparent "
+                @style(['border: none !important;  padding: 0px !important; '])
+                x-data=""
+                x-on:click.prevent="$dispatch('open-modal', 'delete_education_{{ $education->id }}')"
+            >
+                <i class="fa fa-trash text-danger fs-15"></i>
+            </x-danger-button>
 
-                <form action="{{ route('profile.delete.education') }}" method="post"
-                      class="d-flex justify-between w-full px-1">
-                    @csrf @method('delete')
-                    <input type="hidden" name="id" value="{{ $education->id }}">
-                    <div class="content">
-                        <div class="name">
-                            <span class="name">{{ Str::limit($education->name )  }}</span>
-                            <span class="at">At</span>
-                            <a href="{{ $education->organisation_url }}">{{ $education->organisation_name }}</a>
-                        </div>
+        </div>
 
-
-                    </div>
-
-                    <button class="text-danger">
-                        <i class="fa fa-trash"></i>
-                    </button>
-
-                </form>
-            </li>
-        @endforeach
-    </ul>
-</div>
+        @include('admin.profile.edit-education', ['education'=> $education])
+        @include('admin.profile.delete-education', ['$education'=> $education])
+    </div>
+</li>

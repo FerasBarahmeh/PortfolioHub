@@ -30,14 +30,4 @@ class ProfileController extends Controller
     {
         return $this->profileRepository->index();
     }
-
-    public function addEducation(AddEducationRequest $request)
-    {
-        return $this->profileRepository->addEducation($request);
-    }
-
-    public function deleteEducation(DeleteEducationRequest $request)
-    {
-        return $this->profileRepository->deleteEducation($request);
-    }
 }

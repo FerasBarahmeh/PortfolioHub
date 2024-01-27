@@ -38,8 +38,8 @@ class ProfileRepository implements DBProfileInterface
         $admin = Auth::user();
         return view('admin.profile.profile', [
             'admin' => $admin,
-            'accounts' => SocialMediaAccount::where('admin_id', '=', Auth::id())->get(),
             'domains' => DomainsSocialMedia::all(),
+            'accounts' => $admin->accounts,
             'services' => $admin->services,
             'skills' => $admin->skills,
             'experiences' => $admin->experiences,
@@ -47,22 +47,4 @@ class ProfileRepository implements DBProfileInterface
         ]);
     }
 
-
-    public function addEducation(AddEducationRequest $request): RedirectResponse
-    {
-        $education = Education::create(array_merge($request->validated(), ['admin_id' => Auth::id()]));
-        if ($education)
-            return Redirect::route('profile.index')->with('success-education', 'success delete education');
-        return Redirect::route('profile.index')->with('fail-education', 'fail delete education');
-    }
-
-    public function deleteEducation(DeleteEducationRequest $request): RedirectResponse
-    {
-        $id = $request->validated()['id'];
-        $destroyed = Education::destroy($id);
-        if ($destroyed)
-            return Redirect::route('profile.index')->with('success-education', 'success delete education');
-        return Redirect::route('profile.index')->with('fail-education', 'fail delete education');
-
-    }
 }

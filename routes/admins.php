@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminExtensionsController;
 use App\Http\Controllers\Admin\AppSettingsController;
 use App\Http\Controllers\Admin\DraftsController;
+use App\Http\Controllers\Admin\EducationsController;
 use App\Http\Controllers\Admin\ExperiencesController;
 use App\Http\Controllers\Admin\FieldController;
 use App\Http\Controllers\Admin\PostController;
@@ -61,21 +61,20 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             Route::prefix('/profile')->group(function () {
                 Route::get('', [ProfileController::class, 'index'])
                     ->name('profile.index');
+            });
 
-                Route::post('/add-experience', [ProfileController::class, 'addExperience'])
-                    ->name('profile.add.experience');
+            /**
+             * Education
+             */
+            Route::prefix('educations')->group(function () {
+                Route::post('/store', [EducationsController::class, 'store'])
+                    ->name('education.store');
 
-                Route::delete('/delete-experience', [ProfileController::class, 'deleteExperience'])
-                    ->name('profile.delete.experience');
+                Route::put('/update/{id}', [EducationsController::class, 'update'])
+                    ->name('education.update');
 
-
-                Route::post('/add-education', [ProfileController::class, 'addEducation'])
-                    ->name('profile.add.education');
-
-
-                Route::delete('/delete-education', [ProfileController::class, 'deleteEducation'])
-                    ->name('profile.delete.education');
-
+                Route::delete('/destroy', [EducationsController::class, 'destroy'])
+                    ->name('education.destroy');
             });
 
             /**

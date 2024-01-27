@@ -10,24 +10,24 @@
         <span class="c-grey text-sm text-capitalize text-center">{{ $skill->type_skill }}</span>
     </div>
 
-    <div class="flex">
-        <x-primary-button
-            x-click
-            class="text-capitalize  "
-            x-data=""
-            x-on:click.prevent="$dispatch('open-modal', 'edit-skill_{{ $skill->id }}')"
-        >
-            <i class="fa fa-edit fs-15"></i>
-        </x-primary-button>
-        <x-danger-button
-            x-click
-            class="text-capitalize  "
-            x-data=""
-            x-on:click.prevent="$dispatch('open-modal', 'delete_skill_{{ $skill->id }}')"
-        >
-            <i class="fa fa-trash fs-15"></i>
-        </x-danger-button>
-    </div>
+        <div class="flex">
+            <x-primary-button
+                x-click
+                class="text-capitalize  "
+                x-data=""
+                x-on:click.prevent="$dispatch('open-modal', 'edit-skill_{{ $skill->id }}')"
+            >
+                <i class="fa fa-edit fs-15"></i>
+            </x-primary-button>
+            <x-danger-button
+                x-click
+                class="text-capitalize  "
+                x-data=""
+                x-on:click.prevent="$dispatch('open-modal', 'delete_skill_{{ $skill->id }}')"
+            >
+                <i class="fa fa-trash fs-15"></i>
+            </x-danger-button>
+        </div>
 
     @include('admin.profile.edit-skill', ['skill'=> $skill])
     @include('admin.profile.delete-skill', ['skill'=> $skill])

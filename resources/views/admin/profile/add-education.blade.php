@@ -1,21 +1,14 @@
-<div class="relative flex flex-col gap-2" @style([
-    'max-height:250px',
-    'overflow-y:scroll',
-])>
+<x-modal name="add-education" class="relative">
+    <x-close-button x-on:click="$dispatch('close')" class="position-absolute right-0 p-10" />
+    <div class="p-20 bg-white rad-10">
 
-    @if($clicked || $notHasRecord)
+        <h2 class="mt-0 mb-10 text-capitalize">add new education</h2>
+        <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">add another education to attention your audience</p>
 
-        <form method="post" action="{{ route('profile.add.education') }}"
+
+        <form method="post" action="{{ route('education.store') }}"
               class="w-full  relative ">
             @csrf
-
-            <div class="option-box-buttons">
-                <button type="submit" class="text-capitalize">{{ __('add new eduction') }}</button>
-                @if(! $notHasRecord)
-                    <x-close-button class="c-black" wire:click="toggle">{{ __('close') }}</x-close-button>
-                @endif
-            </div>
-
 
             <div class="w-full mt-3">
                 <x-input-label for="name" value="{{ __('name') }}" class=" text-capitalize"/>
@@ -92,14 +85,15 @@
                     placeholder="Year"
                 />
                 <x-input-error :messages="$errors->get('finish_date')" class="mt-2"/>
+
+                <div class="mt-10">
+                    <x-primary-button>{{ __('add new education') }}</x-primary-button>
+                </div>
             </div>
 
         </form>
-    @endif
 
-    @if (! $clicked && ! $notHasRecord)
-        <div class="flex w-full justify-end">
-            <x-primary-button wire:click="toggle"> add education</x-primary-button>
-        </div>
-    @endif
-</div>
+    </div>
+
+
+</x-modal>

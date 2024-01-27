@@ -18,14 +18,4 @@ interface DBProfileInterface
      * Display the user's profile.
      */
     public function index(): View;
-
-    /**
-     * add education
-     */
-    public function addEducation(AddEducationRequest $request);
-
-    /**
-     * Delete education
-     */
-    public function deleteEducation(DeleteEducationRequest $request);
 }
