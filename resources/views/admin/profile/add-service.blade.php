@@ -1,21 +1,17 @@
-<div class="relative" @style([
-    'max-height:250px',
-    'overflow-y:scroll',
-])>
 
-    @if($clicked || $notHasRecord)
-        <form method="post" action="{{ route('profile.change.service') }}"
+
+
+<x-modal name="add-service" class="relative">
+    <x-close-button x-on:click="$dispatch('close')" class="position-absolute right-0 p-10" />
+    <div class="p-20 bg-white rad-10">
+
+        <h2 class="mt-0 mb-10 text-capitalize">add new service</h2>
+        <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">add another service to attention your audience</p>
+
+        <form method="post" action="{{ route('service.store') }}"
               enctype="multipart/form-data"
               class="w-full  relative ">
             @csrf
-            @method('put')
-
-            <div class="option-box-buttons">
-                <button type="submit" class="text-capitalize">{{ __('add new service') }}</button>
-                @if(! $notHasRecord)
-                    <x-close-button class="c-black" wire:click="toggle">{{ __('close') }}</x-close-button>
-                @endif
-            </div>
 
             <div class="w-full">
                 <x-input-label for="name_service" value="{{ __('name service') }}" class=" text-capitalize"/>
@@ -42,14 +38,12 @@
                 <x-input-error :messages="$errors->get('image_service')" class="mt-2"/>
             </div>
 
-
+            <x-primary-button class="mt-20">
+                {{__('add')}}
+            </x-primary-button>
         </form>
 
-    @endif
+    </div>
 
-        @if (! $clicked && ! $notHasRecord)
-        <div class="flex w-full justify-end">
-            <x-primary-button wire:click="toggle"> add service</x-primary-button>
-        </div>
-    @endif
-</div>
+
+</x-modal>

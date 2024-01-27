@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class AddServiceRequest extends FormRequest
+class EditServiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,6 @@ class AddServiceRequest extends FormRequest
         return [
             'name_service' => ['required', 'max:35', Rule::unique(Service::class)],
             'description' => ['required', 'max:100'],
-            'image_service' => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
         ];
     }
 }

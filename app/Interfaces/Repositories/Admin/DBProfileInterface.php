@@ -19,12 +19,6 @@ interface DBProfileInterface
      */
     public function index(): View;
 
-
-    /**
-     * for delete request
-     */
-    public function deleteService(DeleteServiceRequest $request);
-
     /**
      * Add skill
      */

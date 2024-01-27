@@ -8,8 +8,10 @@ use App\Interfaces\Repositories\Admin\DBFieldInterface;
 use App\Interfaces\Repositories\Admin\DBPostsInterface;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use App\Interfaces\Repositories\Admin\DBProjectsInterface;
+use App\Interfaces\Repositories\Admin\DBServicesInterface;
 use App\Interfaces\Repositories\Admin\DBSettingsInterface;
 use App\Interfaces\Repositories\Admin\DBSocialAccountInterface;
+use App\Interfaces\Repositories\Admin\ServicesRepository;
 use App\Interfaces\Repositories\Guest\DBWelcomeInterface;
 use App\Repositories\Admin\AppSettingsRepository;
 use App\Repositories\Admin\DraftsRepository;
@@ -38,6 +40,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(DBPostsInterface::class, PostRepository::class);
         $this->app->bind(DBFieldInterface::class, FieldRepository::class);
         $this->app->bind(DBSocialAccountInterface::class, SocialAccountRepository::class);
+        $this->app->bind(DBServicesInterface::class, ServicesRepository::class);
     }
 
     /**

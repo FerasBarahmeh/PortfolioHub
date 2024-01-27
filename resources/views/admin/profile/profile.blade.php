@@ -3,6 +3,9 @@
     <x-admin.title-page> {{ __('projects') }}</x-admin.title-page>
 
     <div class="profile-page m-20">
+
+        <x-alerts.errors />
+
         <!-- Start Overview -->
         <div class="overview bg-white rad-10 d-flex align-center">
             <div class="avatar-box txt-c p-20">

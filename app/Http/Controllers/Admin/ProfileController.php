@@ -31,20 +31,6 @@ class ProfileController extends Controller
         return $this->profileRepository->index();
     }
 
-
-    /**
-     * @throws ValidationException
-     */
-    public function changeService(AddServiceRequest $request): RedirectResponse
-    {
-        return $this->profileRepository->changeService($request);
-    }
-
-    public function deleteService(DeleteServiceRequest $request): RedirectResponse
-    {
-        return $this->profileRepository->deleteService($request);
-    }
-
     public function addSkill(AddSkillRequest $request): RedirectResponse
     {
         return $this->profileRepository->addSkill($request);

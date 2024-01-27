@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\FieldController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectsController;
+use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SocialAccountController;
 use App\Http\Controllers\CKEditorController;
@@ -59,9 +60,6 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
                 Route::get('', [ProfileController::class, 'index'])
                     ->name('profile.index');
 
-//                Route::put('/change-social-account', [ProfileController::class, 'changeSocialAccount'])
-//                    ->name('profile.change.social.account');
-
                 Route::put('/change-service', [ProfileController::class, 'changeService'])
                     ->name('profile.change.service');
                 Route::delete('delete-service', [ProfileController::class, 'deleteService'])
@@ -99,6 +97,23 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
                 Route::delete('/destroy/{id}', [SocialAccountController::class, 'destroy'])
                     ->name('social.account.destroy');
             });
+
+
+            /**
+             * services
+             */
+            Route::prefix('services')->group(function () {
+                Route::post('/store', [ServicesController::class, 'store'])
+                    ->name('service.store');
+
+                Route::put('/update{id}', [ServicesController::class, 'update'])
+                    ->name('service.update');
+
+                Route::delete('/destroy', [ServicesController::class, 'destroy'])
+                    ->name('service.destroy');
+            });
+
+
 
             /**
              * Settings

@@ -47,41 +47,6 @@ class ProfileRepository implements DBProfileInterface
         ]);
     }
 
-
-    /**
-     * @throws ValidationException
-     */
-    public function changeService(AddServiceRequest $request): RedirectResponse
-    {
-        $service = Service::create(array_merge(['admin_id' => Auth::id()], $request->validated()));
-
-        $file = $service && Upload::uploadFile('image_service', Service::class, $service->id);
-
-        if ($file) {
-            return Redirect::route('profile.index')->with('success-add-service', __('success add service'));
-        }
-
-        return Redirect::route('profile.index')->with('fail-add-service', __('fail add service'));
-    }
-
-    public function deleteService(DeleteServiceRequest $request): RedirectResponse
-    {
-        $id = $request->validated()['id'];
-
-        $service = Service::find($id);
-
-        $destroyed = $service->delete();
-        if ($destroyed) {
-            $rubied = Upload::rubOut(Image::find($service->image->id));
-            if (!$rubied) {
-                $restored = Service::withTrashed()->find($id)->restore();
-                if ($restored)
-                    return Redirect::route('profile.index')->with('fail-delete-service', 'fail delete service');
-            }
-        }
-        return Redirect::route('profile.index')->with('success-delete-service', 'success delete service');
-    }
-
     /**
      * @throws ValidationException
      */
