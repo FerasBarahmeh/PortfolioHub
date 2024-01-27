@@ -4,21 +4,21 @@ namespace App\Providers;
 
 use App\Interfaces\Repositories\Admin\DBAppSettingsInterface;
 use App\Interfaces\Repositories\Admin\DBDraftsInterface;
-use App\Interfaces\Repositories\Admin\DBExtensionsInterface;
 use App\Interfaces\Repositories\Admin\DBFieldInterface;
 use App\Interfaces\Repositories\Admin\DBPostsInterface;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use App\Interfaces\Repositories\Admin\DBProjectsInterface;
 use App\Interfaces\Repositories\Admin\DBSettingsInterface;
+use App\Interfaces\Repositories\Admin\DBSocialAccountInterface;
 use App\Interfaces\Repositories\Guest\DBWelcomeInterface;
 use App\Repositories\Admin\AppSettingsRepository;
 use App\Repositories\Admin\DraftsRepository;
-use App\Repositories\Admin\ExtensionsRepository;
 use App\Repositories\Admin\FieldRepository;
 use App\Repositories\Admin\PostRepository;
 use App\Repositories\Admin\ProfileRepository;
 use App\Repositories\Admin\ProjectsRepository;
 use App\Repositories\Admin\SettingsRepository;
+use App\Repositories\Admin\SocialAccountRepository;
 use App\Repositories\Guest\WelcomeRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,7 +29,6 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(DBExtensionsInterface::class, ExtensionsRepository::class);
         $this->app->bind(DBProfileInterface::class, ProfileRepository::class);
         $this->app->bind(DBSettingsInterface::class, SettingsRepository::class);
         $this->app->bind(DBAppSettingsInterface::class, AppSettingsRepository::class);
@@ -38,6 +37,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(DBDraftsInterface::class, DraftsRepository::class);
         $this->app->bind(DBPostsInterface::class, PostRepository::class);
         $this->app->bind(DBFieldInterface::class, FieldRepository::class);
+        $this->app->bind(DBSocialAccountInterface::class, SocialAccountRepository::class);
     }
 
     /**

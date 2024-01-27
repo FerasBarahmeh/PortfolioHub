@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ServiceRequest extends FormRequest
+class AddServiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -9,8 +9,8 @@ use App\Http\Requests\Admin\DeleteEducationRequest;
 use App\Http\Requests\Admin\DeleteExperienceRequest;
 use App\Http\Requests\Admin\DeleteServiceRequest;
 use App\Http\Requests\Admin\DeleteSkillRequest;
-use App\Http\Requests\Admin\ServiceRequest;
-use App\Http\Requests\Admin\SocialAccountRequest;
+use App\Http\Requests\Admin\AddServiceRequest;
+use App\Http\Requests\Admin\AddSocialAccountRequest;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use App\Models\DomainsSocialMedia;
 use App\Models\Education;
@@ -47,28 +47,11 @@ class ProfileRepository implements DBProfileInterface
         ]);
     }
 
-    public function changeSocialAccount(SocialAccountRequest $request): RedirectResponse
-    {
-        $domain = $request->validated()['domain_id'];
-
-        $account = SocialMediaAccount::firstOrNew([
-            'domain_id' => $domain,
-        ]);
-
-        $account->fill(array_merge($request->validated(), ['admin_id' => Auth::id()]));
-
-
-        if (!$account->save())
-            return Redirect::route('profile.index')->with('fail', 'fail add ' . $account->domain->domain . ' with username is ' . $account->username_account);
-
-        return Redirect::route('profile.index')->with('success', 'add ' . $account->domain->domain . ' account with username is ' . $account->username_account . ' successfully');
-
-    }
 
     /**
      * @throws ValidationException
      */
-    public function changeService(ServiceRequest $request): RedirectResponse
+    public function changeService(AddServiceRequest $request): RedirectResponse
     {
         $service = Service::create(array_merge(['admin_id' => Auth::id()], $request->validated()));
 

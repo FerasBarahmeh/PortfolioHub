@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\SocialAccountController;
 use App\Http\Controllers\CKEditorController;
 use App\Models\DomainsSocialMedia;
 use Illuminate\Support\Facades\Auth;
@@ -58,8 +59,8 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
                 Route::get('', [ProfileController::class, 'index'])
                     ->name('profile.index');
 
-                Route::put('/change-social-account', [ProfileController::class, 'changeSocialAccount'])
-                    ->name('profile.change.social.account');
+//                Route::put('/change-social-account', [ProfileController::class, 'changeSocialAccount'])
+//                    ->name('profile.change.social.account');
 
                 Route::put('/change-service', [ProfileController::class, 'changeService'])
                     ->name('profile.change.service');
@@ -89,11 +90,15 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
             });
 
             /**
-             * Supplementary Information
+             * Social Accounts
              */
-            Route::get('/supplementary-info-profile', [AdminExtensionsController::class, 'edit'])->name('supplementary.edit');
-            Route::patch('/supplementary-info-profile', [AdminExtensionsController::class, 'update'])->name('supplementary.update');
+            Route::prefix('social-accounts')->group(function () {
+                Route::post('/store', [SocialAccountController::class, 'store'])
+                    ->name('social.account.store');
 
+                Route::delete('/destroy/{id}', [SocialAccountController::class, 'destroy'])
+                    ->name('social.account.destroy');
+            });
 
             /**
              * Settings

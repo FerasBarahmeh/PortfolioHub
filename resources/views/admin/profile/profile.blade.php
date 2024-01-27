@@ -129,7 +129,7 @@
             @include('admin.profile.education')
 
             {{-- Social info box --}}
-            @include('admin.profile.social-info-forms')
+            @include('admin.profile.social-info')
 
             {{--  providers --}}
             @include('admin.profile.services')

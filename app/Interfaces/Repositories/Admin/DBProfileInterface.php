@@ -9,7 +9,7 @@ use App\Http\Requests\Admin\DeleteExperienceRequest;
 use App\Http\Requests\Admin\DeleteServiceRequest;
 use App\Http\Requests\Admin\AddSkillRequest;
 use App\Http\Requests\Admin\DeleteSkillRequest;
-use App\Http\Requests\Admin\SocialAccountRequest;
+use App\Http\Requests\Admin\AddSocialAccountRequest;
 use Illuminate\View\View;
 
 interface DBProfileInterface
@@ -19,10 +19,6 @@ interface DBProfileInterface
      */
     public function index(): View;
 
-    /**
-     * Add Social Media Account
-     */
-    public function changeSocialAccount(SocialAccountRequest $request);
 
     /**
      * for delete request

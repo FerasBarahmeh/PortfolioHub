@@ -9,9 +9,9 @@ use App\Http\Requests\Admin\DeleteEducationRequest;
 use App\Http\Requests\Admin\DeleteExperienceRequest;
 use App\Http\Requests\Admin\DeleteServiceRequest;
 use App\Http\Requests\Admin\DeleteSkillRequest;
-use App\Http\Requests\Admin\ServiceRequest;
+use App\Http\Requests\Admin\AddServiceRequest;
 use App\Http\Requests\Admin\AddSkillRequest;
-use App\Http\Requests\Admin\SocialAccountRequest;
+use App\Http\Requests\Admin\AddSocialAccountRequest;
 use App\Interfaces\Repositories\Admin\DBProfileInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
@@ -31,15 +31,11 @@ class ProfileController extends Controller
         return $this->profileRepository->index();
     }
 
-    public function changeSocialAccount(SocialAccountRequest $request)
-    {
-        return $this->profileRepository->changeSocialAccount($request);
-    }
 
     /**
      * @throws ValidationException
      */
-    public function changeService(ServiceRequest $request): RedirectResponse
+    public function changeService(AddServiceRequest $request): RedirectResponse
     {
         return $this->profileRepository->changeService($request);
     }
