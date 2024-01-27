@@ -47,24 +47,6 @@ class ProfileRepository implements DBProfileInterface
         ]);
     }
 
-    public function addExperience(AddExperienceRequest $request): RedirectResponse
-    {
-        $experience = Experience::create(array_merge($request->validated(), ['admin_id' => Auth::id()]));
-        if (!$experience) {
-            return Redirect::route('profile.index')->with('fail-add-experience', 'fail add new ' . $request->validated()['career_title']);
-        }
-        return Redirect::route('profile.index')->with('success-add-experience', 'success add experience as a ' . $experience->career_title);
-    }
-
-    public function deleteExperience(DeleteExperienceRequest $request): RedirectResponse
-    {
-        $id = $request->validated()['id'];
-        $destroyed = Experience::destroy($id);
-        if ($destroyed)
-            return Redirect::route('profile.index')->with('success-experience', 'success delete experience');
-
-        return Redirect::route('profile.index')->with('fail-experience', 'fail delete experience');
-    }
 
     public function addEducation(AddEducationRequest $request): RedirectResponse
     {

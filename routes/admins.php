@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminExtensionsController;
 use App\Http\Controllers\Admin\AppSettingsController;
 use App\Http\Controllers\Admin\DraftsController;
+use App\Http\Controllers\Admin\ExperiencesController;
 use App\Http\Controllers\Admin\FieldController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -74,6 +75,21 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
 
                 Route::delete('/delete-education', [ProfileController::class, 'deleteEducation'])
                     ->name('profile.delete.education');
+
+            });
+
+            /**
+             * Experience
+             */
+            Route::prefix('experience')->group(function () {
+                Route::post('/store', [ExperiencesController::class, 'store'])
+                    ->name('experience.store');
+
+                Route::put('/update/{id}', [ExperiencesController::class, 'update'])
+                    ->name('experience.update');
+
+                Route::delete('/destroy', [ExperiencesController::class, 'destroy'])
+                    ->name('experience.destroy');
 
             });
 

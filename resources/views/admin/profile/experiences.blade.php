@@ -3,41 +3,29 @@
     <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">what the stages experience i finished </p>
 
     <x-alerts.alert :success="session('success-add-experience')" :fail="session('fail-add-experience') "/>
-
-    <livewire:add-experience :notHasRecord="$experiences->isEmpty()"/>
-
-    <ul class="txt-c-mobile experiences">
-        @foreach($experiences as $experience)
-
-            <li class="experience">
-
-                <div class="period">
-                    <span class="join">{{ $experience->join_date }}</span>
-                    <span class="dash">-</span>
-                    <span class="leave">{{ $experience->leave_date }}</span>
-                </div>
-
-                <form action="{{ route('profile.delete.experience') }}" method="post" class="d-flex justify-between w-full px-1">
-                    @csrf @method('delete')
-                    <input type="hidden" name="id" value="{{ $experience->id }}">
-                    <div class="content">
-                        <div class="name">
-                            <span class="name">{{ Str::limit($experience->career_title )  }}</span>
-                            <span class="at caret-black text-capitalize">At</span>
-                            <a href="{{ $experience->organisation_url }}">{{ $experience->name_organisation }}</a>
-                        </div>
+    <x-alerts.alert :success="session('success-delete-experience')" :fail="session('fail-delete-experience') "/>
+    <x-alerts.alert :success="session('success-edit-experience')" :fail="session('fail-edit-experience') "/>
 
 
-                        <div class="description fs-15 c-grey">
-                            {{ Str::limit($experience->job_description, 30) }}
-                        </div>
-                    </div>
+    <div class="flex align-items-end justify-content-end mb-10">
+        <x-primary-button
+            x-click
+            class="text-capitalize  "
+            x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'add-experience')"
+        >
+            <i class="fa fa-plus fs-15"></i>
+        </x-primary-button>
 
-                    <button class="text-danger">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </form>
-            </li>
-        @endforeach
-    </ul>
+        @include('admin.profile.add-experience')
+    </div>
+
+
+    @if($experiences->isNotEmpty())
+        <ul class="txt-c-mobile experiences">
+            @each('admin.profile.experience', $experiences, 'experience')
+        </ul>
+    @else
+        <span class="flex justify-content-center align-items-center relative">No experiences added yet</span>
+    @endif
 </div>

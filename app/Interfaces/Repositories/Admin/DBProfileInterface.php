@@ -20,15 +20,6 @@ interface DBProfileInterface
     public function index(): View;
 
     /**
-     * add experience to admin
-     */
-    public function addExperience(AddExperienceRequest $request);
-
-    /**
-     * delete experience
-     */
-    public function deleteExperience(DeleteExperienceRequest $request);
-    /**
      * add education
      */
     public function addEducation(AddEducationRequest $request);
