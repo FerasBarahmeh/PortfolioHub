@@ -21,11 +21,11 @@
     </div>
 
 
-    @if($experiences->isNotEmpty())
+    @if($admin->experiences->isNotEmpty())
         <ul class="txt-c-mobile experiences">
             @each('admin.profile.experience', $experiences, 'experience')
         </ul>
     @else
-        <span class="flex justify-content-center align-items-center relative">No experiences added yet</span>
+        <x-alerts.not-founded :message="'No experience added yet'"/>
     @endif
 </div>

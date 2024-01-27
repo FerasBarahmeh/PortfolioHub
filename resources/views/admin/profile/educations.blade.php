@@ -20,11 +20,11 @@
         @include('admin.profile.add-education')
     </div>
 
-    @if($educations)
+    @if($admin->educations->isNotEmpty())
         <ul class="txt-c-mobile mt-6">
-            @each('admin.profile.education', $educations, 'education')
+            @each('admin.profile.education', $admin->educations, 'education')
         </ul>
     @else
-        <span class="flex justify-content-center align-items-center relative">No education added yet</span>
+        <x-alerts.not-founded :message="'No education added yet'"/>
     @endif
 </div>

@@ -20,8 +20,10 @@
         @include('admin.profile.add-service', ['domains' => $domains])
     </div>
 
-    @if ($services )
-        @each('admin.profile.service', $services, 'service')
+    @if ($admin->services->isNotEmpty() )
+        @each('admin.profile.service', $admin->services, 'service')
+    @else
+        <x-alerts.not-founded :message="'No accounts services yet'" />
     @endif
 
 </div>

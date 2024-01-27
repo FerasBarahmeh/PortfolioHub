@@ -39,11 +39,6 @@ class ProfileRepository implements DBProfileInterface
         return view('admin.profile.profile', [
             'admin' => $admin,
             'domains' => DomainsSocialMedia::all(),
-            'accounts' => $admin->accounts,
-            'services' => $admin->services,
-            'skills' => $admin->skills,
-            'experiences' => $admin->experiences,
-            'educations' => $admin->educations,
         ]);
     }
 

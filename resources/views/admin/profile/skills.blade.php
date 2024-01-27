@@ -21,13 +21,12 @@
     </div>
 
 
-
-        @if ($skills->isNotEmpty())
+    @if ($admin->skills->isNotEmpty())
         <div class="flex flex-wrap mt-20 gap-10">
-            @each('admin.profile.skill', $skills, 'skill')
+            @each('admin.profile.skill', $admin->skills, 'skill')
         </div>
-        @else
-            <span class="flex justify-content-center align-items-center relative">No skills added yet</span>
-        @endif
+    @else
+        <x-alerts.not-founded :message="'No skills added yet'"/>
+    @endif
 
 </div>
