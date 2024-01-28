@@ -1,8 +1,4 @@
-<x-guest-layout>
-    @push('style')
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}"/>
-    @endpush
+<x-auth-layout>
     <!-- Session Status -->
    <div class="container position-absolute rounded " @style(['width:500px; top: 50%;left: 50%;  transform: translate(-50%, -50%); background-color: var(--bs-border-color); padding: 10px; '])>
        <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -50,4 +46,4 @@
            </div>
        </form>
    </div>
-</x-guest-layout>
+</x-auth-layout>

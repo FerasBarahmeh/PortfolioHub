@@ -1,7 +1,4 @@
-<x-guest-layout>
-    @push('style')
-        <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}"/>
-    @endpush
+<x-auth-layout>
     <div
         class="container position-absolute rounded " @style(['width:500px; top: 50%;left: 50%;  transform: translate(-50%, -50%); background-color: var(--bs-border-color); padding: 10px; '])>
 
@@ -36,4 +33,4 @@
             </form>
         </div>
     </div>
-</x-guest-layout>
+</x-auth-layout>
