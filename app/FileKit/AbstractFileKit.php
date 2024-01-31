@@ -103,24 +103,15 @@ class AbstractFileKit implements FileKitInterface
      *
      * @return string A unique file name combining the sanitized user-provided name and the original file extension.
      */
-    public function generateFileName(mixed $file = null, bool $hash=false): string
+    public function generateFileName(mixed $file = null, bool $hash = false): string
     {
-        $file = $file ??  $this->request->file($this->inputName);
+        $file = $file ?? $this->request->file($this->inputName);
         if ($hash)
             return Hash::make(Str::slug(Carbon::now())) . '.' . $file->getClientOriginalExtension();
-        return Str::slug(Carbon::now()) . '-' .time() . '.' . $file->getClientOriginalExtension();
+        return Str::slug(Carbon::now()) . '-' . time() . '.' . $file->getClientOriginalExtension();
     }
 
 
-    /**
-     * If request has many files in the same input
-     *
-     * @return bool
-     */
-    protected function isMultiFile(): bool
-    {
-        return is_array($this->getFiles());
-    }
 
     /**
      * Validate an uploaded file against specified rules or default image rules.
@@ -131,7 +122,7 @@ class AbstractFileKit implements FileKitInterface
      *
      * @throws ValidationException If the validation fails.
      */
-    protected function validation($file=null): null|bool
+    protected function validation($file = null): null|bool
     {
         $file = $file ?? $this->inputName;
         $validation = $validation ?? $this->validation;
@@ -170,7 +161,7 @@ class AbstractFileKit implements FileKitInterface
                 $nameFile = $this->generateFileName($file);
                 if ($file->storeAs($this->folderKit, $nameFile, $this->disk)) {
                     $image = $this->sortRecord($this->folderKit . DIRECTORY_SEPARATOR . $nameFile, $id, $type, $nameFile, $this->disk);
-                    $this->sortedFiles[]= $image;
+                    $this->sortedFiles[] = $image;
                 }
             }
             if (count($this->sortedFiles) == count($this->files)) return $this->sortedFiles;

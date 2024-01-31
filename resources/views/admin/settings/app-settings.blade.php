@@ -13,6 +13,14 @@
 
             {{-- End Settings Box --}}
 
+            {{-- Start Settings Box --}}
+
+            @include('admin.settings.forms.store-layout-picture')
+
+            {{-- End Settings Box --}}
+
+
+
         </div>
 
     </x-slot>

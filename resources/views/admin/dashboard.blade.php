@@ -42,6 +42,16 @@
             </div>
             <!-- Start End Media Stats Widget -->
 
+            <!-- Start Social Media Stats Widget -->
+            <div class="social-media p-20 bg-white rad-10 p-relative">
+                <h2 class="mt-0 mb-25">Social Media Domains</h2>
+                <div class="flex gap-10 flex-wrap">
+                    @each('admin.dashboard.domains', $domains, 'domain')
+                </div>
+            </div>
+            <!-- Start End Media Stats Widget -->
+
+
         </div>
 
     </x-slot>

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SkillsController;
 use App\Http\Controllers\Admin\SocialAccountController;
 use App\Http\Controllers\CKEditorController;
+use App\Http\Controllers\TemporaryFileController;
 use App\Models\DomainsSocialMedia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,15 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
 
         Route::post('/upload-ckeditor', [CKEditorController::class, 'store'])->name('ckeditor.upload');
         Route::delete('/delete-image', [CKEditorController::class, 'delete'])->name('ckeditor.delete');
+
+        /**
+         * Temp Files
+         */
+        Route::post('/tmp-upload', [TemporaryFileController::class, 'upload'])
+            ->name('tmp.upload');
+        Route::delete('/tmp-delete/{folder}', [TemporaryFileController::class, 'delete'])
+            ->name('tmp.delete');
+
         /**
          * Livewire
          */
@@ -148,8 +158,12 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
              * app settings
              */
             Route::prefix('/app-settings')->group(function () {
-                Route::get('', [AppSettingsController::class, 'index'])->name('app.settings.index');
-                Route::post('/add-domain-social-media', [AppSettingsController::class, 'addDomainSocialMedia'])->name('app.settings.add-domain');
+                Route::get('', [AppSettingsController::class, 'index'])
+                    ->name('app.settings.index');
+                Route::post('/add-domain-social-media', [AppSettingsController::class, 'addDomainSocialMedia'])
+                    ->name('app.settings.add-domain');
+                Route::post('/store-layout-picture', [AppSettingsController::class, 'storeLayoutPicture'])
+                    ->name('app.settings.store-layout');
 
             });
 

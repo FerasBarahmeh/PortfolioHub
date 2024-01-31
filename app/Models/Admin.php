@@ -120,4 +120,9 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function layout(): HasOne
+    {
+        return $this->hasOne(LayoutPicture::class);
+    }
 }
