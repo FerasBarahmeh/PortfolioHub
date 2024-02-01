@@ -6,7 +6,7 @@
             <a class="{{Route::is('') ? 'active' : '' }} d-flex align-center fs-14 c-black rad-6 p-10"
                href="{{ route('welcome.index') }}">
                 <i class="fa fa-home fa-fw"></i>
-                <span>Home</span>
+                <span>Layout</span>
             </a>
         </li>
 

@@ -58,7 +58,6 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
         Route::get('/dashboard', function () {
             return view('admin.dashboard', [
                 'domains' => DomainsSocialMedia::all(),
-                'accounts' => Auth::user()->accounts,
                 'admin' => Auth::user(),
             ]);
         })->middleware(['auth', 'verified'])->name('dashboard');
@@ -147,10 +146,14 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
              * Settings
              */
             Route::prefix('/settings')->group(function () {
-                Route::get('', [SettingsController::class, 'index'])->name('settings.index');
-                Route::patch('/update-main-info', [SettingsController::class, 'updateMainInfo'])->name('settings.update.main.info');
-                Route::patch('/update-supplementary-info', [SettingsController::class, 'updateSupplementaryInfo'])->name('settings.update.supplementary.info');
-                Route::delete('/destroy', [SettingsController::class, 'destroy'])->name('settings.destroy');
+                Route::get('', [SettingsController::class, 'index'])
+                    ->name('settings.index');
+                Route::patch('/update-main-info', [SettingsController::class, 'updateMainInfo'])
+                    ->name('settings.update.main.info');
+                Route::patch('/update-supplementary-info', [SettingsController::class, 'updateSupplementaryInfo'])
+                    ->name('settings.update.supplementary.info');
+                Route::delete('/destroy', [SettingsController::class, 'destroy'])
+                    ->name('settings.destroy');
             });
 
 

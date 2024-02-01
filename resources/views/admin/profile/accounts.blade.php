@@ -5,7 +5,7 @@
 
         <div
             class="name flex-1 text-white p-10" @style(['opacity: .5; background-color: ' . $account->domain->hex_color])>
-            <a href="https://twitter.com/{{ $account->username_account }}"
+            <a href="https://{{ $account->domain->domain }}.com/{{ $account->username_account }}"
                class="w-full">{{$account->username_account}}</a>
         </div>
 

@@ -45,7 +45,7 @@ body.menu-show {
 }
 
 a {
-    color: #CA82F8;
+    color: var(--primary-color);
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
@@ -618,7 +618,7 @@ header .colorlib-navbar-brand .colorlib-logo:active, header .colorlib-navbar-bra
 
 .img-skill {
     width: 200px;
-    height: 200px;
+    height: 300px;
     line-height: 150px;
     background: transparent;
     margin: 0 auto;
@@ -1460,7 +1460,7 @@ input[type="text"] {
 
 #footer p.colorlib-social-icons i {
     font-size: 24px;
-    color: #CA82F8;
+    color: var(--primary-color);
 }
 
 #footer p .block {

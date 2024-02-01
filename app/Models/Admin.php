@@ -121,6 +121,11 @@ class Admin extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function activePosts(): HasMany
+    {
+        return $this->hasMany(Post::class)->where('is_active', true);
+    }
+
     public function layout(): HasOne
     {
         return $this->hasOne(LayoutPicture::class);

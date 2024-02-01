@@ -60,12 +60,13 @@ class PostRepository implements DBPostsInterface
     /**
      * @inheritDoc
      */
-    public function show(string $id)
+    public function show(string $id): View|\Illuminate\Foundation\Application|Factory|Application
     {
-        // TODO: implement this view
-//        return \view('admin.posts.post', [
-//            'post' => Post::find($id),
-//        ]);
+        $post = Post::find($id);
+
+        return view('admin.posts.post', [
+            'post' => optional($post)->is_active ? $post : null,
+        ]);
     }
 
     /**

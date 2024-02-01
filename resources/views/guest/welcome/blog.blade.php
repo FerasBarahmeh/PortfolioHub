@@ -22,7 +22,7 @@
                     <div class="item">
                         <div class="col-md-12">
                             <div class="article">
-                                <a href="blog.html" class="blog-img">
+                                <a href="{{ route('posts.show', $post->id) }}" class="blog-img">
                                     <img class="img-responsive" src="{{ Storage::url($post->images->random()->url)  }}"
                                          alt="html5 bootstrap by colorlib.com">
                                     <div class="overlay"></div>

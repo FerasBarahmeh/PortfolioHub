@@ -29,7 +29,7 @@ class Upload extends AbstractFileKit
     /**
      * @throws ValidationException
      */
-    public static function uploadFiles($inputName, $namespace, $pk, $disk = null, $validation = null): bool|string
+    public static function uploadFiles($inputName, $namespace, $pk, $disk = null, $validation = null): Upload|bool
     {
         return self::uploadFile($inputName, $namespace, $pk, $disk, $validation);
     }

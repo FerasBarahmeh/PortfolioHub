@@ -17,10 +17,9 @@
                 @foreach($admin->softSkills as $skill)
                     <div class="col-md-3 col-sm-6 text-center">
                         <h2 class="skill-head mb-15">{{ $skill->name_skill }}</h2>
-
-                        <div class="img-skill " style="box-shadow: 3px 3px 6px 10px {{ $colors[array_rand($colors)]}};">
-                            <img src="{{ Storage::url($skill->image->url) }}" alt="">
-                        </div>
+                        <figure class="img-skill" >
+                            <img src="{{ Storage::url($skill->image->url) }}" alt="skill image"  @style(['width: 100%; height: 100%;']) />
+                        </figure>
                     </div>
                 @endforeach
             </div>
@@ -39,9 +38,9 @@
                 @foreach($admin->technicalSkills as $skill)
                     <div class="col-md-3 col-sm-6 text-center">
                         <h2 class="skill-head mb-15">{{ $skill->name_skill }}</h2>
-                        <div class="img-skill " style="box-shadow: 3px 3px 6px 10px  {{ $colors[array_rand($colors)]}};">
-                            <img src="{{ Storage::url($skill->image->url) }}" alt="">
-                        </div>
+                        <figure class="img-skill">
+                            <img src="{{ Storage::url($skill->image->url) }}" alt="skill image" @style(['width: 100%; height: 100%;'])   />
+                        </figure>
                     </div>
                 @endforeach
 

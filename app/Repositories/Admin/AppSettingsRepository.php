@@ -44,8 +44,8 @@ class AppSettingsRepository implements DBAppSettingsInterface
     {
         if ($request->has('layout-img')) {
             $admin = Auth::user();
-            foreach ($admin->layout->image as $image) {
-                $image->delete();
+            if (isset($admin->layout->image)) {
+                $admin->layout->image->delete();
             }
             $layoutImg = json_decode($request->input('layout-img'));
             $layout = LayoutPicture::create(['admin_id' => Auth::id()]);

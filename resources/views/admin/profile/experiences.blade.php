@@ -23,7 +23,7 @@
 
     @if($admin->experiences->isNotEmpty())
         <ul class="txt-c-mobile experiences">
-            @each('admin.profile.experience', $experiences, 'experience')
+            @each('admin.profile.experience', $admin->experiences, 'experience')
         </ul>
     @else
         <x-alerts.not-founded :message="'No experience added yet'"/>

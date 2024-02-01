@@ -26,9 +26,9 @@ class Post extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
-    public function image(): MorphMany
+    public function image(): \Illuminate\Database\Eloquent\Relations\MorphOne
     {
-        return $this->morphMany(Image::class, 'imageable');
+        return $this->morphOne(Image::class, 'imageable');
     }
 
     public static function getLastInsertedId(): bool|string

@@ -17,7 +17,7 @@
                     <h2>Latest Blog</h2>
                     @foreach($admin->posts as $post )
                         <div class="f-entry">
-                            <a href="#" class="featured-img" style="background-image: url({{ $post->image->url }});"></a>
+                            <a href="#" class="featured-img">{{ $post->title }}</a>
                             <div class="desc">
                                 <span>{{ \Illuminate\Support\Carbon::parse($post->created_at)->format('Y M d') }}</span>
                                 <h3><a href="#">{{ $post->title }}</a></h3>
