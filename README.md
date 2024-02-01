@@ -1,6 +1,6 @@
 ## About Project
 
-"My Portfolio" is a web application built using the Laravel framework that serves as a personal portfolio for showcasing
+"ProfolioHub" is a web application built using the Laravel framework that serves as a personal portfolio for showcasing
 your skills, projects, and professional experience. This platform allows you to present your achievements and expertise
 in a visually appealing and user-friendly manner.
 
