@@ -1,4 +1,4 @@
-
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 <link rel="stylesheet" href="{{ asset('admin/css/all.min.css') }}"/>
 <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.rtl.min.css') }}"/>
 <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}"/>
