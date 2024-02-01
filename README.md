@@ -25,20 +25,24 @@ in a visually appealing and user-friendly manner.
 - Laravel breeze
 - Livewire
 - CKEDITOR
+- FilePond
 
 # Snippet Images
-![Dashboard](public/githup-images/09.png)
+![Dashboard](public/githup-images/9.png)
 ![Dashboard](public/githup-images/10.png)
 ![Dashboard](public/githup-images/11.png)
+![Dashboard](public/githup-images/1.png)
+![Dashboard](public/githup-images/2.png)
+![Dashboard](public/githup-images/3.png)
+![Dashboard](public/githup-images/4.png)
+![Dashboard](public/githup-images/5.png)
+![Dashboard](public/githup-images/6.png)
+![Dashboard](public/githup-images/7.png)
+![Dashboard](public/githup-images/8.png)
+![Dashboard](public/githup-images/0.png)
+![Dashboard](public/githup-images/15.png)
+![Dashboard](public/githup-images/16.png)
+![Dashboard](public/githup-images/17.png)
 ![Dashboard](public/githup-images/12.png)
-![Dashboard](public/githup-images/13.png)
 ![Dashboard](public/githup-images/14.png)
-![Dashboard](public/githup-images/01.png)
-![Dashboard](public/githup-images/02.png)
-![Dashboard](public/githup-images/03.png)
-![Dashboard](public/githup-images/04.png)
-![Dashboard](public/githup-images/05.png)
-![Dashboard](public/githup-images/06.png)
-![Dashboard](public/githup-images/07.png)
-![Dashboard](public/githup-images/08.png)
-
+![Dashboard](public/githup-images/13.png)

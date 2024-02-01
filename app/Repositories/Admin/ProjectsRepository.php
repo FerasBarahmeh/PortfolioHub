@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Admin;
 
-use App\Enums\Disks;
+
 use App\FileKit\Upload;
 use App\Http\Requests\Admin\DeleteProjectRequest;
 use App\Http\Requests\Admin\StoreProjectRequest;
@@ -56,7 +56,7 @@ class ProjectsRepository implements DBProjectsInterface
         $images = $project->images;
         if ($project->delete()) {
             foreach ($images as $image) {
-                self::rubOut(Disks::Public->value, $image);
+                Upload::rubOut($image);
             }
         }
         return Redirect::route('projects.index')->with('success-delete-project', 'Success delete project');

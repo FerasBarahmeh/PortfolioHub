@@ -108,7 +108,7 @@ class AbstractFileKit implements FileKitInterface
         $file = $file ?? $this->request->file($this->inputName);
         if ($hash)
             return Hash::make(Str::slug(Carbon::now())) . '.' . $file->getClientOriginalExtension();
-        return Str::slug(Carbon::now()) . '-' . time() . '.' . $file->getClientOriginalExtension();
+        return Str::slug(Carbon::now()) . '-' . time() . '-' . rand() .  '.' . $file->getClientOriginalExtension();
     }
 
 
@@ -151,14 +151,14 @@ class AbstractFileKit implements FileKitInterface
     /**
      * @throws ValidationException
      */
-    public function upload(string $type, int|string $id): bool|string|array
+    public function upload(string $type, int|string $id,  $hash=false): bool|string|array
     {
         $this->folderKit = $folderKit ?? $this->getFolderName($type);
         $this->inputName = $this->fileInputExists();
 
         if ($this->inputName) {
             foreach ($this->files as $index => $file) {
-                $nameFile = $this->generateFileName($file);
+                $nameFile = $this->generateFileName($file, $hash);
                 if ($file->storeAs($this->folderKit, $nameFile, $this->disk)) {
                     $image = $this->sortRecord($this->folderKit . DIRECTORY_SEPARATOR . $nameFile, $id, $type, $nameFile, $this->disk);
                     $this->sortedFiles[] = $image;

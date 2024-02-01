@@ -19,7 +19,7 @@
 
     <title>{{ config('app.name', 'FerasBarahmeh') }}</title>
 
-    <link rel="icon" href="{{ asset('guest/images/favicon.ico') }}">
+    <link rel="icon" href="{{ asset('guest/images/my-avatar.png') }}">
 
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">

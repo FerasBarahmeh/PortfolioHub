@@ -1,6 +1,6 @@
 
 <div class="flex w-full mb-3 border-b pb-2">
-    <div class="flex gap-10 w-full">
+    <div class="flex gap-10 w-full align-items-center">
         <figure @style(['width: 50px; height: 50px; border-radius: 10px;'])>
             <img src="{{ Storage::url($service->image->url) }}" alt="image skill" @style(['border-radius: 10px;'])/>
         </figure>

@@ -18,10 +18,10 @@ class Upload extends AbstractFileKit
      *
      * @throws ValidationException
      */
-    public static function uploadFile($inputName, $namespace, $pk, $disk = null, $validation = null): Upload|bool
+    public static function uploadFile($inputName, $namespace, $pk, $disk = null, $validation = null,  $hash=false): Upload|bool
     {
         $handel = new Upload($inputName, $disk, $validation);
-        $handled = $handel->upload($namespace, $pk);
+        $handled = $handel->upload($namespace, $pk, $hash);
         if ($handled) return $handel;
         return false;
     }
@@ -29,9 +29,9 @@ class Upload extends AbstractFileKit
     /**
      * @throws ValidationException
      */
-    public static function uploadFiles($inputName, $namespace, $pk, $disk = null, $validation = null): Upload|bool
+    public static function uploadFiles($inputName, $namespace, $pk, $disk = null, $validation = null, $hash=false): Upload|bool
     {
-        return self::uploadFile($inputName, $namespace, $pk, $disk, $validation);
+        return self::uploadFile($inputName, $namespace, $pk, $disk, $validation,  $hash);
     }
 
     public static function rubOut(Image $image): int

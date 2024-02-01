@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="">
-                    <x-primary-a href="{{ route('posts.edit', $post->id) }}" class="btn btn-dark p-1 text-capitalize text-xs">read</x-primary-a>
+                    <x-primary-a href="{{ route('posts.show', $post->id) }}" class="btn btn-dark p-1 text-capitalize text-xs">read</x-primary-a>
                     <x-primary-a href="{{ route('posts.edit', $post->id) }}" class="btn btn-dark p-1 text-capitalize text-xs">edit post</x-primary-a>
                 </div>
 

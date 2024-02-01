@@ -98,22 +98,6 @@
             </div>
             <!-- End  services  Widget -->
 
-
-            <!-- Start last post Widget -->
-            <div class="social-media p-20 bg-white rad-10 p-relative">
-                <x-admin.widget-title :icon="'fa-regular fa-paste fa-2x'">last post</x-admin.widget-title>
-
-                <div class="flex gap-10 flex-wrap align-items-center justify-content-center">
-                    @if($admin->posts->isEmpty())
-                        <x-alerts.not-founded :message="'not add posts yet'" />
-                    @endif
-                    @include('admin.dashboard.last-post', ['post' =>$admin->posts->last()])
-                </div>
-            </div>
-            <!-- End  last post  Widget -->
-
-
-
             <!-- Start Social Media Stats Widget -->
             <div class="social-media p-20 bg-white rad-10 p-relative">
                 <x-admin.widget-title :icon="'fa-solid fa-cloud fa-2x'">social media domains</x-admin.widget-title>
@@ -139,6 +123,19 @@
                 </div>
             </div>
             <!-- Start End Projects Widget -->
+
+            <!-- Start last post Widget -->
+            <div class="social-media p-20 bg-white rad-10 p-relative">
+                <x-admin.widget-title :icon="'fa-regular fa-paste fa-2x'">last post</x-admin.widget-title>
+
+                <div class="flex gap-10 flex-wrap align-items-center justify-content-center">
+                    @if($admin->posts->isEmpty())
+                        <x-alerts.not-founded :message="'not add posts yet'" />
+                    @endif
+                    @include('admin.dashboard.last-post', ['post' =>$admin->posts->last()])
+                </div>
+            </div>
+            <!-- End  last post  Widget -->
         </div>
 
     </x-slot>

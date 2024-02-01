@@ -16,9 +16,6 @@
     </div>
 
     <div class="info between-flex">
-        <div class="prog bg-eee">
-            <span class="bg-red" style="width: 50%"></span>
-        </div>
         <div class="fs-14 c-grey">
             {{ $project->service->name_service }}
         </div>
