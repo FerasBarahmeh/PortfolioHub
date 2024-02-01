@@ -1,5 +1,5 @@
 <div class="profile-card social-boxes p-20 bg-white rad-10 mt-20">
-    <h2 class="mt-0 mb-10 text-capitalize">social Info</h2>
+    <x-admin.widget-title>social information</x-admin.widget-title>
     <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">social media information</p>
 
     <x-alerts.alert :success="session('success-add-account')" :fail="session('fail-add-account')" :s howTime="4000"/>

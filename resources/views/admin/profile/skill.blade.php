@@ -1,5 +1,3 @@
-
-
 <div class="flex flex-col justify-content-center align-items-center p-10 gap-10  " @style(['background-color: var(--bs-border-color); box-shadow: var(--bs-box-shadow); width: 200px'])>
 
     <figure @style(['width: 100px; height: 100px; '])>

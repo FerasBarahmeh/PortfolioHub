@@ -1,5 +1,5 @@
 <div class="profile-card p-20 bg-white rad-10 mt-20">
-    <h2 class="mt-0 mb-10 text-capitalize">My experiences</h2>
+    <x-admin.widget-title>experiences</x-admin.widget-title>
     <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">what the stages experience i finished </p>
 
     <x-alerts.alert :success="session('success-add-experience')" :fail="session('fail-add-experience') "/>

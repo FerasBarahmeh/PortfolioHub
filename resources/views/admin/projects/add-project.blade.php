@@ -1,6 +1,7 @@
 
 <x-modal name="add-project">
-    <form method="post" action="{{ route('projects.store') }}"  enctype="multipart/form-data"
+    @if ($services->isNotEmpty() && $skills->isNotEmpty())
+        <form method="post" action="{{ route('projects.store') }}"  enctype="multipart/form-data"
           class="p-6">
         @csrf
 
@@ -103,4 +104,9 @@
             </x-primary-button>
         </div>
     </form>
+    @elseif($skills->isEmpty())
+        <x-admin.box-adjuster :message="'you dont have skills to attach with this project'" :route="'profile.index'"/>
+    @else
+        <x-admin.box-adjuster :message="'a category is required before adding a project.'" :route="'profile.index'"/>
+    @endif
 </x-modal>

@@ -21,10 +21,6 @@
     @livewireStyles
 
     {{--  Scripts  --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
-
-
 
 </head>
 
@@ -38,6 +34,7 @@
         </div>
 
         @stack('js')
+        <script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
         @livewireScripts
     </body>
 

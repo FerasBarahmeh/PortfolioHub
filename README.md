@@ -4,15 +4,21 @@
 your skills, projects, and professional experience. This platform allows you to present your achievements and expertise
 in a visually appealing and user-friendly manner.
 
-# How install it
+# Setups give you validate browse project
 
 1) git install https://github.com/Feras-Barahmeh/FerasPortfolio/
 2) cd <project name>
 3) composer install
-4) install packages using in the project
-5) create db and change name in .env file
-6) php artisan migration:fresh --seed
-7) http://localhost:8000/en/login
+4) create db and change name in .env file
+5) run command `php artisan mi:f --seed`
+6) to generate app key run  `php artisan key:generate`
+7) npm install
+8) if it has a vulnerabilities errors run this `npm audit fix`
+9) run `npm run dev; npm run build`
+10) run `php artisan storage:link`
+11) http://localhost:8000/en/login
+
+*Login As Admin*  
 
    | Privilege | Email           | Password |
       |-----------|-----------------|----------|

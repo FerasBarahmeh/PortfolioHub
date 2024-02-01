@@ -1,5 +1,5 @@
 <div class=" profile-card p-20 bg-white rad-10 mt-20" id="services">
-    <h2 class="mt-0 mb-10 text-capitalize">services</h2>
+    <x-admin.widget-title>services</x-admin.widget-title>
     <p class="mt-0 mb-20 c-grey fs-15 text-capitalize">the services i can provide </p>
 
 
@@ -23,7 +23,7 @@
     @if ($admin->services->isNotEmpty() )
         @each('admin.profile.service', $admin->services, 'service')
     @else
-        <x-alerts.not-founded :message="'No accounts services yet'" />
+        <x-alerts.not-founded :message="'No services added  yet'" />
     @endif
 
 </div>
