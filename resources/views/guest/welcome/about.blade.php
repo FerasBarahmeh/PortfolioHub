@@ -7,8 +7,9 @@
             <div class="col-md-5 animate-box p-relative">
                 <span></span>
                 @isset($admin->layout)
+{{--                   Storage::url($admin->layout->image?->url) ?? --}}
                     <img class="img-responsive about-img"
-                         src="{{ Storage::url($admin->layout->image->url) ?? asset('guest/images/about.png') }}"
+                         src="{{ asset('guest/images/about.png') }}"
                          alt="html5 bootstrap template by colorlib.com">
                 @endisset
             </div>
